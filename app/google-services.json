@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "635647550235-lctenk0dv8co5magtvpl1rk76tker5dl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kau.holyjoon.cookingmemo",
+            "certificate_hash": "843c5adb29740ecf455adf7440e03b3bb9e22ca3"
+          }
+        },
+        {
           "client_id": "635647550235-fa3ljj8l3i4v57obg92gig96oak82alf.apps.googleusercontent.com",
           "client_type": 3
         }
