@@ -1,4 +1,4 @@
-package kau.holy_joon.cookingmemo
+package kau.holyjoon.cookingmemo
 
 class Popup_Ingredients(val name : String, val photo: String) {
     //많은 재료를 저장시키고 불러오기 위해서는 나중에 Firebase로 .. DB를 써야 할듯

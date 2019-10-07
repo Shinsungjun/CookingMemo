@@ -1,4 +1,4 @@
-package kau.holy_joon.cookingmemo
+package kau.holyjoon.cookingmemo
 
 
 //이 클래스는 PlusActivity (plus_popup)에서 지정된 정보, 여러 재료, 방법, 시간을 기록하고 넘겨주기 위한 클래스이다.
