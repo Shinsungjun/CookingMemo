@@ -39,6 +39,10 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
 
 
         }
+        bt_addIn.setOnClickListener{
+            val intent = Intent (this, Choice_ingredient_Main::class.java)
+            startActivityForResult(intent,1)
+        }
 
 
     }
