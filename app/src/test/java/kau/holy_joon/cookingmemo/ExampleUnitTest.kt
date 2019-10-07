@@ -1,4 +1,4 @@
-package kau.holyjoon.cookingmemo
+package kau.holy_joon.cookingmemo
 
 import org.junit.Test
 

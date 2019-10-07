@@ -1,19 +1,13 @@
-package kau.holyjoon.cookingmemo
+package kau.holy_joon.cookingmemo
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
-import android.widget.BaseAdapter
 import android.widget.GridView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.edit_main.*
 import kotlinx.android.synthetic.main.plus_popup.*
-import android.widget.Toast
-
 
 
 class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 popup형식 Activity 여기서 만들어진 Recipe객체를 Intent를 통해 EditActivity로 넘겨준다. 그러면 EditActivity에서도 똑같이 객체화!

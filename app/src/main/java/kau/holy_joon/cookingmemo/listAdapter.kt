@@ -1,4 +1,4 @@
-package kau.holyjoon.cookingmemo
+package kau.holy_joon.cookingmemo
 
 import android.R
 import android.content.Context

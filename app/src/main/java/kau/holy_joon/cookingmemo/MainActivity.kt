@@ -1,12 +1,9 @@
-package kau.holyjoon.cookingapp
+package kau.holy_joon.cookingmemo
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kau.holyjoon.cookingmemo.EditActivity
-import kau.holyjoon.cookingmemo.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.edit_main.*
 
 class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리를 보여주는 홈화면
 

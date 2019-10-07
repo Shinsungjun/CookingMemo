@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "635647550235",
+    "firebase_url": "https://kau-mobile-cookingapp.firebaseio.com",
+    "project_id": "kau-mobile-cookingapp",
+    "storage_bucket": "kau-mobile-cookingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635647550235:android:b97490a43b335f00bee9be",
+        "android_client_info": {
+          "package_name": "kau.holyjoon.cookingmemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635647550235-fa3ljj8l3i4v57obg92gig96oak82alf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYH_WUNj3-se8CoKqWvUw1ePe42A_BQvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635647550235-fa3ljj8l3i4v57obg92gig96oak82alf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

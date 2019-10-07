@@ -1,10 +1,8 @@
-package kau.holyjoon.cookingmemo
+package kau.holy_joon.cookingmemo
 
 import android.os.Bundle
 import android.view.Window
-import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 
 class PopupTimeActivity : AppCompatActivity(){  //나중에 Time은 Edit이 아닌.. 선택으로 바꿀거임 ..
     override fun onCreate(savedInstanceState: Bundle?) {
