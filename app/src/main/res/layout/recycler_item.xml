@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
-        android:text="재료"
+        android:text="ingredient"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/howmake_text"
@@ -26,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
         android:textSize="25dp"
-        android:text="방법"
+        android:text="howmake"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cooktime_text"
         app:layout_constraintStart_toEndOf="@+id/ingredient_text"
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
         android:textSize="25dp"
-        android:text="시간"
+        android:text="time"
         app:layout_constraintStart_toEndOf="@+id/howmake_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

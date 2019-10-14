@@ -1,13 +1,20 @@
 package kau.holyjoon.cookingmemo
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.View
 import android.view.Window
 import android.widget.GridView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.plus_popup.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 popup형식 Activity 여기서 만들어진 Recipe객체를 Intent를 통해 EditActivity로 넘겨준다. 그러면 EditActivity에서도 똑같이 객체화!
@@ -17,6 +24,8 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.plus_popup)
+
+
 
         val gridView : GridView = findViewById(R.id.grid_image)
         val texthow : TextView = findViewById(R.id.edit_how)
@@ -30,11 +39,26 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         bt_cancel.setOnClickListener { view ->
             finish()
         }
-        bt_done.setOnClickListener {
+        bt_done.setOnClickListener(){
+
             //이제 이 버튼 눌렀을 떄가 중요 ..
             //조건에 적합한지 체크 후, 적합하지 않으면 toast가 뜨면서 적절하지 않음을 알려줌. 그리고 Activity를 종료하지 않음
             //조건에 적합하면 Intent에 담아서 바깥에 정보를 가져다가 줌.
+            val plusintent = Intent(this,EditActivity::class.java)
 
+            val how = edit_how.text.toString()
+            val time = edit_time.text.toString()
+            val comment = edit_comment.text.toString()
+
+            val recipelist = ArrayList<Recipe_item>()
+
+            recipelist.add(element = Recipe_item(how,time,comment,comment))
+
+
+            plusintent.putExtra("how",how)
+            plusintent.putExtra("time",time)
+            plusintent.putExtra("comment",comment)
+            startActivity(plusintent)
             finish()
 
 

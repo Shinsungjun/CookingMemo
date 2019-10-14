@@ -19,36 +19,15 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.edit_main)
 
         val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
-        Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
+        //Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
 
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
-        Recipe_view.layoutManager = lm
-        Recipe_view.setHasFixedSize(true)
-
+//        Recipe_view.layoutManager = lm   세줄 오류남 22,25,26
+//        Recipe_view.setHasFixedSize(true)
 
 
         aboutView()
-        //RecyclerView 어댑터, 레이아웃 매니저 설정(하는중)
-        /*var recipeList = arrayListOf<memo>()
 
-
-        val memos = arrayOf(getData())
-        //val list:ListView=findViewById(R.id.editlist)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,memos)
-        val Adapter1 = listAdapter(this, recipeList)
-        recycler1.adapter = Adapter1
-
-        //list.adapter = adapter
-        val lm = LinearLayoutManager(this)
-        recycler1.layoutManager = lm
-        recycler1.setHasFixedSize(true)
-
-        var recipeList = arrayListOf<memo>(*/
-        val memos = arrayOf(getData())
-        //val list:ListView=findViewById(R.id.editlist)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,memos)
-
-        //list.adapter = adapter
     }
 
     private fun aboutView(){
@@ -57,7 +36,9 @@ class EditActivity : AppCompatActivity() {
         }
     }
     private fun getData(){
-        intent.getStringExtra("texthow")
+        /*how = intent.getStringExtra("how")
+        time = intent.getStringExtra("time")
+        comment = intent.getStringExtra("comment")*/
     }
     private fun openPlusActivity() { //근데 dialog라서 Activity 취급이 아닌거같아
        /* val builder = AlertDialog.Builder(this)
