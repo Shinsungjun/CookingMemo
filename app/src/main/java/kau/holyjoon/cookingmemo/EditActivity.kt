@@ -4,28 +4,30 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.edit_main.*
 import kotlinx.android.synthetic.main.recyclerview.*
 
 
 class EditActivity : AppCompatActivity() {
 
-    var recipeList = arrayListOf<Recipe_item>()//리사이클뷰에 들어갈 Array
+
+    var recipeList = arrayListOf<Recipe_item>( //recyclerview에 들어갈 데이터리스트
+        Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
+        Recipe_item("토스트", "굽기", "3", "노릇노릇")
+
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
 
         val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
-        //Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
+        Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
 
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
-//        Recipe_view.layoutManager = lm   세줄 오류남 22,25,26
-//        Recipe_view.setHasFixedSize(true)
+        Recipe_view.layoutManager = lm
+        Recipe_view.setHasFixedSize(true)
 
 
         aboutView()

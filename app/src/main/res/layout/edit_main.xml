@@ -29,16 +29,29 @@
         app:srcCompat="@android:drawable/ic_menu_save"
         tools:srcCompat="@android:drawable/ic_menu_save" />
 
-    <TextView
+    <EditText
         android:id="@+id/text_myCook"
         android:layout_width="114dp"
-        android:layout_height="32dp"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:text="요리 명"
+        android:hint="요리 명"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"
         app:layout_constraintRight_toLeftOf="@id/space_location_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recipe_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
