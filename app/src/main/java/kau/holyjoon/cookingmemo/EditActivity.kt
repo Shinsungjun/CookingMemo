@@ -5,16 +5,30 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.edit_main.*
+import kotlinx.android.synthetic.main.recyclerview.*
 
 
 class EditActivity : AppCompatActivity() {
 
+    var recipeList = arrayListOf<Recipe_item>()//리사이클뷰에 들어갈 Array
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
+
+        val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
+        Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
+
+        val lm = LinearLayoutManager(this) //레이아웃매니저 설정
+        Recipe_view.layoutManager = lm
+        Recipe_view.setHasFixedSize(true)
+
+
+
         aboutView()
         //RecyclerView 어댑터, 레이아웃 매니저 설정(하는중)
         /*var recipeList = arrayListOf<memo>()
