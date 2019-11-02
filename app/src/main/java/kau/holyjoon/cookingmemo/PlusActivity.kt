@@ -13,27 +13,43 @@ import kotlinx.android.synthetic.main.plus_popup.*
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import android.widget.BaseAdapter
+import android.widget.Toast
 
 
 class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 popup형식 Activity 여기서 만들어진 Recipe객체를 Intent를 통해 EditActivity로 넘겨준다. 그러면 EditActivity에서도 똑같이 객체화!
     //done 버튼을 누르면 지금까지 입력한 재료, 방법, 시간에 대한 정보를 가지고 조건에 맞는다면 Recipe객체를 만들어 Intent로 전달.
     //조건에 맞지 않는다면 무엇이 부족한지 알려줌.
+    var ingredients = ArrayList<Ingredient?>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.plus_popup)
-
-
-
         val gridView : GridView = findViewById(R.id.grid_image)
-        val texthow : TextView = findViewById(R.id.edit_how)
-        val texttime : TextView = findViewById(R.id.edit_time)
-        val comment : TextView = findViewById(R.id.edit_comment)
-
-        val intent : Intent = getIntent()
+        //val texthow : TextView = findViewById(R.id.edit_how)
+        //val texttime : TextView = findViewById(R.id.edit_time)
+        //val comment : TextView = findViewById(R.id.edit_comment)
+        val popupAdapter = Result_Adapter(this, ingredients)
+        gridView.adapter = popupAdapter
+        //val intent : Intent = getIntent()
         aboutView()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(data != null) {
+            val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
+            if (ingredient != null) {
+                ingredients  = ingredient
+                Toast.makeText(this,"${ingredients[0]?.name}",Toast.LENGTH_LONG).show()
+                (grid_image.adapter as BaseAdapter).notifyDataSetChanged()
+            }
+            else {
+                Toast.makeText(this,"null",Toast.LENGTH_LONG).show()
+            }
+            (grid_image.adapter as BaseAdapter).notifyDataSetChanged()
+        }
     }
     fun aboutView() {
         bt_cancel.setOnClickListener { view ->
@@ -53,12 +69,13 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val recipelist = ArrayList<Recipe_item>()
 
             recipelist.add(element = Recipe_item(how,time,comment,comment))
+            //recipelist.add(element = Recipe_item(ingredients,time,comment,comment)) 로 해서 넘겨줘야 함
 
 
             plusintent.putExtra("how",how)
             plusintent.putExtra("time",time)
             plusintent.putExtra("comment",comment)
-            startActivity(plusintent)
+            //startActivity(plusintent)
             finish()
 
 

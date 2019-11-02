@@ -4,6 +4,7 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.edit_main.*
 import kotlinx.android.synthetic.main.recyclerview.*
@@ -15,13 +16,14 @@ class EditActivity : AppCompatActivity() {
     var recipeList = arrayListOf<Recipe_item>( //recyclerview에 들어갈 데이터리스트
         Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
         Recipe_item("토스트", "굽기", "3", "노릇노릇")
+    //얘네들도  Recipe_item("토스트", "굽기", "3", "노릇노릇") 의 첫 Param에 "토스트"가 아니고 여러 Ingredient를 가지고 있는
+    //Array<Ingredient> 를 받아서 출력해야함..!
 
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
-
         val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
         Recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
 
@@ -37,6 +39,9 @@ class EditActivity : AppCompatActivity() {
     private fun aboutView(){
         bt_plus.setOnClickListener{ //메모버튼 눌렀을때
             openPlusActivity()
+        }
+        bt_save.setOnClickListener {
+            Toast.makeText(this@EditActivity,"Save!",Toast.LENGTH_LONG).show()
         }
     }
     private fun getData(){

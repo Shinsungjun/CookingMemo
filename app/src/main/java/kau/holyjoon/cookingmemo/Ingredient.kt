@@ -1,13 +1,27 @@
 package kau.holyjoon.cookingmemo
 
-import android.net.Uri
-import com.google.android.gms.auth.api.signin.internal.Storage
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import android.os.Parcel
+import android.os.Parcelable
+import java.io.Serializable
 
-class Ingredient(val name : String,val img : String) {
-    //val name = name
-    //val storage : FirebaseStorage = FirebaseStorage.getInstance()
-    //val storageRef : StorageReference = storage.getReference()
-    //val pathReference : StorageReference = storageRef.child(img)
+class Ingredient(var name: String?, var source: String?) : Parcelable, Serializable {
+    constructor(source: Parcel) : this(
+        source.readString(),
+        source.readString()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(name)
+        writeString(source)
+    }
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Ingredient> = object : Parcelable.Creator<Ingredient> {
+            override fun createFromParcel(source: Parcel): Ingredient = Ingredient(source)
+            override fun newArray(size: Int): Array<Ingredient?> = arrayOfNulls(size)
+        }
+    }
 }

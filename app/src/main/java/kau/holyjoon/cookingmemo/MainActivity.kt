@@ -25,6 +25,6 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     }
     private fun openActivity(){
         val intent = Intent (this, EditActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,1)
     }
 }
