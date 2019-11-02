@@ -1,6 +1,6 @@
 package kau.holyjoon.cookingmemo
 
-class Recipe_item(var ingredient:String, var howmake:String, var cooktime:String, var comment:String)
-{
-//var ingredient:ArrayList<Ingredient?> 으로 해야함
-}
+import android.os.Parcel
+import android.os.Parcelable
+
+class Recipe_item(var ingredient:ArrayList<Ingredient?>, var howmake:String?, var cooktime:String?, var comment:String?){}

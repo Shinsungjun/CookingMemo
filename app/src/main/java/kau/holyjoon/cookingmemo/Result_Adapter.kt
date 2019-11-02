@@ -9,6 +9,7 @@ import android.widget.GridView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
+
 class Result_Adapter(val context:Context, val items : ArrayList<Ingredient?>) : BaseAdapter() {  //Fragment내의 GridView Adapter
 
     override fun getItem(idx: Int): Ingredient? {

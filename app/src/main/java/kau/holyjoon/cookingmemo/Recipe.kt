@@ -1,5 +1,8 @@
 package kau.holyjoon.cookingmemo
 
+import android.os.Parcel
+import android.os.Parcelable
+
 
 //이 클래스는 PlusActivity (plus_popup)에서 지정된 정보, 여러 재료, 방법, 시간을 기록하고 넘겨주기 위한 클래스이다.
 //재료의 정보를 넘기기 위해선 Popup_ingredients 에서 재료를 선택을 하고 Intent로 다시 PopupActivity에 넘기면 PopupActivity에서
@@ -9,10 +12,33 @@ package kau.holyjoon.cookingmemo
 //EditActivity로 넘길것이다.
 //EditActivity에서는 조건을 만족하는 정보 (적어도 재료와 방법에 대한 데이터가 존재)가 넘어온다면 Recipe객체를 만들어 해당 데이터를 저장하고
 //RecyclerView를 통해 보여준다.
-class Recipe(ingredients : Array<String>,comment : String, howmake : String, cooktime : Int?) {  //시간은 null이 가능하게 아니면 그냥 0 으로 두고 null일 수 없게 만드는 것도 방법
-    var ingredients :Array<String> = ingredients
-    var howmake : String = howmake
-    var cooktime : Int? = cooktime  //요리에 있어, 재료와 조리법이 존재하지 않을 수 없기 때문에 ingredients와 howmake는 null이 될 수 없다.
+class Recipe(var howmake : String?, var cooktime : String?,var comment : String?):Parcelable{  //시간은 null이 가능하게 아니면 그냥 0 으로 두고 null일 수 없게 만드는 것도 방법
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(howmake)
+        parcel.writeString(cooktime)
+        parcel.writeString(comment)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Recipe> {
+        override fun createFromParcel(parcel: Parcel): Recipe {
+            return Recipe(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Recipe?> {
+            return arrayOfNulls(size)
+        }
+    }
 
 
 }

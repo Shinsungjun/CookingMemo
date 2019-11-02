@@ -4,6 +4,10 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.edit_main.*
@@ -12,14 +16,15 @@ import kotlinx.android.synthetic.main.recyclerview.*
 
 class EditActivity : AppCompatActivity() {
 
-
-    var recipeList = arrayListOf<Recipe_item>( //recyclerview에 들어갈 데이터리스트
-        Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
-        Recipe_item("토스트", "굽기", "3", "노릇노릇")
+        var recipeList = arrayListOf<Recipe_item>( //recyclerview에 들어갈 데이터리스트
+        //Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
+        //Recipe_item("토스트", "굽기", "3", "노릇노릇")
     //얘네들도  Recipe_item("토스트", "굽기", "3", "노릇노릇") 의 첫 Param에 "토스트"가 아니고 여러 Ingredient를 가지고 있는
-    //Array<Ingredient> 를 받아서 출력해야함..!
+    //Array<Ingredient> 를 받아서 출력해야함..
+
 
     )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,7 @@ class EditActivity : AppCompatActivity() {
         Recipe_view.layoutManager = lm
         Recipe_view.setHasFixedSize(true)
 
+        registerForContextMenu(Recipe_view)
 
         aboutView()
 
@@ -73,6 +79,14 @@ class EditActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(data!=null){
+            val resultintent1 = data.extras?.get("recipe")as Recipe
+            val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
+
+            if(resultintent1 != null && ingredient != null) {
+                Toast.makeText(this,"${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
 

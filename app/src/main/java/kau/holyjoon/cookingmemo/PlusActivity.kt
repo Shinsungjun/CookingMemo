@@ -66,16 +66,11 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val time = edit_time.text.toString()
             val comment = edit_comment.text.toString()
 
-            val recipelist = ArrayList<Recipe_item>()
+            val recipe = Recipe(how,time,comment)
 
-            recipelist.add(element = Recipe_item(how,time,comment,comment))
-            //recipelist.add(element = Recipe_item(ingredients,time,comment,comment)) 로 해서 넘겨줘야 함
-
-
-            plusintent.putExtra("how",how)
-            plusintent.putExtra("time",time)
-            plusintent.putExtra("comment",comment)
-            //startActivity(plusintent)
+            plusintent.putExtra("recipe",recipe)
+            plusintent.putExtra("array",ingredients)
+            setResult(1,plusintent)
             finish()
 
 
