@@ -1,6 +1,5 @@
 package kau.holyjoon.cookingmemo
 
-import android.os.Parcel
-import android.os.Parcelable
+import java.util.ArrayList
 
-class Recipe_item(var ingredient:ArrayList<Ingredient?>, var howmake:String?, var cooktime:String?, var comment:String?){}
+class Recipe_item(var ingredient: ArrayList<Ingredient?>?, var howmake:String?, var cooktime:String?, var comment:String?){}
