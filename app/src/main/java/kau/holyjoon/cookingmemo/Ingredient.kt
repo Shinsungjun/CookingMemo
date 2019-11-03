@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.io.Serializable
 
-class Ingredient(var name: String?, var source: String?) : Parcelable, Serializable {
+class Ingredient(var name: String?, var source: String?) : Parcelable {
     constructor(source: Parcel) : this(
         source.readString(),
         source.readString()

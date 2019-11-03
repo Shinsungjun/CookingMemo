@@ -21,40 +21,51 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
     //done 버튼을 누르면 지금까지 입력한 재료, 방법, 시간에 대한 정보를 가지고 조건에 맞는다면 Recipe객체를 만들어 Intent로 전달.
     //조건에 맞지 않는다면 무엇이 부족한지 알려줌.
     var ingredients = ArrayList<Ingredient?>()
+    val popupAdapter = Popup_Adapter(this, ingredients)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.plus_popup)
-        val gridView : GridView = findViewById(R.id.grid_image)
+        val gridView = findViewById<GridView>(R.id.grid_image)
+
         //val texthow : TextView = findViewById(R.id.edit_how)
         //val texttime : TextView = findViewById(R.id.edit_time)
         //val comment : TextView = findViewById(R.id.edit_comment)
-        val popupAdapter = Result_Adapter(this, ingredients)
         gridView.adapter = popupAdapter
-        //val intent : Intent = getIntent()
+        gridView.setOnItemClickListener() {
+                parent, itemView, position, id ->
+            popupAdapter.notifyDataSetChanged()
+        }
         aboutView()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {   //왜 작동을 안하냐 갑자기 ??..
         super.onActivityResult(requestCode, resultCode, data)
         if(data != null) {
-            val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
-            if (ingredient != null) {
-                ingredients  = ingredient
-                Toast.makeText(this,"${ingredients[0]?.name}",Toast.LENGTH_LONG).show()
-                (grid_image.adapter as BaseAdapter).notifyDataSetChanged()
+            //val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
+            val intent = data.extras?.getParcelableArrayList<Ingredient?>("back")
+
+            if (intent != null) {
+                ingredients.clear()
+                popupAdapter.notifyDataSetInvalidated()
+                for(i in 0 until intent.size) {  //ArrayList 넘겨받을때는 이런식으로 받아야함!!!!
+                    ingredients.add(intent[i])
+                }
+                //Toast.makeText(this,"${ingre[0]?.name}",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this,"${ingredients[0]?.name}",Toast.LENGTH_LONG).show()
+                popupAdapter.notifyDataSetChanged()
             }
             else {
                 Toast.makeText(this,"null",Toast.LENGTH_LONG).show()
             }
-            (grid_image.adapter as BaseAdapter).notifyDataSetChanged()
         }
     }
     fun aboutView() {
         bt_cancel.setOnClickListener { view ->
             finish()
         }
+
         bt_done.setOnClickListener(){
 
             //이제 이 버튼 눌렀을 떄가 중요 ..
@@ -66,7 +77,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val time = edit_time.text.toString()
             val comment = edit_comment.text.toString()
 
-            val recipe = Recipe(how,time,comment)
+            val recipe = Recipe(time,comment,comment)
 
             plusintent.putExtra("recipe",recipe)
             plusintent.putExtra("array",ingredients)
@@ -76,7 +87,9 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
 
         }
         bt_addIn.setOnClickListener{
-            val intent = Intent (this, Choice_ingredient_Main::class.java)
+            val intent = Intent(this, Choice_ingredient_Main::class.java)
+            intent.putExtra("giveIngredient", ingredients)
+            setResult(1,intent)
             startActivityForResult(intent,1)
         }
 
@@ -95,9 +108,4 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         super.onBackPressed()
         return
     }
-    private fun openActivity ( texthow : String) {
-        val howintent = Intent (this, EditActivity::class.java)
-        howintent.putExtra("texthow", texthow)
-        startActivity(howintent)
-    }
-    }
+}

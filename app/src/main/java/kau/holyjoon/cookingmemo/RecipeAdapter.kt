@@ -116,7 +116,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>)
 */
 
 
-// onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.(필수 함수)
+    // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.(필수 함수)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent,false)
         return RecipeViewHolder(view)

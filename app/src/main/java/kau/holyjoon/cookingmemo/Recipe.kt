@@ -40,5 +40,4 @@ class Recipe(var howmake : String?, var cooktime : String?,var comment : String?
         }
     }
 
-
 }
