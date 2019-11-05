@@ -55,7 +55,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>)
 
         fun bind(recipe: Recipe_item,context:Context) { //recycleview item에 데이터를 붙여주는 작업
 
-            //Ingredient?.text = recipe.ingredient
+            Ingredient?.text = recipe.ingredient?.get(0)?.name.toString()
             Howmake?.text = recipe.howmake
             Cooktime?.text = recipe.cooktime
             Comment?.text = recipe.comment

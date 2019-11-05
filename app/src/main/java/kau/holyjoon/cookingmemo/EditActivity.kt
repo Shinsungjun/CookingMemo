@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.edit_main.*
 
 class EditActivity : AppCompatActivity() {
 
-    var count:Int = -1
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
     val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
             // Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
