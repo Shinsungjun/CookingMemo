@@ -32,23 +32,10 @@ class Choice_ingredient_Main : FragmentActivity(){  //Fragment를 포함하는 A
         var resultitems =  ArrayList<Ingredient?>()//선택한 재료들이 들어가는 리스트 사이즈 = 50
 
     }
-
-
     //val resultAdapter = Result_Adapter(this, resultitems)
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choice_ingredient_main)
-        val resultingredient = intent.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
-        if (resultingredient != null) {
-           resultitems  = resultingredient
-          Toast.makeText(this,"${resultitems[0]?.name}",Toast.LENGTH_LONG).show()
-        }
-        else {
-            Toast.makeText(this, "null",Toast.LENGTH_LONG).show()
-        }
         //val database : FirebaseDatabase = FirebaseDatabase.getInstance()
         //val myRef : DatabaseReference = database.getReference("test")
         val fragmentitem = Choice_Ingredient_Item()
@@ -88,11 +75,25 @@ class Choice_ingredient_Main : FragmentActivity(){  //Fragment를 포함하는 A
             resultIntent.putExtra("back", resultitems)
             setResult(1,resultIntent)
             finish()
-            resultitems = ArrayList(50)
+            resultitems.clear()
         }
         choice_bt_cancel.setOnClickListener{
-            resultitems = ArrayList(50)
             finish()
+            resultitems.clear()
         }
+        bt_additem_db.setOnClickListener {
+            val intent = Intent(this, Db_AddActivity::class.java)
+            startActivityForResult(intent,1)
+        }
+        val resultingredient = intent.extras?.getParcelableArrayList<Ingredient?>("back")   //intent 받아오는 부분
+        if (resultingredient != null) {
+            for(i in 0 until resultingredient.size) {
+                resultitems.add(resultingredient[i])
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/grid_image" />
 
     <Button
-        android:id="@+id/bt_cancel"
+        android:id="@+id/bt_cancel_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="63dp"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_how" />
 
     <Button
-        android:id="@+id/bt_done"
+        android:id="@+id/bt_done_pop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -117,7 +117,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="설명"
-        app:layout_constraintBottom_toTopOf="@+id/bt_cancel"
+        app:layout_constraintBottom_toTopOf="@+id/bt_cancel_pop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"

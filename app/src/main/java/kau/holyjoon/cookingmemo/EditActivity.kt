@@ -72,13 +72,17 @@ class EditActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(data!=null){
+            var resultarray = ArrayList<Ingredient?>()
             val resultintent1 = data.extras?.get("recipe")as Recipe
             val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
 
             if(resultintent1 != null && ingredient != null) {
-                Toast.makeText(this,"${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
+                for (i in 0 until ingredient.size) {   //이렇게 배열을 받아야 정확하게 받아짐
+                    resultarray.add(ingredient[i])
+                }
             }
-            recipeList.add(Recipe_item(ingredient,resultintent1.howmake,resultintent1.cooktime,resultintent1.comment))
+            recipeList.add(Recipe_item(resultarray,resultintent1.howmake,resultintent1.cooktime,resultintent1.comment))
             mAdapter.notifyDataSetChanged()
         }
 
