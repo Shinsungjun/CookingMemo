@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //RecyclerView_Grid 어댑터
-class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>)
+class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>,val itemClick : (hRecipe) -> Unit)
     :RecyclerView.Adapter<GridAdapter.hRecipeViewHolder>(){
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
@@ -20,14 +20,14 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>)
         val recipe_image = itemView?.findViewById<ImageView>(R.id.recipe_image)
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
-            if (recipe.imgno!= "") {
-                val resourceId = context.resources.getIdentifier(recipe.imgno, "drawable", context.packageName)
+            if (recipe.img!= "") {
+                val resourceId = context.resources.getIdentifier(recipe.img, "drawable", context.packageName)
                 recipe_image?.setImageResource(resourceId)
             } else {
                 recipe_image?.setImageResource(R.mipmap.ic_launcher)
             }
             recipe_name?.text = recipe.name
-
+            itemView.setOnClickListener { itemClick(recipe) }
         }
 
     }
