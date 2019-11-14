@@ -14,9 +14,7 @@ class EditActivity : AppCompatActivity() {
 
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
     val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
-            // Recipe_item("감자", "튀기기", "4", "바삭하게"),//임의의 데이터 넣어줌
-        //Recipe_item("토스트", "굽기", "3", "노릇노릇")
-    //얘네들도  Recipe_item("토스트", "굽기", "3", "노릇노릇") 의 첫 Param에 "토스트"가 아니고 여러 Ingredient를 가지고 있는
+    // 여러 Ingredient를 가지고 있는
     //Array<Ingredient> 를 받아서 출력해야함..
 
     override fun onCreate(savedInstanceState: Bundle?) {

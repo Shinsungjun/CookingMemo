@@ -7,6 +7,20 @@
     tools:context=".EditActivity">
 
     <ImageButton
+        android:id="@+id/bt_folder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/Recipe_view"
+        app:layout_constraintEnd_toStartOf="@+id/bt_plus"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/text_myCook"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
+    <ImageButton
         android:id="@+id/bt_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,14 +58,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recipe_view"
-        android:layout_width="361dp"
-        android:layout_height="470dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,21 +96,26 @@
         app:layout_constraintRight_toLeftOf="@id/bt_plus"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="46dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Recipe_view"
+        app:layout_constraintTop_toBottomOf="@+id/grid_view"
+        app:layout_constraintVertical_bias="0.45"
         app:menu="@menu/menu_bottom">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
