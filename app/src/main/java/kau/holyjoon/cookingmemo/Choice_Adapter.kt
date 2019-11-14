@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-class Choice_Adapter(val context:Context, val items : Array<Ingredient>) : BaseAdapter() {  //Fragment내의 GridView Adapter
+class Choice_Adapter(val context:Context, val items : ArrayList<Ingredient>) : BaseAdapter() {  //Fragment내의 GridView Adapter
 
     override fun getItem(idx: Int): Any {
         return items[idx] //To change body of created functions use File | Settings | File Templates.

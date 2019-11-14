@@ -8,22 +8,21 @@ import android.widget.BaseAdapter
 import android.widget.GridView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.choice_ingredient_main.*
 import kotlinx.android.synthetic.main.plus_popup.*
 
 class Choice_Ingredient_Item : Fragment() {  //item Fragment
-    interface update {
-        fun updateResultGrid()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var mainActivity = Choice_ingredient_Main()
-        var ingredients = (Choice_ingredient_Main).ingredients //Main에 선언해둔 ingredients를 가져와서 씀.
-        var resultitem = (Choice_ingredient_Main).resultitems
+        var ingredients = ArrayList<Ingredient>()
         val view : View = inflater.inflate(R.layout.choice_ingredient_item, container, false)
         val adapter = Choice_Adapter(requireContext(),(ingredients))
         val gridView = view.findViewById<GridView>(R.id.item_choice_grid)
@@ -36,6 +35,28 @@ class Choice_Ingredient_Item : Fragment() {  //item Fragment
 
         //var positions : Int?
         gridView.adapter = adapter
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(postSnapshot : DataSnapshot in dataSnapshot.children) {
+                    val ing = postSnapshot.getValue(Ingredient::class.java)
+                    if(ing != null) {
+                        ingredients.add(ing)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        }
+        val sort = FirebaseDatabase.getInstance().getReference().child("ingredient").child("etc").child("liquid")
+            .addListenerForSingleValueEvent(postListener)
+        var mainActivity = Choice_ingredient_Main()
+        //var ingredients = (Choice_ingredient_Main).ingredients //Main에 선언해둔 ingredients를 가져와서 씀.
+        var resultitem = (Choice_ingredient_Main).resultitems
+
+        adapter.notifyDataSetChanged()
         main_gridView.setOnItemClickListener() {
             parent, itemView, position, id ->
             //positions = position

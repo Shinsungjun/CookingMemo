@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/ingre_tablayout"
+        android:layout_width="353dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingreViewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingre_searchView"
+        app:tabMode="scrollable">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_famous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인기" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_fruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채소/과일" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="육류" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <SearchView
+        android:id="@+id/ingre_searchView"
+        android:layout_width="353dp"
+        android:layout_height="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingre_tablayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridView
+        android:id="@+id/ingre_grid_view"
+        android:layout_width="289dp"
+        android:layout_height="96dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ingre_bt_ok"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/ingre_bt_ok"
+        android:layout_width="71dp"
+        android:layout_height="96dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ingre_grid_view"
+        app:layout_constraintTop_toBottomOf="@+id/ingreViewPager" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/ingreViewPager"
+        android:layout_width="361dp"
+        android:layout_height="419dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingre_grid_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingre_tablayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

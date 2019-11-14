@@ -23,6 +23,7 @@
         <activity android:name="kau.holyjoon.cookingmemo.PlusActivity" android:theme="@style/MyDialog"/>
         <activity android:name=".Choice_ingredient_Main"/>
         <activity android:name=".Db_AddActivity"/>
+        <activity android:name=".ingredientMainActivity"/>
     </application>
 
 </manifest>

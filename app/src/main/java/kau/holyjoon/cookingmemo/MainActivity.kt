@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리를 보여주는 홈화면
 
-    var hRecipeList:ArrayList<hRecipe> = arrayListOf(hRecipe("요리",""),hRecipe("메모",""))
+    var hRecipeList:ArrayList<hRecipe> = arrayListOf(hRecipe("요리",""),hRecipe("메모",""),hRecipe("메모",""),hRecipe("메모",""),hRecipe("메모",""))
     val hAdapter = GridAdapter(this, hRecipeList) //만든 어댑터를 설정해주는 작업
 
     override fun onCreate(savedInstanceState: Bundle?) {

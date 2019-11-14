@@ -70,7 +70,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val time = edit_time.text.toString()
             val comment = edit_comment.text.toString()
 
-            val recipe = Recipe(time,comment,comment)
+            val recipe = Recipe(how,time,comment)
 
             plusintent.putExtra("recipe",recipe)
             plusintent.putExtra("array",ingredients)
@@ -80,7 +80,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
 
         }
         bt_addIn.setOnClickListener{
-            val intent = Intent(this, Choice_ingredient_Main::class.java)
+            val intent = Intent(this, ingredientMainActivity::class.java)
             intent.putParcelableArrayListExtra("back",ingredients)
             startActivityForResult(intent, 1)
         }
