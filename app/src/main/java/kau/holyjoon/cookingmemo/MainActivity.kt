@@ -17,8 +17,13 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     //var hRecipeList: ArrayList<hRecipe>? = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
     var hRecipeList = ArrayList<hRecipe>()
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
-        Toast.makeText(this, "${hRecipe.name}", Toast.LENGTH_SHORT).show()
-        viewOpenActivity()
+        var viewintent = Intent(this, ViewActivity::class.java)
+        viewintent.putExtra("name",hRecipe.name)
+        viewintent.putExtra("img",hRecipe.img)
+        viewintent.putExtra("ingredient",hRecipe.ingredient)
+        viewintent.putExtra("recipe",hRecipe.hrecipeList)
+        startActivity(viewintent)
+
 
     } //만든 어댑터를 설정해주는 작업
 
@@ -65,7 +70,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
     private fun viewOpenActivity() {
         val viewintent = Intent(this, ViewActivity::class.java)
-        startActivityForResult(viewintent, 3)
+        startActivity(viewintent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

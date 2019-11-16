@@ -1,5 +1,8 @@
 package kau.holyjoon.cookingmemo
 
+import android.os.Parcel
+import android.os.Parcelable
+
 //그리드뷰에 보여줄 데이터
 class hRecipe(
     var name:String?,
