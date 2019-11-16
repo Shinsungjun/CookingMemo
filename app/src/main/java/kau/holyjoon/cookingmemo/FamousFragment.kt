@@ -69,7 +69,7 @@ class FamousFragment : Fragment() {
         Ingredient("egg", "https://firebasestorage.googleapis.com/v0/b/kau-mobile-cookingapp.appspot.com/o/egg.jpg?alt=media&token=99254b1a-aac7-4c66-888e-c5df58d3a706"),
         Ingredient("sugar", "https://firebasestorage.googleapis.com/v0/b/kau-mobile-cookingapp.appspot.com/o/sugar.jpg?alt=media&token=81401354-4a05-4d6e-86e4-e51f953c94bb"))
     var ingredientList112 = arrayListOf<Ingredient>()
-
+    var dataload = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -177,11 +177,14 @@ class FamousFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (postSnapshot: DataSnapshot in dataSnapshot.children) {
-                    val ing = postSnapshot.getValue(Ingredient::class.java)
-                    if (ing != null) {
-                        ingredientList112.add(ing)
+                if(dataload == 0) {
+                    for (postSnapshot: DataSnapshot in dataSnapshot.children) {
+                        val ing = postSnapshot.getValue(Ingredient::class.java)
+                        if (ing != null) {
+                            ingredientList112.add(ing)
+                        }
                     }
+                    dataload++
                 }
                 mAdapter1.notifyDataSetChanged()
             }

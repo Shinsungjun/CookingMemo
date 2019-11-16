@@ -9,7 +9,7 @@
     android:background="#fff8f2">
 
     <ScrollView
-        android:layout_width="369dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:descendantFocusability="blocksDescendants"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +72,7 @@
                 android:id="@+id/Recyclerview_ingre2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:overScrollMode="never"/>
+                android:overScrollMode="never" />
 
             <LinearLayout
                 android:layout_width="match_parent"
