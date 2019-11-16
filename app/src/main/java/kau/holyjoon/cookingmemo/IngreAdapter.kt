@@ -25,8 +25,10 @@ class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>,
             }*/
             ingredientName.text = ingredient.name
             ingredientPhoto.setOnClickListener {itemClick(ingredient)
-                resultList.add(Ingredient(ingredient.name,ingredient.source))
-                ingredient.source = null
+                if(ingredient.source != null) {
+                    resultList.add(Ingredient(ingredient.name, ingredient.source))
+                    ingredient.source = null
+                }
                 notifyDataSetChanged()
             }
         }

@@ -44,7 +44,7 @@ class Choice_ingredient_Main : FragmentActivity(){  //Fragment를 포함하는 A
 
 
         val fragmentitem = Choice_Ingredient_Item()
-        val fragmentrefri = Choice_Ingredient_refri()
+        //val fragmentrefri = Choice_Ingredient_refri()
         /*ingredients = arrayOf(Ingredient("milk", "https://firebasestorage.googleapis.com/v0/b/kau-mobile-cookingapp.appspot.com/o/milk.jpg?alt=media&token=61a05de3-aec1-41dd-9697-c3045fbc30dc"),
             Ingredient("bread", "https://firebasestorage.googleapis.com/v0/b/kau-mobile-cookingapp.appspot.com/o/bread.jpg?alt=media&token=835efe50-ff93-41ef-9177-8518e372dc3c"),
             Ingredient("egg", "https://firebasestorage.googleapis.com/v0/b/kau-mobile-cookingapp.appspot.com/o/egg.jpg?alt=media&token=99254b1a-aac7-4c66-888e-c5df58d3a706"),
@@ -63,7 +63,7 @@ class Choice_ingredient_Main : FragmentActivity(){  //Fragment를 포함하는 A
 
         choice_bt_refri.setOnClickListener{
             supportFragmentManager.beginTransaction()
-                .replace(R.id.view_item,fragmentrefri)
+       //         .replace(R.id.view_item,fragmentrefri)
                 .commit()
           //  resultAdapter.notifyDataSetChanged()
         }

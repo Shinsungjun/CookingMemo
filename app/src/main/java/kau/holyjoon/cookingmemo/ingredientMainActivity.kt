@@ -20,7 +20,9 @@ class ingredientMainActivity : AppCompatActivity() {
         val ingre_bt_ok = findViewById<Button>(R.id.ingre_bt_ok)
         ingre_bt_ok.setOnClickListener {
             val resultIntent = Intent(this, PlusActivity::class.java)
-            resultIntent.putExtra("back", resultList)
+            if(resultList.size != 0) {
+                resultIntent.putExtra("back", resultList)
+            }
             setResult(1,resultIntent)
             finish()
             resultList.clear()
