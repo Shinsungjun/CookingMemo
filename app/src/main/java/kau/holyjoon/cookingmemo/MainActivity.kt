@@ -3,10 +3,10 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.GridView
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
+import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.StorageReference
@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리를 보여주는 홈화면
 
-    var hRecipeList: ArrayList<hRecipe> = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
+    //var hRecipeList: ArrayList<hRecipe>? = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
+    var hRecipeList = ArrayList<hRecipe>()
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
         Toast.makeText(this, "${hRecipe.name}", Toast.LENGTH_SHORT).show()
         viewOpenActivity()
@@ -25,6 +26,15 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         super.onCreate(savedInstanceState)
         val mStorageRef: StorageReference;
         setContentView(R.layout.activity_main)
+        val text = findViewById<TextView>(R.id.empty_text)
+        var name = findViewById<TextView>(R.id.edit_cookname)
+
+
+//        if(hRecipeList.size!=0)
+//            text.setVisibility(INVISIBLE)
+//        else if(hRecipeList.size==0)
+//            text.setVisibility(VISIBLE)
+
 
         val numberOfColumns: Int = 2
 
@@ -35,6 +45,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         gridview.layoutManager = Gm as RecyclerView.LayoutManager?
         gridview.setHasFixedSize(true)
 
+
         aboutView()
 
 
@@ -44,7 +55,6 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         bt_edit.setOnClickListener {
             //메모버튼 눌렀을때
             openActivity()
-
         }
     }
 
@@ -55,6 +65,29 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
     private fun viewOpenActivity() {
         val viewintent = Intent(this, ViewActivity::class.java)
-        startActivityForResult(viewintent, 2)
+        startActivityForResult(viewintent, 3)
     }
-}
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val name = findViewById<TextView>(R.id.edit_cookname)
+        val resultintent = data?.getStringExtra("name")
+
+
+        if (data != null) {
+            val resultintent1: ArrayList<Recipe>? =
+                Intent().getParcelableArrayListExtra("recipeList")
+            val resultintent2: ArrayList<Ingredient?>? =
+                data.extras?.getParcelableArrayList<Ingredient?>("ingredient")
+            val item: hRecipe = hRecipe(name.text.toString(), "", resultintent2, resultintent1)
+            Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
+                .show()
+
+            Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
+            hRecipeList?.add(hRecipe(resultintent, "", resultintent2, resultintent1))
+            hAdapter.notifyDataSetChanged()
+        }
+
+
+        }
+    }

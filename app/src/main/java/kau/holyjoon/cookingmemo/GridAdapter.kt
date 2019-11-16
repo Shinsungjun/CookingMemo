@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //RecyclerView_Grid 어댑터
-class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>,val itemClick : (hRecipe) -> Unit)
+class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val itemClick : (hRecipe) -> Unit)
     :RecyclerView.Adapter<GridAdapter.hRecipeViewHolder>(){
+
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
     inner class hRecipeViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview!!){
@@ -40,11 +41,14 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>,val i
     }
     //전체 item 갯수 리턴(필수 함수)
     override fun getItemCount(): Int {
-        return hRecipeList.size
+        if(hRecipeList!=null)
+        return hRecipeList!!.size
+        return 0
     }
     //view와 데이터 연결(필수 함수)
     override fun onBindViewHolder(holder: hRecipeViewHolder, position: Int) {
-        holder.bind(hRecipeList[position], context)
+        if(hRecipeList!=null)
+        holder.bind(hRecipeList!![position], context)
 
 
 

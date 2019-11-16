@@ -28,13 +28,14 @@
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <TextView
-        android:id="@+id/text_myCook"
+        android:id="@+id/edit_cookname"
         android:layout_width="114dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:text="나의 요리"
+        android:scrollbarStyle="insideInset"
+        android:text="나의 레시피"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"
         app:layout_constraintRight_toLeftOf="@id/space_location_top"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,17 +58,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grid_view"
-        android:layout_width="374dp"
-        android:layout_height="481dp"
+        android:layout_width="421dp"
+        android:layout_height="462dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.617" />
 
     <Space
         android:id="@+id/space_location_top"
@@ -77,7 +78,7 @@
         android:layout_marginBottom="607dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintLeft_toRightOf="@id/text_myCook"
+        app:layout_constraintLeft_toRightOf="@id/edit_cookname"
         app:layout_constraintRight_toLeftOf="@id/bt_search"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +92,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_bottom" />
+
+    <TextView
+        android:id="@+id/empty_text"
+        android:layout_width="221dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:text="작성된 레시피가 없어요!ㅜㅡㅜ"
+        android:textSize="17dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
