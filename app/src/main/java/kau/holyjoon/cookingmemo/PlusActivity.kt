@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
 import android.widget.GridView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.plus_popup.*
 
@@ -37,7 +38,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         super.onActivityResult(requestCode, resultCode, data)
         if(data != null) {
             //val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
-            val intent = data.extras?.getParcelableArrayList<Ingredient?>("back")
+            val intent = data.extras?.getParcelableArrayList<Ingredient>("back")
 
             if (intent != null) {
                 ingredients.clear()
@@ -45,12 +46,11 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
                 for(i in 0 until intent.size) {  //ArrayList 넘겨받을때는 이런식으로 받아야함!!!!
                     ingredients.add(intent[i])
                 }
-                //Toast.makeText(this,"${ingre[0]?.name}",Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this,"${ingredients[0]?.name}",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"${ingredients[0]?.name}, hello",Toast.LENGTH_LONG).show()
                 popupAdapter.notifyDataSetChanged()
             }
             else {
-                //Toast.makeText(this,"null",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"no data",Toast.LENGTH_LONG).show()
             }
         }
     }

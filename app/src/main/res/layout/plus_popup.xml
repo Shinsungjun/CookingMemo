@@ -30,7 +30,7 @@
         android:layout_marginBottom="12dp"
         android:columnWidth="50dp"
         android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
+        android:numColumns="4"
         android:verticalSpacing="10dp"
         app:layout_constraintBottom_toTopOf="@+id/edit_how"
         app:layout_constraintEnd_toEndOf="parent"

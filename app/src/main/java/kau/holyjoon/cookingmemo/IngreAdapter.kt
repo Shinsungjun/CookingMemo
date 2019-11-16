@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>) :
+class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>,val itemClick : (Ingredient)->Unit) :
     RecyclerView.Adapter<IngreAdapter.Holder>() {
-
-    inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    var btSet = 0
+    inner class Holder(itemView : View,itemClick : (Ingredient)->Unit) : RecyclerView.ViewHolder(itemView) {
         val ingredientPhoto = itemView.findViewById<ImageView>(R.id.gridImg)
         val ingredientName = itemView.findViewById<TextView>(R.id.gridName)
 
@@ -24,18 +24,36 @@ class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>)
                 ingredientPhoto.setImageResource(R.mipmap.ic_launcher)
             }*/
             ingredientName.text = ingredient.name
+            ingredientPhoto.setOnClickListener {itemClick(ingredient)
+                resultList.add(Ingredient(ingredient.name,ingredient.source))
+                ingredient.source = null
+                notifyDataSetChanged()
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.ingredient_photo, parent, false)
-        return Holder(view)
+        return Holder(view, itemClick)
     }
     override fun getItemCount(): Int {
+        if(ingreList.size > 10 && btSet == 0) return 10
         return ingreList.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        Glide.with(holder.itemView.context).load(ingreList[position].source).into(holder.ingredientPhoto)
-        holder.bind(ingreList[position],context)
+        if(ingreList.size < 11 && btSet == 0) { //11개보다 작으면 줄일필요 x
+            Glide.with(holder.itemView.context).load(ingreList[position].source).into(holder.ingredientPhoto)
+            holder.bind(ingreList[position],context)
+        }
+        else if(ingreList.size > 10 && btSet == 0) { //10개보다 클때는 10개만 출력하도록
+            if(position < 10) {      //10개 까지만 표기 버튼 누르면 추가로 늘릴 수 있게 해야함.
+                Glide.with(holder.itemView.context).load(ingreList[position].source).into(holder.ingredientPhoto)
+                holder.bind(ingreList[position],context)
+            }
+        }
+        else if(btSet == 1){
+            Glide.with(holder.itemView.context).load(ingreList[position].source).into(holder.ingredientPhoto)
+            holder.bind(ingreList[position],context)
+        }
     }
 }

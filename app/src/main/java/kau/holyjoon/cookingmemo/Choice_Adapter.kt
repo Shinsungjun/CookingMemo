@@ -32,5 +32,5 @@ class Choice_Adapter(val context:Context, val items : ArrayList<Ingredient>) : B
         Glide.with(context).load(items[idx].source).into(view.findViewById(R.id.gridImg))
         view.findViewById<TextView>(R.id.gridName).text = items[idx].name
         return view
-}
+    }
 }

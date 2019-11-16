@@ -28,5 +28,4 @@
         <activity android:name=".Db_AddActivity"/>
         <activity android:name=".ingredientMainActivity"/>
     </application>
-
 </manifest>
