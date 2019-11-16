@@ -57,8 +57,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grid_view"
-        android:layout_width="375dp"
-        android:layout_height="510dp"
+        android:layout_width="374dp"
+        android:layout_height="481dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"

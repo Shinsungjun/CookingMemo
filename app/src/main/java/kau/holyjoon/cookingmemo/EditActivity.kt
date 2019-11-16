@@ -4,16 +4,28 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.edit_main.*
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class EditActivity : AppCompatActivity() {
 
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
-    val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
+    val mAdapter = RecipeAdapter(this, recipeList)
+
+    //만든 어댑터를 설정해주는 작업
     // 여러 Ingredient를 가지고 있는
     //Array<Ingredient> 를 받아서 출력해야함..
 
@@ -26,8 +38,11 @@ class EditActivity : AppCompatActivity() {
                 Recipeview.layoutManager = lm
                 Recipeview.setHasFixedSize(true)
                 Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
+                Recipeview.addItemDecoration(DividerItemDecoration(applicationContext,1))//list에 구분선추가
 
-                aboutView()
+
+
+        aboutView()
 
     }
 
@@ -37,6 +52,9 @@ class EditActivity : AppCompatActivity() {
         }
         bt_save.setOnClickListener {
             Toast.makeText(this@EditActivity,"Save!",Toast.LENGTH_LONG).show()
+        }
+        bt_folder.setOnClickListener{
+            openFolderActivity()
         }
     }
     private fun getData(){
@@ -83,6 +101,10 @@ class EditActivity : AppCompatActivity() {
             mAdapter.notifyDataSetChanged()
         }
 
+    }
+    private fun openFolderActivity(){
+        val folderintent = Intent (this, FolderActivity2::class.java)
+        startActivity(folderintent)
     }
 }
 
