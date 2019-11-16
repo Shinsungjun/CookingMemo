@@ -8,44 +8,72 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.edit_main.*
+import androidx.recyclerview.widget.DividerItemDecoration
 
 
-class EditActivity : AppCompatActivity() {
+class EditActivity() : AppCompatActivity() {
 
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
-    val mAdapter = RecipeAdapter(this, recipeList) //만든 어댑터를 설정해주는 작업
+    var resultarray = ArrayList<Ingredient?>()
+    var recipeL = ArrayList<Recipe>()
+    val mAdapter = RecipeAdapter(this, recipeList)
+    var cookname:String = ""
+
+
+    //만든 어댑터를 설정해주는 작업
     // 여러 Ingredient를 가지고 있는
     //Array<Ingredient> 를 받아서 출력해야함..
 
     override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContentView(R.layout.edit_main)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.edit_main)
 
-                val Recipeview = findViewById<RecyclerView>(R.id.Recipe_view)
-                val lm = LinearLayoutManager(this) //레이아웃매니저 설정
-                Recipeview.layoutManager = lm
-                Recipeview.setHasFixedSize(true)
-                Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
+        val Recipeview = findViewById<RecyclerView>(R.id.Recipe_view)
+        val lm = LinearLayoutManager(this) //레이아웃매니저 설정
+        Recipeview.layoutManager = lm
+        Recipeview.setHasFixedSize(true)
+        Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
+        Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
-                aboutView()
+
+
+        aboutView()
 
     }
 
-    private fun aboutView(){
-        bt_plus.setOnClickListener{ //메모버튼 눌렀을때
+    private fun aboutView() {
+        bt_plus.setOnClickListener {
+            //메모버튼 눌렀을때
             openPlusActivity()
         }
         bt_save.setOnClickListener {
-            Toast.makeText(this@EditActivity,"Save!",Toast.LENGTH_LONG).show()
+
+            val name:String = `edit_cookname`.text.toString()
+            val save_intent = Intent(this, MainActivity::class.java)
+            save_intent.putParcelableArrayListExtra("ingredient", resultarray)
+            save_intent.putParcelableArrayListExtra("recipeList", recipeL)
+            save_intent.putExtra("name",name)
+            setResult(1, save_intent)
+            finish()
+
+        }
+        bt_camera.setOnClickListener {
+            Toast.makeText(this@EditActivity, "camera!", Toast.LENGTH_LONG).show()
+        }
+
+        bt_folder.setOnClickListener {
+            openFolderActivity()
         }
     }
-    private fun getData(){
+
+    private fun getData() {
         /*how = intent.getStringExtra("how")
         time = intent.getStringExtra("time")
         comment = intent.getStringExtra("comment")*/
     }
+
     private fun openPlusActivity() { //근데 dialog라서 Activity 취급이 아닌거같아
-       /* val builder = AlertDialog.Builder(this)
+        /* val builder = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.plus_popup,null)
         val dialoghow = dialogView.findViewById<EditText>(R.id.edit_how)
         val dialogtime = dialogView.findViewById<EditText>(R.id.edit_time)
@@ -62,28 +90,49 @@ class EditActivity : AppCompatActivity() {
             }
             .show()*/
         //!!위의 dialog부르는건 activity가 아니라서 더 햇갈려가지고 그냥 Activity를 Dialog처럼 띄우는걸로 했음.!!
-        val intent = Intent (this, PlusActivity::class.java)
-        startActivityForResult(intent,1)
+        val intent = Intent(this, PlusActivity::class.java)
+        startActivityForResult(intent, 1)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(data!=null){
-            var resultarray = ArrayList<Ingredient?>()
+        if (data != null) {
 
-            val resultintent1 = data.extras?.get("recipe")as Recipe
+            val resultintent1 = data.extras?.get("recipe") as Recipe
             val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
 
-            if(resultintent1 != null && ingredient != null) {
+            if (resultintent1 != null && ingredient != null) {
                 //Toast.makeText(this, "${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
                 for (i in 0 until ingredient.size) {   //이렇게 배열을 받아야 정확하게 받아짐
                     resultarray.add(ingredient[i])
                 }
             }
-            recipeList.add(Recipe_item(resultarray,resultintent1.howmake,resultintent1.cooktime,resultintent1.comment))
+            recipeList.add(
+                Recipe_item(
+                    resultarray,
+                    resultintent1.howmake,
+                    resultintent1.cooktime,
+                    resultintent1.comment
+                )
+            )
+            recipeL.add(
+                Recipe(
+                    resultintent1.howmake,
+                    resultintent1.cooktime,
+                    resultintent1.comment
+                )
+            )
             mAdapter.notifyDataSetChanged()
         }
 
     }
+
+
+    private fun openFolderActivity() {
+        val folderintent = Intent(this, FolderActivity2::class.java)
+        startActivity(folderintent)
+    }
+
+
 }
 

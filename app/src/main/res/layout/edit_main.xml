@@ -10,24 +10,25 @@
         android:id="@+id/bt_folder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="39dp"
-        app:layout_constraintBottom_toTopOf="@+id/Recipe_view"
-        app:layout_constraintEnd_toStartOf="@+id/bt_plus"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/text_myCook"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edit_cookname"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.014"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
     <ImageButton
         android:id="@+id/bt_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/guideline_top"
-        app:layout_constraintLeft_toRightOf="@id/space_location_top"
-        app:layout_constraintRight_toLeftOf="@id/bt_save"
+        android:layout_width="81dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:srcCompat="@android:drawable/ic_input_add" />
 
@@ -35,54 +36,50 @@
         android:id="@+id/bt_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/bt_plus"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bt_camera"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
         app:srcCompat="@android:drawable/ic_menu_save"
         tools:srcCompat="@android:drawable/ic_menu_save" />
 
     <EditText
-        android:id="@+id/text_myCook"
+        android:id="@+id/edit_cookname"
         android:layout_width="114dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="72dp"
         android:hint="요리 명"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/guideline_top"
         app:layout_constraintRight_toLeftOf="@id/space_location_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recipe_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="392dp"
+        android:layout_height="451dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline_top" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="411dp"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_begin="70dp"
         app:layout_constraintTop_toBottomOf="@id/bt_plus" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="675dp" />
 
     <Space
         android:id="@+id/space_location_top"
@@ -92,30 +89,21 @@
         android:layout_marginBottom="607dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintLeft_toRightOf="@id/text_myCook"
+        app:layout_constraintLeft_toRightOf="@id/edit_cookname"
         app:layout_constraintRight_toLeftOf="@id/bt_plus"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+    <ImageButton
+        android:id="@+id/bt_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="46dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grid_view"
-        app:layout_constraintVertical_bias="0.45"
-        app:menu="@menu/menu_bottom">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
+        android:layout_marginStart="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top"
+        app:layout_constraintEnd_toStartOf="@+id/bt_save"
+        app:layout_constraintStart_toEndOf="@+id/edit_cookname"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
