@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
 import android.widget.GridView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.plus_popup.*
 
@@ -37,7 +38,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         super.onActivityResult(requestCode, resultCode, data)
         if(data != null) {
             //val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("Ingredientback")
-            val intent = data.extras?.getParcelableArrayList<Ingredient?>("back")
+            val intent = data.extras?.getParcelableArrayList<Ingredient>("back")
 
             if (intent != null) {
                 ingredients.clear()
@@ -45,12 +46,10 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
                 for(i in 0 until intent.size) {  //ArrayList 넘겨받을때는 이런식으로 받아야함!!!!
                     ingredients.add(intent[i])
                 }
-                //Toast.makeText(this,"${ingre[0]?.name}",Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this,"${ingredients[0]?.name}",Toast.LENGTH_LONG).show()
                 popupAdapter.notifyDataSetChanged()
             }
             else {
-                //Toast.makeText(this,"null",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"no data",Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -69,14 +68,18 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val how = edit_how.text.toString()
             val time = edit_time.text.toString()
             val comment = edit_comment.text.toString()
+            if(ingredients.size == 0) Toast.makeText(this,"재료를 선택해주세요!",Toast.LENGTH_SHORT).show()
+            else {
+                if (how != "" && time != "") {
+                    val recipe = Recipe(how, time, comment)
 
-            val recipe = Recipe(how,time,comment)
+                    plusintent.putExtra("recipe", recipe)
+                    plusintent.putExtra("array", ingredients)
 
-            plusintent.putExtra("recipe",recipe)
-            plusintent.putExtra("array",ingredients)
-            setResult(1,plusintent)
-            finish()
-
+                    setResult(1, plusintent)
+                    finish()
+                } else Toast.makeText(this, "적지 않은 방법, 시간이 있습니다!", Toast.LENGTH_SHORT).show()
+            }
 
         }
         bt_addIn.setOnClickListener{

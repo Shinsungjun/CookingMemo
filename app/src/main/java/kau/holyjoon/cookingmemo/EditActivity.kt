@@ -88,6 +88,7 @@ class EditActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(data!=null){
             var resultarray = ArrayList<Ingredient?>()
+
             val resultintent1 = data.extras?.get("recipe")as Recipe
             val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
 
