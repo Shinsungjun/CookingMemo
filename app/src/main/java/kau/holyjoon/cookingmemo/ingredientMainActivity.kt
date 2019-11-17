@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TableLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -17,7 +18,7 @@ class ingredientMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choice_ingredient)
-        val ingre_bt_ok = findViewById<Button>(R.id.ingre_bt_ok)
+       /* val ingre_bt_ok = findViewById<Button>(R.id.ingre_bt_ok)
         ingre_bt_ok.setOnClickListener {
             val resultIntent = Intent(this, PlusActivity::class.java)
             if(resultList.size != 0) {
@@ -26,8 +27,10 @@ class ingredientMainActivity : AppCompatActivity() {
             setResult(1,resultIntent)
             finish()
             resultList.clear()
-        }
+        }*/
+        Toast.makeText(this, "재료 선택 후 백버튼을 눌러주세요! 길게 터치시 선택 취소입니다.", Toast.LENGTH_LONG).show()
         ingreViewPager.adapter = adapter
+
         ingreViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -43,5 +46,16 @@ class ingredientMainActivity : AppCompatActivity() {
             }
         })
         ingre_tablayout.setupWithViewPager(ingreViewPager)
+    }
+
+    override fun onBackPressed() {
+        val resultIntent = Intent(this, PlusActivity::class.java)
+        if(resultList.size != 0) {
+            resultIntent.putExtra("back", resultList)
+        }
+        setResult(1,resultIntent)
+        finish()
+        resultList.clear()
+        super.onBackPressed()
     }
 }

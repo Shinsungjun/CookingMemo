@@ -1,2 +1,0 @@
-package kau.holyjoon.cookingmemo
-

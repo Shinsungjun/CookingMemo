@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,30 +15,28 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kau.holyjoon.cookingmemo.ingredientMainActivity.Companion.resultList
 
-class MeatFragment : Fragment() {
-    var cowList = arrayListOf<Ingredient>()
-    var porkList = arrayListOf<Ingredient>()
-    var chickenList = arrayListOf<Ingredient>()
-    var etcList = arrayListOf<Ingredient>()
+class GrainFragment : Fragment() {
+    var nutsList = arrayListOf<Ingredient>()
+    var cerealList = arrayListOf<Ingredient>()
+    var wheatList = arrayListOf<Ingredient>()
     var dataload = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.meatfragment, container, false)
-        val bt_total_1 = view.findViewById<Button>(R.id.bt_total_meat_1)
-        val bt_total_2 = view.findViewById<Button>(R.id.bt_total_meat_2)
-        val bt_total_3 = view.findViewById<Button>(R.id.bt_total_meat_3)
-        val bt_total_4 = view.findViewById<Button>(R.id.bt_total_meat_4)
+        val view: View = inflater.inflate(R.layout.grainfragment, container, false)
+        val bt_total_1 = view.findViewById<Button>(R.id.bt_total_grain_1)
+        val bt_total_2 = view.findViewById<Button>(R.id.bt_total_grain_2)
+        val bt_total_3 = view.findViewById<Button>(R.id.bt_total_grain_3)
 
-        val meatRecyclerView1 = view.findViewById<RecyclerView>(R.id.Recyclerview_meat1)
-        val meatRecyclerView2 = view.findViewById<RecyclerView>(R.id.Recyclerview_meat2)
-        val meatRecyclerView3 = view.findViewById<RecyclerView>(R.id.Recyclerview_meat3)
-        val meatRecyclerView4 = view.findViewById<RecyclerView>(R.id.Recyclerview_meat4)
+        val grainRecyclerView1 = view.findViewById<RecyclerView>(R.id.Recyclerview_grain_1)
+        val grainRecyclerView2 = view.findViewById<RecyclerView>(R.id.Recyclerview_grain_2)
+        val grainRecyclerView3 = view.findViewById<RecyclerView>(R.id.Recyclerview_grain_3)
 
 
-        val mAdapter1 = IngreAdapter(context!!, cowList,
+        val mAdapter1 = IngreAdapter(
+            context!!, nutsList,
             resultList, { ingredient ->
                 if (ingredient.source == null) {
                     Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
@@ -56,7 +53,8 @@ class MeatFragment : Fragment() {
                     }
                 }
             })
-        val mAdapter2 = IngreAdapter(context!!, porkList,
+        val mAdapter2 = IngreAdapter(
+            context!!, cerealList,
             resultList, { ingredient ->
                 if (ingredient.source == null) {
                     Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
@@ -73,24 +71,8 @@ class MeatFragment : Fragment() {
                     }
                 }
             })
-        val mAdapter3 = IngreAdapter(context!!, chickenList,
-            resultList, { ingredient ->
-                if (ingredient.source == null) {
-                    Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
-                } else Toast.makeText(context, "${ingredient.name} 이 선택되었습니다.", Toast.LENGTH_SHORT).show()
-            }, {
-                    ingredient ->
-                for(i in 0 until resultList.size) {
-                    if(resultList[i].name == ingredient.name) {
-                        ingredient.source = resultList[i].source
-                        Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT)
-                            .show()
-                        resultList.remove(resultList[i])
-                        break
-                    }
-                }
-            })
-        val mAdapter4 = IngreAdapter(context!!, etcList,
+        val mAdapter3 = IngreAdapter(
+            context!!, wheatList,
             resultList, { ingredient ->
                 if (ingredient.source == null) {
                     Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
@@ -111,27 +93,21 @@ class MeatFragment : Fragment() {
         val lm1 = GridLayoutManager(context, 5)
         val lm2 = GridLayoutManager(context, 5)
         val lm3 = GridLayoutManager(context, 5)
-        val lm4 = GridLayoutManager(context, 5)
 
-        meatRecyclerView1.adapter = mAdapter1
-        meatRecyclerView1.layoutManager = lm1
-        meatRecyclerView1.setHasFixedSize(true)
-        meatRecyclerView1.addItemDecoration(IngredientDecoration())
+        grainRecyclerView1.adapter = mAdapter1
+        grainRecyclerView1.layoutManager = lm1
+        grainRecyclerView1.setHasFixedSize(true)
+        grainRecyclerView1.addItemDecoration(IngredientDecoration())
 
-        meatRecyclerView2.adapter = mAdapter2
-        meatRecyclerView2.layoutManager = lm2
-        meatRecyclerView2.setHasFixedSize(true)
-        meatRecyclerView2.addItemDecoration(IngredientDecoration())
+        grainRecyclerView2.adapter = mAdapter2
+        grainRecyclerView2.layoutManager = lm2
+        grainRecyclerView2.setHasFixedSize(true)
+        grainRecyclerView2.addItemDecoration(IngredientDecoration())
 
-        meatRecyclerView3.adapter = mAdapter3
-        meatRecyclerView3.layoutManager = lm3
-        meatRecyclerView3.setHasFixedSize(true)
-        meatRecyclerView3.addItemDecoration(IngredientDecoration())
-
-        meatRecyclerView4.adapter = mAdapter4
-        meatRecyclerView4.layoutManager = lm4
-        meatRecyclerView4.setHasFixedSize(true)
-        meatRecyclerView4.addItemDecoration(IngredientDecoration())
+        grainRecyclerView3.adapter = mAdapter3
+        grainRecyclerView3.layoutManager = lm3
+        grainRecyclerView3.setHasFixedSize(true)
+        grainRecyclerView3.addItemDecoration(IngredientDecoration())
 
         bt_total_1.setOnClickListener {
             if (mAdapter1.btSet == 0) {
@@ -170,16 +146,6 @@ class MeatFragment : Fragment() {
 
         }
 
-        bt_total_4.setOnClickListener {
-            if (mAdapter4.btSet == 0) {
-                mAdapter4.btSet = 1
-                bt_total_4.text = "닫기"
-            } else {
-                mAdapter4.btSet = 0
-                bt_total_4.text = "더보기"
-            }
-            mAdapter4.notifyDataSetChanged()
-        }
 
         val postListener1 = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -187,11 +153,11 @@ class MeatFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataload < 4) {
+                if (dataload < 3) {
                     for (postSnapshot: DataSnapshot in dataSnapshot.children) {
                         val ing = postSnapshot.getValue(Ingredient::class.java)
                         if (ing != null) {
-                            cowList.add(ing)
+                            nutsList.add(ing)
                         }
                     }
                     dataload++
@@ -206,11 +172,11 @@ class MeatFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataload < 4) {
+                if (dataload < 3) {
                     for (postSnapshot: DataSnapshot in dataSnapshot.children) {
                         val ing = postSnapshot.getValue(Ingredient::class.java)
                         if (ing != null) {
-                            porkList.add(ing)
+                            cerealList.add(ing)
                         }
                     }
                     dataload++
@@ -225,11 +191,11 @@ class MeatFragment : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataload < 4) {
+                if (dataload < 3) {
                     for (postSnapshot: DataSnapshot in dataSnapshot.children) {
                         val ing = postSnapshot.getValue(Ingredient::class.java)
                         if (ing != null) {
-                            chickenList.add(ing)
+                            wheatList.add(ing)
                         }
                     }
                     dataload++
@@ -238,33 +204,15 @@ class MeatFragment : Fragment() {
             }
 
         }
-        val postListener4 = object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataload < 4) {
-                    for (postSnapshot: DataSnapshot in dataSnapshot.children) {
-                        val ing = postSnapshot.getValue(Ingredient::class.java)
-                        if (ing != null) {
-                            etcList.add(ing)
-                        }
-                    }
-                    dataload++
-                }
-                mAdapter4.notifyDataSetChanged()
-            }
-
-        }
-        val sort1 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("meat").child("cow")
+        val sort1 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("grain")
+            .child("nuts")
             .addListenerForSingleValueEvent(postListener1)
-        val sort2 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("meat").child("pork")
+        val sort2 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("grain")
+            .child("cereal")
             .addListenerForSingleValueEvent(postListener2)
-        val sort3 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("meat").child("chicken")
+        val sort3 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("grain")
+            .child("wheat")
             .addListenerForSingleValueEvent(postListener3)
-        val sort4 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("meat").child("etc")
-            .addListenerForSingleValueEvent(postListener4)
 
         return view
     }

@@ -31,14 +31,16 @@
                     android:id="@+id/txt_cate_1"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="TextView" />
+                    android:textColor="#000000"
+                    android:text="   채소/과일" />
 
                 <Button
                     android:id="@+id/bt_total_1"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -56,14 +58,16 @@
                     android:id="@+id/txt_cate_2"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="TextView" />
+                    android:textColor="#000000"
+                    android:text="   육류" />
 
                 <Button
                     android:id="@+id/bt_total_2"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
+                    android:background="#00000000"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -83,14 +87,16 @@
                     android:id="@+id/txt_cate_3"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="TextView" />
+                    android:textColor="#000000"
+                    android:text="   해산물" />
 
                 <Button
                     android:id="@+id/bt_total_3"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
+                    android:background="#00000000"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -109,14 +115,16 @@
                     android:id="@+id/txt_cate_4"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="TextView" />
+                    android:textColor="#000000"
+                    android:text="   가공/유제품" />
 
                 <Button
                     android:id="@+id/bt_total_4"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
+                    android:background="#00000000"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:text="더보기" />
 
             </LinearLayout>
 

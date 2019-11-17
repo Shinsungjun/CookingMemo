@@ -31,14 +31,16 @@
                     android:id="@+id/txt_cate_meat_1"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="소고기" />
+                    android:textColor="#000000"
+                    android:text="   소고기" />
 
                 <Button
                     android:id="@+id/bt_total_meat_1"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -56,14 +58,16 @@
                     android:id="@+id/txt_cate_meat_2"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="돼지고기" />
+                    android:textColor="#000000"
+                    android:text="   돼지고기" />
 
                 <Button
                     android:id="@+id/bt_total_meat_2"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -83,14 +87,16 @@
                     android:id="@+id/txt_cate_meat_3"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="닭고기" />
+                    android:textColor="#000000"
+                    android:text="   닭고기" />
 
                 <Button
                     android:id="@+id/bt_total_meat_3"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -109,14 +115,16 @@
                     android:id="@+id/txt_cate_meat_4"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="기타" />
+                    android:textColor="#000000"
+                    android:text="   기타" />
 
                 <Button
                     android:id="@+id/bt_total_meat_4"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 

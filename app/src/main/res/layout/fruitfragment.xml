@@ -31,14 +31,16 @@
                     android:id="@+id/txt_cate_fruit_1"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="과일" />
+                    android:textColor="#000000"
+                    android:text="   과일" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_1"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -56,14 +58,16 @@
                     android:id="@+id/txt_cate_fruit_2"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="열매채소" />
+                    android:textColor="#000000"
+                    android:text="   열매채소" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_2"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -83,14 +87,16 @@
                     android:id="@+id/txt_cate_fruit_3"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="나물,허브류" />
+                    android:textColor="#000000"
+                    android:text="   나물,허브류" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_3"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -109,14 +115,16 @@
                     android:id="@+id/txt_cate_fruit_4"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="잎채소" />
+                    android:textColor="#000000"
+                    android:text="   잎채소" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_4"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -133,14 +141,16 @@
                     android:id="@+id/txt_cate_fruit_5"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="버섯" />
+                    android:textColor="#000000"
+                    android:text="   버섯" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_5"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
@@ -157,14 +167,16 @@
                     android:id="@+id/txt_cate_fruit_6"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
-                    android:text="뿌리채소" />
+                    android:textColor="#000000"
+                    android:text="   뿌리채소" />
 
                 <Button
                     android:id="@+id/bt_total_fruit_6"
                     android:layout_width="285dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="#00000000"
+                    android:text="더보기" />
 
             </LinearLayout>
 
