@@ -58,8 +58,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/grid_view"
-        android:layout_width="354dp"
-        android:layout_height="470dp"
+        android:layout_width="355dp"
+        android:layout_height="390dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
@@ -108,6 +108,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/main_imgtest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="299dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/grid_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_cookname"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

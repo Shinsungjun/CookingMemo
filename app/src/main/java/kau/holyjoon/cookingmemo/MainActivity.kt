@@ -1,6 +1,8 @@
 package kau.holyjoon.cookingmemo
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.INVISIBLE
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 //            text.setVisibility(VISIBLE)
 
 
-        val numberOfColumns: Int = 2
+        val numberOfColumns = 2
 
         val gridview = findViewById<RecyclerView>(R.id.grid_view)
         gridview.adapter = hAdapter
@@ -87,6 +89,9 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
             val item: hRecipe = hRecipe(name.text.toString(), "", resultintent2, resultintent1)
             Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
                 .show()
+            val resultintent3 = data.extras?.get("Uri") as Uri?
+
+            main_imgtest.setImageURI(resultintent3)
 
             Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
             hRecipeList?.add(hRecipe(resultintent, "", resultintent2, resultintent1))
