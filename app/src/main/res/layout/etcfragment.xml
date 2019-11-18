@@ -31,6 +31,7 @@
                     android:id="@+id/txt_cate_etc_1"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   즉석조리식품" />
 
                 <Button
@@ -57,6 +58,7 @@
                     android:id="@+id/txt_cate_etc_2"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   햄/어묵" />
 
                 <Button
@@ -85,6 +87,7 @@
                     android:id="@+id/txt_cate_etc_3"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   캔" />
 
                 <Button
@@ -112,6 +115,7 @@
                     android:id="@+id/txt_cate_etc_4"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   빵" />
 
                 <Button
@@ -137,6 +141,7 @@
                     android:id="@+id/txt_cate_etc_5"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   떡" />
 
                 <Button
@@ -162,6 +167,7 @@
                     android:id="@+id/txt_cate_etc_6"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   커피/음료수/차" />
 
                 <Button
@@ -187,6 +193,7 @@
                     android:id="@+id/txt_cate_etc_7"
                     android:layout_width="297dp"
                     android:layout_height="34dp"
+                    android:textColor="#000000"
                     android:text="   과자/아이스크림류" />
 
                 <Button
