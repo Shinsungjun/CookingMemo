@@ -11,11 +11,9 @@
         android:layout_width="268dp"
         android:layout_height="19dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="선택 재료"
         app:layout_constraintBottom_toTopOf="@+id/grid_image"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999" />
@@ -36,7 +34,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </GridView>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_how"
@@ -55,17 +55,14 @@
         android:id="@+id/bt_addIn"
         android:layout_width="67dp"
         android:layout_height="36dp"
-        android:layout_marginStart="231dp"
-        android:layout_marginLeft="231dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/grid_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/bt_done_pop"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.625"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <EditText
@@ -84,43 +81,45 @@
         app:layout_constraintStart_toEndOf="@+id/edit_how"
         app:layout_constraintTop_toBottomOf="@+id/grid_image" />
 
-    <Button
-        android:id="@+id/bt_cancel_pop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:layout_marginBottom="16dp"
-        android:text="CANCEL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_how" />
-
-    <Button
-        android:id="@+id/bt_done_pop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <EditText
         android:id="@+id/edit_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="7dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="설명"
-        app:layout_constraintBottom_toTopOf="@+id/bt_cancel_pop"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_how" />
+
+    <ImageButton
+        android:id="@+id/bt_cancel_pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/grid_image"
+        app:layout_constraintEnd_toStartOf="@+id/bt_done_pop"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.842"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <Button
+        android:id="@+id/bt_done_pop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="done"
+        app:layout_constraintBottom_toTopOf="@+id/grid_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.761" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,13 +69,14 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val how = edit_how.text.toString()
             val time = edit_time.text.toString()
             val comment = edit_comment.text.toString()
+
             if(ingredients.size == 0) Toast.makeText(this,"재료를 선택해주세요!",Toast.LENGTH_SHORT).show()
             else {
                 if (how != "" && time != "") {
-                    val recipe = Recipe(how, time, comment)
+                    val recipe = Recipe_item(ingredients,how, time, comment)
 
                     plusintent.putExtra("recipe", recipe)
-                    plusintent.putExtra("array", ingredients)
+                    //plusintent.putExtra("array", ingredients)
 
                     setResult(1, plusintent)
                     finish()

@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         var name = findViewById<TextView>(R.id.edit_cookname)
 
 
-//        if(hRecipeList.size!=0)
+//        if(hRecipeList.size!==0)
 //            text.setVisibility(INVISIBLE)
 //        else if(hRecipeList.size==0)
 //            text.setVisibility(VISIBLE)
@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         if (data != null) {
             val resultintent1: ArrayList<Recipe>? =
                 Intent().getParcelableArrayListExtra("recipeList")
-            val resultintent2: ArrayList<Ingredient?>? =
-                data.extras?.getParcelableArrayList<Ingredient?>("ingredient")
+            val resultintent2: ArrayList<Ingredient?>?
+                    = data.extras?.getParcelableArrayList("ingredient")
             val item: hRecipe = hRecipe(name.text.toString(), "", resultintent2, resultintent1)
             Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
                 .show()

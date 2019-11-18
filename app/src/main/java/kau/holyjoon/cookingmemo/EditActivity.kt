@@ -15,6 +15,7 @@ class EditActivity() : AppCompatActivity() {
 
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
     var resultarray = ArrayList<Ingredient?>()
+    var ingredientarray = arrayListOf(ArrayList<Ingredient?>())
     var recipeL = ArrayList<Recipe>()
     val mAdapter = RecipeAdapter(this, recipeList)
     var cookname:String = ""
@@ -98,23 +99,31 @@ class EditActivity() : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
 
-            val resultintent1 = data.extras?.get("recipe") as Recipe
-            val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
+            val resultintent1 = data.extras?.get("recipe") as Recipe_item
+//            val ingredient = data.extras?.getParcelableArrayList<Ingredient?>("array")
+//
+//            if (resultintent1 != null && ingredient != null) {
+//                //Toast.makeText(this, "${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
+//                for (i in 0 until ingredient.size) {   //이렇게 배열을 받아야 정확하게 받아짐
+//                    resultarray.add(ingredient[i])
+//                }
+//            }
+//            recipeList.add(
+//                Recipe_item(
+//                    resultarray,
+//                    resultintent1.howmake,
+//                    resultintent1.cooktime,
+//                    resultintent1.comment
+//                ))
 
-            if (resultintent1 != null && ingredient != null) {
-                //Toast.makeText(this, "${resultintent1.howmake}, ${ingredient[0]?.name}", Toast.LENGTH_LONG).show()
-                for (i in 0 until ingredient.size) {   //이렇게 배열을 받아야 정확하게 받아짐
-                    resultarray.add(ingredient[i])
-                }
-            }
             recipeList.add(
                 Recipe_item(
-                    resultarray,
+                    resultintent1.ingredient,
                     resultintent1.howmake,
                     resultintent1.cooktime,
                     resultintent1.comment
-                )
-            )
+                ))
+
             recipeL.add(
                 Recipe(
                     resultintent1.howmake,
@@ -123,6 +132,7 @@ class EditActivity() : AppCompatActivity() {
                 )
             )
             mAdapter.notifyDataSetChanged()
+            Toast.makeText(this@EditActivity, "${resultintent1.ingredient!![0]!!.name},${resultintent1.ingredient!![1]!!.name}", Toast.LENGTH_LONG).show()
         }
 
     }
