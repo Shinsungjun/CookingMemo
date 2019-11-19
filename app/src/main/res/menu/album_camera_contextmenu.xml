@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/camera_contextmenu"
+        android:title="Camera" />
+    <item
+        android:id="@+id/album_contextmenu"
+        android:title="Album" />
+    <item
+        android:id="@+id/cancel_contextmenu"
+        android:title="Cancel" />
+</menu>

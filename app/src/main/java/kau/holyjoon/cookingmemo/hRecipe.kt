@@ -6,6 +6,7 @@ import android.os.Parcelable
 //그리드뷰에 보여줄 데이터
 class hRecipe(
     var name:String?,
+     //home화면의 Recipe객체라는 뜻
     var img:String?,
    var hrecipeList:ArrayList<Recipe_item>?):Parcelable//home화면의 Recipe객체라는 뜻
 {

@@ -1,6 +1,8 @@
 package kau.holyjoon.cookingmemo
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.INVISIBLE
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         val intent = hRecipe(hRecipe.name,hRecipe.img,hRecipe.hrecipeList)
         viewintent.putExtra("hrecipe",intent)
         startActivity(viewintent)
+
+
     } //만든 어댑터를 설정해주는 작업
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 //            text.setVisibility(VISIBLE)
 
 
-        val numberOfColumns: Int = 2
+        val numberOfColumns = 2
 
         val gridview = findViewById<RecyclerView>(R.id.grid_view)
         gridview.adapter = hAdapter
@@ -66,6 +70,8 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     }
 
     private fun viewOpenActivity() {
+        val viewintent = Intent(this, ViewActivity::class.java)
+        startActivity(viewintent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

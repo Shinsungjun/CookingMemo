@@ -59,18 +59,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.555" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recipe_view"
-        android:layout_width="392dp"
-        android:layout_height="451dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_top" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
@@ -104,6 +92,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526"
         app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="362dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_plus">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/edit_imageView"
+                android:layout_width="207dp"
+                android:layout_height="208dp"
+                android:layout_marginLeft="75dp"
+                android:background="@drawable/imageborder"
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Recipe_view"
+                android:layout_width="match_parent"
+                android:layout_height="342dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
