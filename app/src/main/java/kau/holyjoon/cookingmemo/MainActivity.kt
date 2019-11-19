@@ -78,23 +78,23 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val name = findViewById<TextView>(R.id.edit_cookname)
-        val resultintent = data?.getStringExtra("name")
-
 
         if (data != null) {
+            val resultintent = data?.getStringExtra("name")
             val resultintent1: ArrayList<Recipe>? =
                 Intent().getParcelableArrayListExtra("recipeList")
             val resultintent2: ArrayList<Ingredient?>?
                     = data.extras?.getParcelableArrayList("ingredient")
-            val item: hRecipe = hRecipe(name.text.toString(), "", resultintent2, resultintent1)
-            Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
-                .show()
             val resultintent3 = data.extras?.get("Uri") as Uri?
 
-            main_imgtest.setImageURI(resultintent3)
+            val item: hRecipe = hRecipe(name.text.toString(), resultintent3.toString(), resultintent2, resultintent1)
+            //Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
+              //  .show()
+
+            //main_imgtest.setImageURI(resultintent3)
 
             Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
-            hRecipeList?.add(hRecipe(resultintent, "", resultintent2, resultintent1))
+            hRecipeList?.add(hRecipe(resultintent, resultintent3.toString(), resultintent2, resultintent1))
             hAdapter.notifyDataSetChanged()
         }
 

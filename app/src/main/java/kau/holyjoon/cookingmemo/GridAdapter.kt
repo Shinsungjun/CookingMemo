@@ -6,6 +6,7 @@ import android.view.*
 import android.view.View.inflate
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -21,9 +22,8 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val 
         val recipe_image = itemView?.findViewById<ImageView>(R.id.recipe_image)
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
-            if (recipe.img!= "") {
-                val resourceId = context.resources.getIdentifier(recipe.img, "drawable", context.packageName)
-                recipe_image?.setImageResource(resourceId)
+            if (recipe.img!= null) {
+                recipe_image?.setImageURI(recipe.img!!.toUri())
             } else {
                 recipe_image?.setImageResource(R.mipmap.ic_launcher)
             }

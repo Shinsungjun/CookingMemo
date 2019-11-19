@@ -137,7 +137,6 @@ class EditActivity() : AppCompatActivity() {
 //                    resultintent1.cooktime,
 //                    resultintent1.comment
 //                ))
-
                 recipeList.add(
                     Recipe_item(
                         resultintent1.ingredient,

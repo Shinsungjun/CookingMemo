@@ -99,27 +99,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
+        android:background="#000000"
+        android:tint="#00FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/grid_image"
         app:layout_constraintEnd_toStartOf="@+id/bt_done_pop"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.842"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        app:layout_constraintVertical_bias="0.789"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        tools:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-    <Button
+    <ImageView
         android:id="@+id/bt_done_pop"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="36dp"
+        android:layout_height="35dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
-        android:text="done"
         app:layout_constraintBottom_toTopOf="@+id/grid_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintVertical_bias="0.761"
+        app:srcCompat="@drawable/fui_ic_check_circle_black_128dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
