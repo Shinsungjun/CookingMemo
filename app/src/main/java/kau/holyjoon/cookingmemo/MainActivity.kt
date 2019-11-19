@@ -18,13 +18,10 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     var hRecipeList = ArrayList<hRecipe>()
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
         var viewintent = Intent(this, ViewActivity::class.java)
-        viewintent.putExtra("name",hRecipe.name)
-        viewintent.putExtra("img",hRecipe.img)
-        viewintent.putExtra("ingredient",hRecipe.ingredient)
-        viewintent.putExtra("recipe",hRecipe.hrecipeList)
+
+        val intent = hRecipe(hRecipe.name,hRecipe.img,hRecipe.hrecipeList)
+        viewintent.putExtra("hrecipe",intent)
         startActivity(viewintent)
-
-
     } //만든 어댑터를 설정해주는 작업
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,8 +66,6 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     }
 
     private fun viewOpenActivity() {
-        val viewintent = Intent(this, ViewActivity::class.java)
-        startActivity(viewintent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,16 +75,12 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
 
         if (data != null) {
-            val resultintent1: ArrayList<Recipe>? =
+            val resultintent1: ArrayList<Recipe_item>? =
                 Intent().getParcelableArrayListExtra("recipeList")
-            val resultintent2: ArrayList<Ingredient?>?
-                    = data.extras?.getParcelableArrayList("ingredient")
-            val item: hRecipe = hRecipe(name.text.toString(), "", resultintent2, resultintent1)
-            Toast.makeText(this, resultintent1?.get(0)?.howmake.toString(), Toast.LENGTH_SHORT)
-                .show()
+            val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
 
             Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
-            hRecipeList?.add(hRecipe(resultintent, "", resultintent2, resultintent1))
+            hRecipeList?.add(hRecipe(resultintent, "", resultintent1))
             hAdapter.notifyDataSetChanged()
         }
 

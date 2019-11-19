@@ -16,7 +16,7 @@ class EditActivity() : AppCompatActivity() {
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
     var resultarray = ArrayList<Ingredient?>()
     var ingredientarray = arrayListOf(ArrayList<Ingredient?>())
-    var recipeL = ArrayList<Recipe>()
+    //var recipeL = ArrayList<Recipe>()
     val mAdapter = RecipeAdapter(this, recipeList)
     var cookname:String = ""
 
@@ -51,8 +51,7 @@ class EditActivity() : AppCompatActivity() {
 
             val name:String = `edit_cookname`.text.toString()
             val save_intent = Intent(this, MainActivity::class.java)
-            save_intent.putParcelableArrayListExtra("ingredient", resultarray)
-            save_intent.putParcelableArrayListExtra("recipeList", recipeL)
+            save_intent.putParcelableArrayListExtra("recipeList", recipeList)
             save_intent.putExtra("name",name)
             setResult(1, save_intent)
             finish()
@@ -124,15 +123,15 @@ class EditActivity() : AppCompatActivity() {
                     resultintent1.comment
                 ))
 
-            recipeL.add(
-                Recipe(
-                    resultintent1.howmake,
-                    resultintent1.cooktime,
-                    resultintent1.comment
-                )
-            )
+//            recipeL.add(
+//                Recipe(
+//                    resultintent1.howmake,
+//                    resultintent1.cooktime,
+//                    resultintent1.comment
+//                )
+//            )
             mAdapter.notifyDataSetChanged()
-            Toast.makeText(this@EditActivity, "${resultintent1.ingredient!![0]!!.name},${resultintent1.ingredient!![1]!!.name}", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this@EditActivity, "${resultintent1.ingredient!![0]!!.name},${resultintent1.ingredient!![1]!!.name}", Toast.LENGTH_LONG).show()
         }
 
     }

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.edit_main.*
 
 
 //RecyclerView 어댑터
-class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>)
+class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>?)
     :RecyclerView.Adapter<RecipeViewHolder>(){
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
@@ -119,11 +119,11 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>)
     }
     //전체 item 갯수 리턴(필수 함수)
     override fun getItemCount(): Int {
-        return recipeList.size
+        return recipeList!!.size
     }
     //view와 데이터 연결(필수 함수)
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        holder?.bind(recipeList[position], context)
+        holder?.bind(recipeList!![position], context)
 
 
 

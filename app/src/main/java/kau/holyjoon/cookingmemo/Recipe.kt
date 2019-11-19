@@ -12,32 +12,32 @@ import android.os.Parcelable
 //EditActivity로 넘길것이다.
 //EditActivity에서는 조건을 만족하는 정보 (적어도 재료와 방법에 대한 데이터가 존재)가 넘어온다면 Recipe객체를 만들어 해당 데이터를 저장하고
 //RecyclerView를 통해 보여준다.
-class Recipe(var howmake : String?, var cooktime : String?,var comment : String?):Parcelable{  //시간은 null이 가능하게 아니면 그냥 0 으로 두고 null일 수 없게 만드는 것도 방법
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(howmake)
-        parcel.writeString(cooktime)
-        parcel.writeString(comment)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Recipe> {
-        override fun createFromParcel(parcel: Parcel): Recipe {
-            return Recipe(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Recipe?> {
-            return arrayOfNulls(size)
-        }
-    }
-
-}
+//class Recipe(var howmake : String?, var cooktime : String?,var comment : String?):Parcelable{  //시간은 null이 가능하게 아니면 그냥 0 으로 두고 null일 수 없게 만드는 것도 방법
+//    constructor(parcel: Parcel) : this(
+//        parcel.readString(),
+//        parcel.readString(),
+//        parcel.readString()
+//    ) {
+//    }
+//
+//    override fun writeToParcel(parcel: Parcel, flags: Int) {
+//        parcel.writeString(howmake)
+//        parcel.writeString(cooktime)
+//        parcel.writeString(comment)
+//    }
+//
+//    override fun describeContents(): Int {
+//        return 0
+//    }
+//
+//    companion object CREATOR : Parcelable.Creator<Recipe> {
+//        override fun createFromParcel(parcel: Parcel): Recipe {
+//            return Recipe(parcel)
+//        }
+//
+//        override fun newArray(size: Int): Array<Recipe?> {
+//            return arrayOfNulls(size)
+//        }
+//    }
+//
+//}
