@@ -16,42 +16,68 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 
 class ViewActivity : AppCompatActivity() {
-
-    val resultintent1:hRecipe? = null
-    val mAdapter = RecipeAdapter(this,resultintent1!!.hrecipeList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
 
+        var recipe : hRecipe? = null
 
-        val name = findViewById<TextView>(R.id.text_cook)
         val ingredients = findViewById<TextView>(R.id.ingredients)
 
         var timer = findViewById<TextView>(R.id.text_timer)
 
 ////        val recipelist  =
 //            Intent().getParcelableArrayListExtra("recipe")
-        val data:Intent = Intent()
+        val data: Intent = Intent()
 
 //        val passedIntent = Intent()
 //        processIntent(passedIntent)
 
-        val resultintent1:hRecipe = data.getParcelableExtra("hrecipe") as hRecipe
-        val cookname = resultintent1.name
-        name.text = cookname.toString()
+        val name = findViewById<TextView>(R.id.text_cook)
+        val view_img = findViewById<ImageView>(R.id.view_img)
+        if(intent != null) {
+            val resultintent = intent.extras?.getParcelable<hRecipe>("hrecipe")
+            name.text = resultintent?.name
+             view_img.setImageURI(resultintent?.img?.toUri())   //string
+            Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
+        }
+        else {
+            Toast.makeText(this,"hello",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    }
+
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        val name = findViewById<TextView>(R.id.text_cook)
+//        if(data != null) {
+//            val resultintent = data.extras?.getParcelable<hRecipe>("hrecipe")
+//            name.text = resultintent?.name
+//            Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
+//        }
+//        else {
+//            Toast.makeText(this,"hello",Toast.LENGTH_LONG).show()
+//        }
+
+
 
 
 
         //Toast.makeText(this, resultintent1.hrecipeList!![0].ingredient!![0]!!.name.toString(), Toast.LENGTH_LONG).show()
 
-    }
+
 
 //    private fun processIntent(intent:Intent)
 //    {
@@ -89,7 +115,7 @@ class ViewActivity : AppCompatActivity() {
          //   .show()
 
 
-    }
+ //   }
 
 
 

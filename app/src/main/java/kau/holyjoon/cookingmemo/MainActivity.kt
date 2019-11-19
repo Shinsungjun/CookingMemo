@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
         val intent = hRecipe(hRecipe.name,hRecipe.img,hRecipe.hrecipeList)
         viewintent.putExtra("hrecipe",intent)
-        startActivity(viewintent)
+        startActivityForResult(viewintent, 1)
 
 
     } //만든 어댑터를 설정해주는 작업
@@ -83,10 +83,11 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         if (data != null) {
             val resultintent1: ArrayList<Recipe_item>? =
                 Intent().getParcelableArrayListExtra("recipeList")
+            val resultintent2 = data.extras?.get("img") as String
             val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
 
             Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
-            hRecipeList?.add(hRecipe(resultintent, "", resultintent1))
+            hRecipeList?.add(hRecipe(resultintent, resultintent2, resultintent1))
             hAdapter.notifyDataSetChanged()
         }
 

@@ -1,5 +1,6 @@
 package kau.holyjoon.cookingmemo
 
+import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -18,9 +19,9 @@ class hRecipe(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeTypedList(hrecipeList)
         parcel.writeString(name)
         parcel.writeString(img)
+        parcel.writeTypedList(hrecipeList)
     }
 
     override fun describeContents(): Int {

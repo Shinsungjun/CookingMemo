@@ -70,7 +70,7 @@ class EditActivity() : AppCompatActivity() {
             val save_intent = Intent(this, MainActivity::class.java)
             save_intent.putParcelableArrayListExtra("recipeList", recipeList)
             save_intent.putExtra("name",name)
-            save_intent.putExtra("Uri", photoUri)
+            save_intent.putExtra("img", photoUri.toString())
 
             setResult(1, save_intent)
             finish()
@@ -139,14 +139,6 @@ class EditActivity() : AppCompatActivity() {
                 recipeList.add(
                     Recipe_item(
                         resultintent1.ingredient,
-                        resultintent1.howmake,
-                        resultintent1.cooktime,
-                        resultintent1.comment
-                    )
-                )
-
-                recipeL.add(
-                    Recipe(
                         resultintent1.howmake,
                         resultintent1.cooktime,
                         resultintent1.comment
