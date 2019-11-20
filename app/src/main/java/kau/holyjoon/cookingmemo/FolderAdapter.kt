@@ -5,15 +5,16 @@ import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FolderAdapter(val context: Context, var folderList: ArrayList<String>)
+class FolderAdapter(val context: Context, val folderList: ArrayList<Folder>,val itemClick : (Folder) -> Unit)
     : RecyclerView.Adapter<FolderAdapter.FolderViewHolder>(){
 
     inner class FolderViewHolder(itemview: View?): RecyclerView.ViewHolder(itemview!!){
 
         val Folder_name = itemView?.findViewById<TextView>(R.id.folder_name)
-        fun bind(folder: String, context:Context) { //recycleview item에 데이터를 붙여주는 작업
+        fun bind(folder:Folder, context:Context) { //recycleview item에 데이터를 붙여주는 작업
 
-            Folder_name?.text = "folder"
+            Folder_name?.text = folder.name
+            itemView.setOnClickListener { itemClick(folder) }
 
         }
     }

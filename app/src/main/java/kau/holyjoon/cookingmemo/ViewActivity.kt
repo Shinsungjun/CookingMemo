@@ -13,7 +13,6 @@ import android.annotation.SuppressLint
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.ImageView
@@ -22,15 +21,41 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
+import android.Manifest.permission
+import android.Manifest.permission.READ_CONTACTS
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.Manifest.permission.READ_CONTACTS
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import java.util.jar.Manifest
+import android.Manifest.permission.READ_CONTACTS
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class ViewActivity : AppCompatActivity() {
+
+    var recipeList = ArrayList<Recipe_item>()
+    val mAdapter = RecipeAdapter(this, recipeList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
 
         var recipe : hRecipe? = null
+        val recipe_view = findViewById<RecyclerView>(R.id.viewlist)
+        val lm = LinearLayoutManager(this) //레이아웃매니저 설정
+        recipe_view.layoutManager = lm
+        recipe_view.setHasFixedSize(true)
+        recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
+        recipe_view.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
         val ingredients = findViewById<TextView>(R.id.ingredients)
 
@@ -48,8 +73,11 @@ class ViewActivity : AppCompatActivity() {
         if(intent != null) {
             val resultintent = intent.extras?.getParcelable<hRecipe>("hrecipe")
             name.text = resultintent?.name
-             view_img.setImageURI(resultintent?.img?.toUri())   //string
-            Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
+
+             //view_img.setImageURI(resultintent?.img?.toUri())   string
+            //recipeList = resultintent!!.hrecipeList!!
+
+            //Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
         }
         else {
             Toast.makeText(this,"hello",Toast.LENGTH_LONG).show()

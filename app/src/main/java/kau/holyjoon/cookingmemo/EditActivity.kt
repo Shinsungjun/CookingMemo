@@ -117,7 +117,7 @@ class EditActivity() : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1) {  //popup창에서 재료를 넘기는 requestCode
+        if (requestCode == 1) {  //popup창에서 재료를 넘기는 requestCode
             if (data != null) {
 
                 val resultintent1 = data.extras?.get("recipe") as Recipe_item
@@ -157,22 +157,31 @@ class EditActivity() : AppCompatActivity() {
             mAdapter.notifyDataSetChanged()
             //Toast.makeText(this@EditActivity, "${resultintent1.ingredient!![0]!!.name},${resultintent1.ingredient!![1]!!.name}", Toast.LENGTH_LONG).show()
         }
-        if(requestCode == 2) {   //album에서 보내는 requestcode
-            if(data != null) {
+        if (requestCode == 2) {   //album에서 보내는 requestcode
+            if (data != null) {
                 photoUri = data.data
                 photo = null  //Bitmap 초기화
                 edit_imageView.setImageURI(photoUri)
-               // Toast.makeText(this,"album intent come",Toast.LENGTH_LONG).show()
+                // Toast.makeText(this,"album intent come",Toast.LENGTH_LONG).show()
             }
         }
-        if(requestCode == 3) {   //album에서 보내는 requestcode
-            if(data != null) {
+        if (requestCode == 3) {   //album에서 보내는 requestcode
+            if (data != null) {
                 photo = data.extras?.get("data") as Bitmap
                 photoUri = getImageUri(this, photo!!)
                 edit_imageView.setImageURI(photoUri)
                 //Toast.makeText(this,"camera intent come", Toast.LENGTH_LONG).show()
             }
         }
+        if (requestCode == 4){
+            if (data != null)
+                Toast.makeText(
+                    this,
+                    data.extras?.get("folder").toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+    }
+
 
 
     }
@@ -180,7 +189,7 @@ class EditActivity() : AppCompatActivity() {
 
     private fun openFolderActivity() {
         val folderintent = Intent(this, FolderActivity2::class.java)
-        startActivity(folderintent)
+        startActivityForResult(folderintent,4)
     }
 
     fun goToAlbum() {  //엘범에서 Intent를 통해 사진을 받아옴.
