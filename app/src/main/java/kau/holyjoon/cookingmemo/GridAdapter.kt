@@ -23,8 +23,10 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val 
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
             if (recipe.img!= null) {
+                println("이미지 소스 in GridAdapter : ${recipe.img}")
                 recipe_image?.setImageURI(recipe.img!!.toUri())
             } else {
+                println("이미지 소스는 null입니다")
                 recipe_image?.setImageResource(R.mipmap.ic_launcher)
             }
             recipe_name?.text = recipe.name

@@ -1,5 +1,6 @@
 package kau.holyjoon.cookingmemo
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,52 +11,63 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.Toast
 import android.R.id.message
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Build
 import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
-import android.Manifest.permission
-import android.Manifest.permission.READ_CONTACTS
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.Manifest.permission.READ_CONTACTS
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import java.util.jar.Manifest
-import android.Manifest.permission.READ_CONTACTS
-import android.content.pm.PackageManager
-import androidx.core.content.ContextCompat
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import kotlin.concurrent.timer
 
 
 class ViewActivity : AppCompatActivity() {
-
-    var recipeList = ArrayList<Recipe_item>()
-    val mAdapter = RecipeAdapter(this, recipeList)
-
+    val cookname by lazy{intent.extras?.get("name") as String}
+    val cookimg by lazy{intent.extras?.get("img") as String}
+    val recipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item>("recipeList")}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkPermissions()
+        }
+        val user = User_Permission(this)
+        user.checkPer()
+        val mAdapter = ViewAdapter(this, recipeList) {recipe ->
+        }
 
         var recipe : hRecipe? = null
+        val ImgView = findViewById<ImageView>(R.id.view_image)
+            /*if(intent != null) {
+            cookname = intent.extras?.get("name") as String?
+            cookimg = intent.extras?.get("img") as String?
+            val rList = intent.getParcelableArrayListExtra<Recipe_item>("recipeList")
+            Toast.makeText(this, "${cookimg}", Toast.LENGTH_SHORT).show()
+            println("이미지 소스 in ViewActivity : ${cookimg}")
+            for (i in 0 until rList.size) {
+                recipeList.add(rList[i])
+            }
+
+            hRecipeList.add(hRecipe(cookname,cookimg,recipeList))
+        }*/
+
+
         val recipe_view = findViewById<RecyclerView>(R.id.viewlist)
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
         recipe_view.layoutManager = lm
         recipe_view.setHasFixedSize(true)
         recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
         recipe_view.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
+
 
         val ingredients = findViewById<TextView>(R.id.ingredients)
 
@@ -69,22 +81,45 @@ class ViewActivity : AppCompatActivity() {
 //        processIntent(passedIntent)
 
         val name = findViewById<TextView>(R.id.text_cook)
-        val view_img = findViewById<ImageView>(R.id.view_img)
-        if(intent != null) {
-            val resultintent = intent.extras?.getParcelable<hRecipe>("hrecipe")
-            name.text = resultintent?.name
 
-             //view_img.setImageURI(resultintent?.img?.toUri())   string
-            //recipeList = resultintent!!.hrecipeList!!
+        name.text = cookname
+    }
 
-            //Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
-        }
-        else {
-            Toast.makeText(this,"hello",Toast.LENGTH_LONG).show()
+    fun checkPermissions() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE),1050)
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+        1050 -> {
+            // If request is cancelled, the result arrays are empty.
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+            }
+            else {
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+            }
+            return
+        }
+
+        // Add other 'when' lines to check for other
+        // permissions this app might request.
+        else -> {
+            // Ignore all other requests.
+        }
+        }
     }
+}
 
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -165,7 +165,7 @@ class EditActivity() : AppCompatActivity() {
                 // Toast.makeText(this,"album intent come",Toast.LENGTH_LONG).show()
             }
         }
-        if (requestCode == 3) {   //album에서 보내는 requestcode
+        if (requestCode == 3) {
             if (data != null) {
                 photo = data.extras?.get("data") as Bitmap
                 photoUri = getImageUri(this, photo!!)

@@ -3,15 +3,9 @@ package kau.holyjoon.cookingmemo
 
 import android.content.Context
 import android.view.*
-import android.view.View.inflate
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import kau.holyjoon.cookingmemo.RecipeAdapter.RecipeViewHolder
-import kotlinx.android.synthetic.main.edit_main.*
 
 
 //RecyclerView 어댑터
@@ -39,7 +33,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>?
         //뷰의 이름이 정해지고, layout과 연결됨
         val Ingredient = itemView?.findViewById<TextView>(R.id.ingredient_text)
         val Howmake = itemView?.findViewById<TextView>(R.id.howmake_text)
-        val Cooktime = itemView?.findViewById<TextView>(R.id.cooktime_text)
+        val Cooktime = itemView?.findViewById<TextView>(R.id.bt_cooktime_run)
         val Comment = itemView?.findViewById<TextView>(R.id.comment_text)
 
         //itemView.setOnCreateContextMenuListener(this);
@@ -48,7 +42,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>?
 
             Ingredient?.text = recipe.ingredient?.joinToString {"${it?.name}"}
             Howmake?.text = recipe.howmake
-            Cooktime?.text = recipe.cooktime
+            Cooktime?.text = recipe.cooktime.toString()
             Comment?.text = recipe.comment
 
         }

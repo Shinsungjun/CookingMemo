@@ -42,13 +42,15 @@ class FolderActivity2 : AppCompatActivity() {
     }
     private fun aboutview(){
 
-        bt_folder_add.setOnClickListener {
+        bt_folder_ok.setOnClickListener {
             var folderintent = Intent(this, EditActivity::class.java)
             folderintent.putExtra("folder", foldername)
             Toast.makeText(this,"${foldername}", Toast.LENGTH_SHORT).show()
             setResult(4)
             finish()
         }
+
+
 
         bt_folder_add.setOnClickListener() {
             val intent = Intent(this,NewFolderActivity::class.java)

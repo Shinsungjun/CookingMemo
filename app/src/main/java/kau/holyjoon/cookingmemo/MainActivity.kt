@@ -21,13 +21,14 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
         var viewintent = Intent(this, ViewActivity::class.java)
 
-        val intent = hRecipe(hRecipe.name,hRecipe.img,hRecipe.hrecipeList)
-        viewintent.putExtra("hrecipe",intent)
-        startActivityForResult(viewintent, 1)
-
-
+        viewintent.putExtra("name",hRecipe.name)
+        viewintent.putExtra("img",hRecipe.img)
+        println("이미지 소스 in Going Intent: ${hRecipe.img}")
+        viewintent.putParcelableArrayListExtra("recipeList",hRecipe.hrecipeList)
+        startActivityForResult(viewintent,1)
     } //만든 어댑터를 설정해주는 작업
 
+    var intent2 : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mStorageRef: StorageReference;
@@ -82,12 +83,13 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
         if (data != null) {
             val resultintent1: ArrayList<Recipe_item>? =
-                Intent().getParcelableArrayListExtra("recipeList")
-            val resultintent2 = data.extras?.get("img") as String
+                data.getParcelableArrayListExtra("recipeList")
+            intent2 = data.extras?.get("img") as String
             val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
 
-            Toast.makeText(this, data?.getStringExtra("name"), Toast.LENGTH_SHORT).show()
-            hRecipeList?.add(hRecipe(resultintent, resultintent2, resultintent1))
+            Toast.makeText(this, "${resultintent1!![0].comment}",Toast.LENGTH_SHORT).show()
+            hRecipeList?.add(hRecipe(resultintent, intent2, resultintent1))
+            println("이미지 소스 in Main Result Intent: ${intent2}")
             hAdapter.notifyDataSetChanged()
         }
 
