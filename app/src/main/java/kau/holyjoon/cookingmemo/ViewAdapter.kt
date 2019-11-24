@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.concurrent.timer
 
@@ -22,7 +23,7 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
     inner class Vholder(itemview: View) : RecyclerView.ViewHolder(itemview){
 
         //뷰의 이름이 정해지고, layout과 연결됨
-        val Ingredient = itemView.findViewById<TextView>(R.id.ingredient_text)
+        val IngredientRecyclerView = itemview.findViewById<RecyclerView>(R.id.view_recycler)
         val Howmake = itemView.findViewById<TextView>(R.id.howmake_text)
         val Cooktimerun = itemView.findViewById<Button>(R.id.bt_cooktime_run)
         val Cooktimestop = itemView.findViewById<Button>(R.id.bt_cooktime_stop)
@@ -32,7 +33,6 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
 
         fun bind(recipe: Recipe_item,context:Context) { //recycleview item에 데이터를 붙여주는 작업
 
-            Ingredient?.text = recipe.ingredient?.get(0)?.name.toString()
             Howmake?.text = recipe.howmake
             Cooktimerun.text = recipe.cooktime.toString()
             Cooktimestop.text = "stop"
@@ -81,11 +81,12 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
     }
     //view와 데이터 연결(필수 함수)
     override fun onBindViewHolder(holder: Vholder, position: Int) {
+        val ingreAdapter = view_IngreAdapter(context,recipeList[position].ingredient!!)
+        val lm1 = GridLayoutManager(context, 3)
+        holder.IngredientRecyclerView.adapter = ingreAdapter
+        holder.IngredientRecyclerView.layoutManager = lm1
+        holder.IngredientRecyclerView.setHasFixedSize(true)
         holder.bind(recipeList[position], context)
-
-
-
-
     }
 
 

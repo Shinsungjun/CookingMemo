@@ -20,8 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewlist"
-        android:layout_width="409dp"
-        android:layout_height="340dp"
+        android:layout_width="358dp"
+        android:layout_height="293dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
@@ -30,24 +30,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space" />
 
+
     <Space
         android:id="@+id/space"
-        android:layout_width="182dp"
-        android:layout_height="213dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="98dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="151dp"
+        android:layout_height="203dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="9dp"
         app:layout_constraintBottom_toTopOf="@+id/viewlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_image"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/ingredients"
-        android:layout_width="165dp"
-        android:layout_height="91dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="135dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="3dp"
         android:text="ingredients"
         app:layout_constraintBottom_toBottomOf="@+id/space"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,8 +95,11 @@
         android:id="@+id/text_cook"
         android:layout_width="142dp"
         android:layout_height="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="22dp"
         android:text="요리이름"
         android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +110,7 @@
         android:layout_width="182dp"
         android:layout_height="168dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/viewlist"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintHorizontal_bias="0.162"

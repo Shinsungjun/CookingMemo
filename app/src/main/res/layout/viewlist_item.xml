@@ -2,7 +2,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
-android:layout_height="wrap_content"
+android:layout_height="250dp"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_marginTop="2dp"
@@ -11,44 +11,32 @@ android:layout_marginStart="4dp"
 android:layout_marginEnd="4dp">
 
 
-<TextView
-    android:id="@+id/ingredient_text"
-    android:layout_width="100dp"
-    android:layout_height="39dp"
-    android:layout_marginEnd="10dp"
-    android:text="ingredient"
-    android:textSize="15dp"
-    app:layout_constraintBottom_toBottomOf="@+id/comment_text"
-    app:layout_constraintEnd_toStartOf="@+id/howmake_text"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintVertical_bias="0.262" />
-
-<TextView
-    android:id="@+id/howmake_text"
-    android:layout_width="100dp"
-    android:layout_height="42dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="29dp"
-    android:textSize="18dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/bt_cooktime_run"
-    app:layout_constraintStart_toEndOf="@+id/ingredient_text"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0"
-    tools:text="howmake" />
+    <TextView
+        android:id="@+id/howmake_text"
+        android:layout_width="103dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/comment_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_recycler"
+        app:layout_constraintTop_toBottomOf="@+id/bt_cooktime_run"
+        tools:text="howmake" />
 
     <Button
         android:id="@+id/bt_cooktime_run"
         android:layout_width="50dp"
         android:layout_height="43dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="1dp"
         android:textSize="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/comment_text"
+        app:layout_constraintBaseline_toBaselineOf="@id/bt_cooktime_stop"
+        app:layout_constraintBottom_toTopOf="@+id/howmake_text"
         app:layout_constraintEnd_toStartOf="@+id/bt_cooktime_stop"
-        app:layout_constraintStart_toEndOf="@+id/howmake_text"
+        app:layout_constraintStart_toEndOf="@+id/view_recycler"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="time" />
 
@@ -56,30 +44,44 @@ android:layout_marginEnd="4dp">
         android:id="@+id/bt_cooktime_stop"
         android:layout_width="50dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="10dp"
         android:textSize="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/comment_text"
+        app:layout_constraintBottom_toTopOf="@+id/howmake_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toEndOf="@+id/bt_cooktime_run"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         tools:text="time" />
 
     <TextView
         android:id="@+id/comment_text"
-        android:layout_width="321dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="345dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="7dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredient_text"
-        app:layout_constraintVertical_bias="0.238"
         tools:text="comment" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_recycler"
+        android:layout_width="231dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="13dp"
+        android:overScrollMode="always"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/comment_text"
+        app:layout_constraintEnd_toStartOf="@+id/bt_cooktime_run"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
