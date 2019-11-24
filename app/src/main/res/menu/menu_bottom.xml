@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/navigation_recipe"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="RECIPE" />
+        android:icon="@drawable/recipe"
+        android:title="나의레시피" />
 
     <item
-        android:id="@+id/navigation_refri"
+        android:id="@+id/navigation_recipes"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="REFRI" />
+        android:title="모두의레시피" />
 
     <item
         android:id="@+id/navigation_info"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="RECIPE" />
+        android:title="Info" />
 </menu>
