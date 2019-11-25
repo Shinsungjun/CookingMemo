@@ -7,58 +7,50 @@
     android:layout_height="match_parent">
 
 
-    <SearchView
-        android:id="@+id/ingre_searchView"
-        android:layout_width="360dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingre_tablayout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ingre_frame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </SearchView>
+        <ImageButton
+            android:id="@+id/bt_ingre_search"
+            android:layout_width="28dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_search" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/ingre_tablayout"
-        android:layout_width="358dp"
-        android:layout_height="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingreViewPager"
+        <EditText
+            android:id="@+id/edit_ingre_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <ImageView
+            android:id="@+id/bt_re_ingre_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/ingre_frame"
+        android:layout_width="359dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingre_searchView"
-        app:tabMode="scrollable">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_famous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="인기" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_fruit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="채소/과일" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_meat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="육류" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ingreViewPager"
-        android:layout_width="358dp"
-        android:layout_height="482dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingre_tablayout" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

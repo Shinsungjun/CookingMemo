@@ -43,16 +43,14 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val 
     }
     //전체 item 갯수 리턴(필수 함수)
     override fun getItemCount(): Int {
-        if(hRecipeList!=null)
+        if(hRecipeList != null)
         return hRecipeList!!.size
         return 0
     }
     //view와 데이터 연결(필수 함수)
     override fun onBindViewHolder(holder: hRecipeViewHolder, position: Int) {
-        if(hRecipeList!=null)
+        if(hRecipeList != null)
         holder.bind(hRecipeList!![position], context)
-
-
 
     }
 

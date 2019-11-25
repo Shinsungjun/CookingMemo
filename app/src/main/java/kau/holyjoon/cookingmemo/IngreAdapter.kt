@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>,val itemClick : (Ingredient)->Unit,
-    val itemLongClick : (Ingredient) -> Unit):
+class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>,val itemClick : (Ingredient)->Unit):
     RecyclerView.Adapter<IngreAdapter.Holder>() {
     var btSet = 0
     inner class Holder(itemView : View,itemClick : (Ingredient)->Unit) : RecyclerView.ViewHolder(itemView) {
@@ -25,15 +25,19 @@ class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>,
                 ingredientPhoto.setImageResource(R.mipmap.ic_launcher)
             }*/
             ingredientName.text = ingredient.name
-            ingredientPhoto.setOnLongClickListener {
-                itemLongClick(ingredient)
-                notifyDataSetChanged()
-                true
-            }
             ingredientPhoto.setOnClickListener {itemClick(ingredient)
                 if(ingredient.source != null) {
                     resultList.add(Ingredient(ingredient.name, ingredient.source))
                     ingredient.source = null
+                }
+                else {
+                    for(i in 0 until resultList.size) {
+                        if(resultList[i].name == ingredient.name) {
+                            ingredient.source = resultList[i].source
+                            resultList.remove(resultList[i])
+                            break
+                        }
+                    }
                 }
                 notifyDataSetChanged()
             }

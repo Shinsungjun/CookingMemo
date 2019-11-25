@@ -81,17 +81,13 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
     }
     //view와 데이터 연결(필수 함수)
     override fun onBindViewHolder(holder: Vholder, position: Int) {
-        val ingreAdapter = view_IngreAdapter(context,recipeList[position].ingredient!!)
+        val ingreAdapter = view_IngreAdapter(context, recipeList[position].ingredient!!)
         val lm1 = GridLayoutManager(context, 3)
         holder.IngredientRecyclerView.adapter = ingreAdapter
         holder.IngredientRecyclerView.layoutManager = lm1
         holder.IngredientRecyclerView.setHasFixedSize(true)
         holder.bind(recipeList[position], context)
     }
-
-
-
-
 }
 
 

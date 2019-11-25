@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,21 +13,23 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+//import kau.holyjoon.cookingmemo.ingredientMainFragment.Companion.resultList
 import kau.holyjoon.cookingmemo.ingredientMainActivity.Companion.resultList
 
 class FamousFragment : Fragment() {
-
 
     var freshList = arrayListOf<Ingredient>()
     var meatList = arrayListOf<Ingredient>()
     var seafoodList = arrayListOf<Ingredient>()
     var yogurtList = arrayListOf<Ingredient>()
     var dataload = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println("Famous Fragment dataload : ${dataload}")
         val view: View = inflater.inflate(R.layout.famousfragment, container, false)
         val bt_total_1 = view.findViewById<Button>(R.id.bt_total_1)
         val bt_total_2 = view.findViewById<Button>(R.id.bt_total_2)
@@ -41,70 +42,26 @@ class FamousFragment : Fragment() {
         val famousRecyclerView4 = view.findViewById<RecyclerView>(R.id.Recyclerview_ingre4)
 
 
-        val mAdapter1 = IngreAdapter(context!!, freshList, resultList, { ingredient ->
+        val mAdapter1 = IngreAdapter(context!!, freshList, resultList) { ingredient ->
             if (ingredient.source == null) {
-                Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT).show()
             } else Toast.makeText(context, "${ingredient.name} 이 선택되었습니다.", Toast.LENGTH_SHORT).show()
-        }, {
-            ingredient ->
-            for(i in 0 until resultList.size) {
-                if(resultList[i].name == ingredient.name) {
-                    ingredient.source = resultList[i].source
-                    Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    resultList.remove(resultList[i])
-                    break
-                }
-            }
-        })
-        val mAdapter2 = IngreAdapter(context!!, meatList, resultList, { ingredient ->
+        }
+        val mAdapter2 = IngreAdapter(context!!, meatList, resultList){ ingredient ->
             if (ingredient.source == null) {
-                Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT).show()
             } else Toast.makeText(context, "${ingredient.name} 이 선택되었습니다.", Toast.LENGTH_SHORT).show()
-        }, {
-                ingredient ->
-            for(i in 0 until resultList.size) {
-                if(resultList[i].name == ingredient.name) {
-                    ingredient.source = resultList[i].source
-                    Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    resultList.remove(resultList[i])
-                    break
-                }
-            }
-        })
-        val mAdapter3 = IngreAdapter(context!!, seafoodList, resultList, { ingredient ->
+        }
+        val mAdapter3 = IngreAdapter(context!!, seafoodList, resultList) { ingredient ->
             if (ingredient.source == null) {
-                Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT).show()
             } else Toast.makeText(context, "${ingredient.name} 이 선택되었습니다.", Toast.LENGTH_SHORT).show()
-        }, {
-                ingredient ->
-            for(i in 0 until resultList.size) {
-                if(resultList[i].name == ingredient.name) {
-                    ingredient.source = resultList[i].source
-                    Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    resultList.remove(resultList[i])
-                    break
-                }
-            }
-        })
-        val mAdapter4 = IngreAdapter(context!!, yogurtList, resultList, { ingredient ->
+        }
+        val mAdapter4 = IngreAdapter(context!!, yogurtList, resultList) { ingredient ->
             if (ingredient.source == null) {
-                Toast.makeText(context, "이미 선택된 재료입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT).show()
             } else Toast.makeText(context, "${ingredient.name} 이 선택되었습니다.", Toast.LENGTH_SHORT).show()
-        }, {
-                ingredient ->
-            for(i in 0 until resultList.size) {
-                if(resultList[i].name == ingredient.name) {
-                    ingredient.source = resultList[i].source
-                    Toast.makeText(context, "${ingredient.name} 선택이 취소되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    resultList.remove(resultList[i])
-                    break
-                }
-            }
-        })
+        }
 
         val lm1 = GridLayoutManager(context, 5)
         val lm2 = GridLayoutManager(context, 5)

@@ -2,51 +2,35 @@ package kau.holyjoon.cookingmemo
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TableLayout
+import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.choice_ingredient.*
+import androidx.fragment.app.FragmentActivity
 
-class ingredientMainActivity : AppCompatActivity() {
-    val adapter by lazy {pagerAdapter(supportFragmentManager)}
+class ingredientMainActivity : FragmentActivity() {
     companion object {
         var resultList = arrayListOf<Ingredient>()
+        var totalList = arrayListOf<Ingredient>()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.choice_ingredient)
-       /* val ingre_bt_ok = findViewById<Button>(R.id.ingre_bt_ok)
-        ingre_bt_ok.setOnClickListener {
-            val resultIntent = Intent(this, PlusActivity::class.java)
-            if(resultList.size != 0) {
-                resultIntent.putExtra("back", resultList)
-            }
-            setResult(1,resultIntent)
-            finish()
-            resultList.clear()
-        }*/
+        val pagerfragment = ingredientMainFragment()
+        val searchfragment = ingredientSearchFragment()
+        val editSearch = findViewById<EditText>(R.id.edit_ingre_search)
+        editSearch.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.ingre_frame,searchfragment)
+                .commit()
+        }
+
         Toast.makeText(this, "재료 선택 후 백버튼을 눌러주세요! 길게 터치시 선택 취소입니다.", Toast.LENGTH_LONG).show()
-        ingreViewPager.adapter = adapter
 
-        ingreViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-            override fun onPageScrollStateChanged(state: Int) {
-            }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.ingre_frame,pagerfragment)
+            .commit()
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-        })
-        ingre_tablayout.setupWithViewPager(ingreViewPager)
     }
+
 
     override fun onBackPressed() {
         val resultIntent = Intent(this, PlusActivity::class.java)
