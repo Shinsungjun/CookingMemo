@@ -46,7 +46,6 @@ class EditActivity() : AppCompatActivity() {
         Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
         Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
-        val bt_image_load = findViewById<ImageButton>(R.id.bt_camera)
 
         val edit_imageView = findViewById<ImageView>(R.id.edit_imageView)
         edit_imageView.setOnClickListener(View.OnClickListener { v: View? ->

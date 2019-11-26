@@ -18,6 +18,7 @@
         android:ems="10"
         android:hint="폴더이름을 입력해주세요."
         android:inputType="textPersonName"
+        android:textColorHint="#FF9999"
         app:layout_constraintBottom_toTopOf="@+id/bt_new_folder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,9 +32,11 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="478dp"
+        android:backgroundTint="#FF9999"
         android:text="추가하기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_folder_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

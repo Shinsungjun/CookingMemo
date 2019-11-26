@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,10 +18,12 @@
 
         <ImageButton
             android:id="@+id/bt_ingre_search"
-            android:layout_width="28dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_search" />
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/search" />
 
         <EditText
             android:id="@+id/edit_ingre_search"
@@ -33,12 +34,6 @@
             android:inputType="textPersonName"
             android:text="Name" />
 
-        <ImageView
-            android:id="@+id/bt_re_ingre_search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_revert" />
     </LinearLayout>
 
     <FrameLayout
