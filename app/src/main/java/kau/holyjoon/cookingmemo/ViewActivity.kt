@@ -47,18 +47,6 @@ class ViewActivity : AppCompatActivity() {
 
         var recipe : hRecipe? = null
         val ImgView = findViewById<ImageView>(R.id.view_image)
-            /*if(intent != null) {
-            cookname = intent.extras?.get("name") as String?
-            cookimg = intent.extras?.get("img") as String?
-            val rList = intent.getParcelableArrayListExtra<Recipe_item>("recipeList")
-            Toast.makeText(this, "${cookimg}", Toast.LENGTH_SHORT).show()
-            println("이미지 소스 in ViewActivity : ${cookimg}")
-            for (i in 0 until rList.size) {
-                recipeList.add(rList[i])
-            }
-
-            hRecipeList.add(hRecipe(cookname,cookimg,recipeList))
-        }*/
 
 
         val recipe_view = findViewById<RecyclerView>(R.id.viewlist)
@@ -72,13 +60,6 @@ class ViewActivity : AppCompatActivity() {
         val ingredients = findViewById<TextView>(R.id.ingredients)
 
         var timer = findViewById<TextView>(R.id.text_timer)
-
-////        val recipelist  =
-//            Intent().getParcelableArrayListExtra("recipe")
-        val data: Intent = Intent()
-
-//        val passedIntent = Intent()
-//        processIntent(passedIntent)
 
         val name = findViewById<TextView>(R.id.text_cook)
 

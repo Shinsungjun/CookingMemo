@@ -1,6 +1,7 @@
 package kau.holyjoon.cookingmemo
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -8,10 +9,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.ContextMenu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -25,12 +23,19 @@ import kotlinx.android.synthetic.main.folder_item.*
 import java.io.ByteArrayOutputStream
 
 
-class EditActivity() : AppCompatActivity() {
-
+class EditActivity : AppCompatActivity() {
+    var remindhowmake : String? = null
+    var remindcooktime : Int? = null
     var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
-    var resultarray = ArrayList<Ingredient?>()
-    var ingredientarray = arrayListOf(ArrayList<Ingredient?>())
-    val mAdapter = RecipeAdapter(this, recipeList)
+    val mAdapter = RecipeAdapter(this, recipeList){recipeItem ->
+        remindhowmake = recipeItem.howmake
+        remindcooktime = recipeItem.cooktime
+        val editintent = Intent(this, PlusActivity::class.java)
+        val intentrecipe = Recipe_item(recipeItem.ingredient,recipeItem.howmake,recipeItem.cooktime,recipeItem.comment)
+        editintent.putExtra("recipe", intentrecipe)
+        startActivityForResult(editintent,1000)
+        true
+    }
     var cookname:String = ""
     var photoUri : Uri? = null
     var photo : Bitmap? = null
@@ -39,6 +44,7 @@ class EditActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
 
+        val view = findViewById<View>(R.id.Recipe_view)
         val Recipeview = findViewById<RecyclerView>(R.id.Recipe_view)
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
         Recipeview.layoutManager = lm
@@ -46,24 +52,78 @@ class EditActivity() : AppCompatActivity() {
         Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
         Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
-
         val edit_imageView = findViewById<ImageView>(R.id.edit_imageView)
-        edit_imageView.setOnClickListener(View.OnClickListener { v: View? ->
+        edit_imageView.setOnClickListener { v: View? ->
             registerForContextMenu(v)
             openContextMenu(v)
-        })
+        }
         aboutView()
+        val gestureListener = MyGesture()
+        val gesturedetector = GestureDetector(this,gestureListener)
+
+        view.setOnTouchListener{v, event ->
+            return@setOnTouchListener gesturedetector.onTouchEvent(event)
+        }
 
     }
+    inner class MyGesture : GestureDetector.OnGestureListener {
 
+        override fun onShowPress(e: MotionEvent?) {
+            println("showpress!!!!!!!!!!!!")
+        }
+
+        override fun onSingleTapUp(e: MotionEvent?): Boolean {
+            println("싱글탭!")
+            return false
+        }
+
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            println("플링!!")
+            return false
+        }
+
+        @SuppressLint("RestrictedApi")
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
+            if(e1?.action == MotionEvent.ACTION_DOWN) {
+                println("액선 1아래로 스크롤!!!")
+                println("e1:${e1.action}, e2:${e2?.action}, distanceX :${distanceX},distanceY :${distanceY}")
+                if (recipeList.size > 2) {
+                    if (distanceY > 0) {
+                        bt_floating.visibility = View.INVISIBLE
+                    }
+                }
+                if(distanceY <0) bt_floating.visibility = View.VISIBLE
+            }
+            return true
+        }
+
+        override fun onLongPress(e: MotionEvent?) {
+
+        }
+
+        override fun onDown(e: MotionEvent?): Boolean {
+            println("터치!!")
+            return false
+        }
+    }
     private fun aboutView() {
-        bt_plus.setOnClickListener {
+        bt_floating.setOnClickListener {
             //메모버튼 눌렀을때
             openPlusActivity()
         }
         bt_save.setOnClickListener {
 
-            val name:String = `edit_cookname`.text.toString()
+            val name:String = edit_cookname.text.toString()
             val save_intent = Intent(this, MainActivity::class.java)
             save_intent.putParcelableArrayListExtra("recipeList", recipeList)
             save_intent.putExtra("name",name)
@@ -86,6 +146,28 @@ class EditActivity() : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1000) { //재료 고침
+            for(i in 0 until recipeList.size) {
+                if(recipeList[i].howmake == remindhowmake && recipeList[i].cooktime == remindcooktime){
+                    val deleteintent = data?.extras?.get("delete") as String?
+                    if(deleteintent == "delete"){
+                        recipeList.removeAt(i)
+                        break
+                    }
+                    if(data!= null) {
+                        val resultintent = data.extras?.get("recipe") as Recipe_item?
+                        if(resultintent != null) {
+                            recipeList[i].howmake = resultintent.howmake
+                            recipeList[i].cooktime = resultintent.cooktime
+                            recipeList[i].ingredient = resultintent.ingredient
+                            recipeList[i].comment = resultintent.comment
+                            break
+                        }
+                    }
+                }
+            }
+            mAdapter.notifyDataSetChanged()
+        }
         if (requestCode == 1) {  //popup창에서 재료를 넘기는 requestCode
             if (data != null) {
 

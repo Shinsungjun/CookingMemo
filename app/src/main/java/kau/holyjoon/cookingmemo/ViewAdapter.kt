@@ -54,7 +54,7 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
                 val mHandler = Handler(Looper.getMainLooper())
                 timer(period = 1000) {
                     //다른 Thread에서 작동
-                    if(recipe.isRunning == 0) cancel()
+                    if(recipe.isRunning == 0 || recipe.cooktime == 0) cancel()
                     if(recipe.isRunning == 1) {
                         recipe.cooktime--
                         recipe.changetime++

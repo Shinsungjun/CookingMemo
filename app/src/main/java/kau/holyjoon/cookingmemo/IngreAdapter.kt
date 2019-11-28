@@ -13,17 +13,12 @@ import com.bumptech.glide.Glide
 class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>,val itemClick : (Ingredient)->Unit):
     RecyclerView.Adapter<IngreAdapter.Holder>() {
     var btSet = 0
-    inner class Holder(itemView : View,itemClick : (Ingredient)->Unit) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(itemView : View, itemClick : (Ingredient)->Unit) : RecyclerView.ViewHolder(itemView) {
         val ingredientPhoto = itemView.findViewById<ImageView>(R.id.gridImg)
         val ingredientName = itemView.findViewById<TextView>(R.id.gridName)
 
         fun bind(ingredient: Ingredient, context: Context) {
-            /*if (ingredient.source != "") {
-                Glide.with(context).load(ingredient)
-            }
-            else {
-                ingredientPhoto.setImageResource(R.mipmap.ic_launcher)
-            }*/
+
             ingredientName.text = ingredient.name
             ingredientPhoto.setOnClickListener {itemClick(ingredient)
                 if(ingredient.source != null) {

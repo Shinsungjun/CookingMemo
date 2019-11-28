@@ -5,24 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#FFFFFF"
+    android:id ="@+id/editmain"
     tools:context=".EditActivity">
 
-
-    <ImageButton
-        android:id="@+id/bt_plus"
-        android:layout_width="105dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="309dp"
-        android:layout_marginTop="600dp"
-        android:background="#FFFFFF"
-        android:scaleType="fitCenter"
-        android:src="@drawable/plus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/bt_folder"
@@ -54,6 +39,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.132" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bt_floating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="200dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:srcCompat="@drawable/add" />
+
     <EditText
         android:id="@+id/edit_cookname"
         android:layout_width="114dp"
@@ -84,11 +83,10 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="336dp"
-        android:layout_height="423dp"
+        android:layout_width="339dp"
+        android:layout_height="469dp"
         android:layout_marginTop="59dp"
-        android:layout_marginBottom="39dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_plus"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_cookname">
@@ -100,16 +98,17 @@
 
             <ImageView
                 android:id="@+id/edit_imageView"
-                android:layout_width="207dp"
-                android:layout_height="208dp"
-                android:layout_marginLeft="75dp"
+                android:layout_width="185dp"
+                android:layout_height="185dp"
+                android:layout_marginLeft="80dp"
                 android:background="@color/fui_bgGoogle"
                 android:src="@drawable/bob" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Recipe_view"
-                android:layout_width="match_parent"
-                android:layout_height="202dp">
+                android:layout_width="319dp"
+                android:layout_height="280dp"
+                android:layout_marginLeft="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

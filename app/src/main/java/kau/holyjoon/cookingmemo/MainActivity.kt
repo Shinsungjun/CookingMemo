@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     //var hRecipeList: ArrayList<hRecipe>? = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
     var hRecipeList = ArrayList<hRecipe>()
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
-        var viewintent = Intent(this, ViewActivity::class.java)
+        val viewintent = Intent(this, ViewActivity::class.java)
 
         viewintent.putExtra("name",hRecipe.name)
         viewintent.putExtra("img",hRecipe.img)
