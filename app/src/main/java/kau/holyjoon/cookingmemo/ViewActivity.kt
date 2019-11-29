@@ -5,49 +5,52 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.widget.Toast
-import android.R.id.message
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Build
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
-import kotlin.concurrent.timer
+import kotlinx.android.synthetic.main.activity_view.*
 
 
 class ViewActivity : AppCompatActivity() {
-    val cookname by lazy{intent.extras?.get("name") as String}
-    val cookimg by lazy{intent.extras?.get("img") as String}
-    val recipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item>("recipeList")}
+    val cooknameintent by lazy{intent.extras?.get("name") as String?}
+    val cookimgintent by lazy{intent.extras?.get("img") as String?}
+    val recipeListintent by lazy{intent.getParcelableArrayListExtra<Recipe_item>("recipeList")}
+    var recipeList = arrayListOf<Recipe_item>()
+    val mAdapter = ViewAdapter(this, recipeList) {recipe ->
+    }
+    var cookname : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermissions()
         }
+        val name = findViewById<TextView>(R.id.text_cook)
         val user = User_Permission(this)
         user.checkPer()
-        val mAdapter = ViewAdapter(this, recipeList) {recipe ->
+        if(recipeListintent!= null) {
+            for(i in 0 until recipeListintent.size) {
+                recipeList.add(recipeListintent[i])
+            }
+            mAdapter.notifyDataSetChanged()
         }
-
+        if(cooknameintent != null) {
+            cookname = cooknameintent
+        }
         var recipe : hRecipe? = null
         val ImgView = findViewById<ImageView>(R.id.view_image)
-
+        bt_view_edit.setOnClickListener {
+            val editIntent = Intent(this, EditActivity::class.java)
+            editIntent.putExtra("name",cookname)
+            editIntent.putExtra("img",cookimgintent)
+            editIntent.putParcelableArrayListExtra("recipeList",recipeList)
+            startActivityForResult(editIntent,100)
+        }
 
         val recipe_view = findViewById<RecyclerView>(R.id.viewlist)
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
@@ -61,9 +64,12 @@ class ViewActivity : AppCompatActivity() {
 
         var timer = findViewById<TextView>(R.id.text_timer)
 
-        val name = findViewById<TextView>(R.id.text_cook)
 
         name.text = cookname
+
+        bt_view_delete.setOnClickListener {  //삭제 버튼 .......... 다시 한번 더 물어봐야함 ..... ㅎㅎ
+
+        }
     }
 
     fun checkPermissions() {
@@ -73,6 +79,37 @@ class ViewActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 100) { //Edit에서 수정후 돌아옴
+            if (data != null) {
+                val nametext = findViewById<TextView>(R.id.text_cook)
+                val resultintent = data.getStringExtra("name")
+                if(resultintent != null)
+                    nametext.text = resultintent
+                val resultintent1: ArrayList<Recipe_item>? =
+                    data.getParcelableArrayListExtra("recipeList")
+                val resultintent2 = data.extras?.get("img") as String?
+                cookname = resultintent
+                if(resultintent1!= null) {
+                    recipeList.clear()
+                    for (i in 0 until resultintent1.size) {
+                        recipeList.add(resultintent1[i])
+                        mAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onBackPressed() {  //Edit했을 수도 있으므로 Intent로 넘김. 변경내용 그대로 Main에 다시 저장
+        val name = cookname
+        val save_intent = Intent(this, MainActivity::class.java)
+        save_intent.putParcelableArrayListExtra("recipeList", recipeList)
+        save_intent.putExtra("name",name)
+        setResult(1555, save_intent)
+        finish()
+    }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -101,65 +138,4 @@ class ViewActivity : AppCompatActivity() {
         }
     }
 }
-
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        val name = findViewById<TextView>(R.id.text_cook)
-//        if(data != null) {
-//            val resultintent = data.extras?.getParcelable<hRecipe>("hrecipe")
-//            name.text = resultintent?.name
-//            Toast.makeText(this,"${resultintent?.name}",Toast.LENGTH_LONG).show()
-//        }
-//        else {
-//            Toast.makeText(this,"hello",Toast.LENGTH_LONG).show()
-//        }
-
-
-
-
-
-        //Toast.makeText(this, resultintent1.hrecipeList!![0].ingredient!![0]!!.name.toString(), Toast.LENGTH_LONG).show()
-
-
-
-//    private fun processIntent(intent:Intent)
-//    {
-//
-//        val result:hRecipe? = intent.getParcelableExtra("hrecipe")
-//        val mAdapter = RecipeAdapter(this,result!!.hrecipeList!!)
-//
-//
-//        val Viewlist = findViewById<RecyclerView>(R.id.viewlist)
-//        val lm = LinearLayoutManager(this) //레이아웃매니저 설정
-//        Viewlist.layoutManager = lm
-//        Viewlist.setHasFixedSize(true)
-//        Viewlist.adapter = mAdapter //Recipe_view는 recycleview의 id
-//        Viewlist.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
-//
-//        Toast.makeText(
-//                applicationContext,
-//                "got simpledata :${result.name.toString()}",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-
-
-
-
-
-
-
-//        if(recipelist!=null) {
-//            Toast.makeText(this, recipelist[0].ingredient!!.get(0)!!.name.toString(), Toast.LENGTH_SHORT)
-//                .show()
-//        }
-
-        //Toast.makeText(this, ingredientlist?.get(0)?.name.toString(), Toast.LENGTH_SHORT)
-         //   .show()
-
-
- //   }
-
-
 

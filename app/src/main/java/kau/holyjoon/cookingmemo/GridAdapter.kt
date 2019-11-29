@@ -27,7 +27,7 @@ class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val 
                 recipe_image?.setImageURI(recipe.img!!.toUri())
             } else {
                 println("이미지 소스는 null입니다")
-                recipe_image?.setImageResource(R.mipmap.ic_launcher)
+                recipe_image?.setImageResource(R.drawable.bob)
             }
             recipe_name?.text = recipe.name
             itemView.setOnClickListener { itemClick(recipe) }

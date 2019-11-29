@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.edit_main.*
@@ -26,12 +27,12 @@ import java.io.ByteArrayOutputStream
 class EditActivity : AppCompatActivity() {
     var remindhowmake : String? = null
     var remindcooktime : Int? = null
-    var recipeList = ArrayList<Recipe_item>() //recyclerview에 들어갈 데이터리스트
+    var recipeList = ArrayList<Recipe_item?>() //recyclerview에 들어갈 데이터리스트
     val mAdapter = RecipeAdapter(this, recipeList){recipeItem ->
-        remindhowmake = recipeItem.howmake
-        remindcooktime = recipeItem.cooktime
+        remindhowmake = recipeItem?.howmake
+        remindcooktime = recipeItem?.cooktime
         val editintent = Intent(this, PlusActivity::class.java)
-        val intentrecipe = Recipe_item(recipeItem.ingredient,recipeItem.howmake,recipeItem.cooktime,recipeItem.comment)
+        val intentrecipe = Recipe_item(recipeItem?.ingredient,recipeItem?.howmake,recipeItem?.cooktime,recipeItem?.comment)
         editintent.putExtra("recipe", intentrecipe)
         startActivityForResult(editintent,1000)
         true
@@ -40,6 +41,9 @@ class EditActivity : AppCompatActivity() {
     var photoUri : Uri? = null
     var photo : Bitmap? = null
 
+    val intentname by lazy{intent?.extras?.get("name") as String?}
+    val intentimg by lazy{intent?.extras?.get("img") as String?}
+    val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
@@ -52,6 +56,19 @@ class EditActivity : AppCompatActivity() {
         Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
         Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
+        if(intentname != null) {
+            edit_cookname.setText(intentname)
+        }
+        if(intentimg != null) {
+            edit_imageView.setImageURI(intentimg!!.toUri())
+        }
+        if(intentrecipeList != null) {
+            for(i in 0 until intentrecipeList!!.size){
+                recipeList.add(intentrecipeList!![i])
+            }
+            println("${recipeList[0]?.comment}")
+            mAdapter.notifyDataSetChanged()
+        }
         val edit_imageView = findViewById<ImageView>(R.id.edit_imageView)
         edit_imageView.setOnClickListener { v: View? ->
             registerForContextMenu(v)
@@ -127,7 +144,9 @@ class EditActivity : AppCompatActivity() {
             val save_intent = Intent(this, MainActivity::class.java)
             save_intent.putParcelableArrayListExtra("recipeList", recipeList)
             save_intent.putExtra("name",name)
-            save_intent.putExtra("img", photoUri.toString())
+            if(photoUri != null) {
+                save_intent.putExtra("img", photoUri.toString())
+            }
 
             setResult(1, save_intent)
             finish()
@@ -148,7 +167,7 @@ class EditActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1000) { //재료 고침
             for(i in 0 until recipeList.size) {
-                if(recipeList[i].howmake == remindhowmake && recipeList[i].cooktime == remindcooktime){
+                if(recipeList[i]?.howmake == remindhowmake && recipeList[i]?.cooktime == remindcooktime){
                     val deleteintent = data?.extras?.get("delete") as String?
                     if(deleteintent == "delete"){
                         recipeList.removeAt(i)
@@ -157,10 +176,10 @@ class EditActivity : AppCompatActivity() {
                     if(data!= null) {
                         val resultintent = data.extras?.get("recipe") as Recipe_item?
                         if(resultintent != null) {
-                            recipeList[i].howmake = resultintent.howmake
-                            recipeList[i].cooktime = resultintent.cooktime
-                            recipeList[i].ingredient = resultintent.ingredient
-                            recipeList[i].comment = resultintent.comment
+                            recipeList[i]?.howmake = resultintent.howmake
+                            recipeList[i]?.cooktime = resultintent.cooktime
+                            recipeList[i]?.ingredient = resultintent.ingredient
+                            recipeList[i]?.comment = resultintent.comment
                             break
                         }
                     }

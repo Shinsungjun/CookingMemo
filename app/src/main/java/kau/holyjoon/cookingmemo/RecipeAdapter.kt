@@ -11,7 +11,7 @@ import kau.holyjoon.cookingmemo.RecipeAdapter.RecipeViewHolder
 
 
 //RecyclerView 어댑터
-class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, val itemClick : (Recipe_item)->Boolean )
+class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>, val itemClick : (Recipe_item?)->Boolean )
     :RecyclerView.Adapter<RecipeViewHolder>(){
 
     var itemposition = -1
@@ -25,12 +25,12 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>,
         val Howmake = itemview.findViewById<TextView>(R.id.howmake_text)
         val Cooktime = itemview.findViewById<TextView>(R.id.bt_cooktime_run)
         val Comment = itemview.findViewById<TextView>(R.id.comment_text)
-        fun bind(recipe: Recipe_item,context:Context) { //recycleview item에 데이터를 붙여주는 작업
+        fun bind(recipe: Recipe_item?,context:Context) { //recycleview item에 데이터를 붙여주는 작업
 
-            Ingredient?.text = recipe.ingredient?.joinToString {"${it.name}"}
-            Howmake?.text = recipe.howmake
-            Cooktime?.text = recipe.cooktime.toString()
-            Comment?.text = recipe.comment
+            Ingredient?.text = recipe?.ingredient?.joinToString {"${it.name}"}
+            Howmake?.text = recipe?.howmake
+            Cooktime?.text = recipe?.cooktime.toString()
+            Comment?.text = recipe?.comment
 
             itemView.setOnLongClickListener { itemClick(recipe)
                 true

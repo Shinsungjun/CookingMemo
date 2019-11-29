@@ -40,7 +40,8 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
             Cooktimestop.setOnClickListener { itemClick(recipe)
                 Cooktimestop.visibility = View.INVISIBLE
                 recipe.isRunning = 0
-                recipe.cooktime += recipe.changetime
+
+                recipe.cooktime = recipe.cooktime?.plus(recipe.changetime)
                 recipe.changetime = 0
                 notifyDataSetChanged()
             }
@@ -56,7 +57,7 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
                     //다른 Thread에서 작동
                     if(recipe.isRunning == 0 || recipe.cooktime == 0) cancel()
                     if(recipe.isRunning == 1) {
-                        recipe.cooktime--
+                        recipe.cooktime = recipe.cooktime?.minus(1)
                         recipe.changetime++
                         println("${recipe.cooktime}")
                         mHandler.postDelayed(

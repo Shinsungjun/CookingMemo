@@ -1,14 +1,18 @@
 package kau.holyjoon.cookingmemo
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.GridView
+import android.widget.TimePicker
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.plus_popup.*
 
@@ -17,12 +21,29 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
     //done 버튼을 누르면 지금까지 입력한 재료, 방법, 시간에 대한 정보를 가지고 조건에 맞는다면 Recipe객체를 만들어 Intent로 전달.
     //조건에 맞지 않는다면 무엇이 부족한지 알려줌.
     var ingredients = arrayListOf<Ingredient>()
+    var msecond : Int? = null
+    var mminute :Int? = null
     val popupAdapter = Popup_Adapter(this, ingredients)
     val reitem by lazy{intent?.extras?.get("recipe") as Recipe_item?}
+    @SuppressLint("Range")
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.plus_popup)
+        val mTimePicker = findViewById<TimePicker>(R.id.timePicker_pop)
+        mTimePicker.minute = 0
+        mTimePicker. hour = 0
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mminute = mTimePicker.hour
+            msecond = mTimePicker.minute
+        }
+
+        mTimePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener{  //타임 피커 커스텀 필요함 .... 0분도 있어야 하고 ... 하 개빡쳐
+            TimePicker, hour, minute ->
+            mminute = hour
+            msecond = minute
+        })
         val gridView = findViewById<GridView>(R.id.grid_image)
         val time = findViewById<EditText>(R.id.edit_time)
         val comment = findViewById<EditText>(R.id.edit_comment)
@@ -80,11 +101,11 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             val plusintent = Intent(this,EditActivity::class.java)
 
             val how = edit_how.text.toString()
-            val time = edit_time.text.toString()
+            val time = mminute!! * 60 + msecond!!
             val comment = edit_comment.text.toString()
 
-            if (how != "" && time != "") {
-                    val recipe = Recipe_item(ingredients,how, time.toInt(), comment)
+            if (how != "" && time != 0) {
+                    val recipe = Recipe_item(ingredients,how, time, comment)
 
                     plusintent.putExtra("recipe", recipe)
 

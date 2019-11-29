@@ -3,7 +3,7 @@ package kau.holyjoon.cookingmemo
 import android.os.Parcel
 import android.os.Parcelable
 
-class Recipe_item(var ingredient: ArrayList<Ingredient>?, var howmake: String?, var cooktime:Int, var comment:String?, var isRunning : Int = 0, var changetime : Int = 0):Parcelable{
+class Recipe_item(var ingredient: ArrayList<Ingredient>?, var howmake: String?, var cooktime:Int?, var comment:String?, var isRunning : Int = 0, var changetime : Int = 0):Parcelable{
 
 
     constructor(parcel: Parcel) : this(
@@ -19,7 +19,7 @@ class Recipe_item(var ingredient: ArrayList<Ingredient>?, var howmake: String?, 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeTypedList(ingredient)
         parcel.writeString(howmake)
-        parcel.writeInt(cooktime)
+        cooktime?.let { parcel.writeInt(it) }
         parcel.writeString(comment)
         parcel.writeInt(isRunning)
         parcel.writeInt(changetime)

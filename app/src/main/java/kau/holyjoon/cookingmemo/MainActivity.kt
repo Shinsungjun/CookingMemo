@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
 
     //var hRecipeList: ArrayList<hRecipe>? = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
     var hRecipeList = ArrayList<hRecipe>()
+    var remindname : String? = null
     val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
         val viewintent = Intent(this, ViewActivity::class.java)
 
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         viewintent.putExtra("img",hRecipe.img)
         println("이미지 소스 in Going Intent: ${hRecipe.img}")
         viewintent.putParcelableArrayListExtra("recipeList",hRecipe.hrecipeList)
-        startActivityForResult(viewintent,1)
+        remindname = hRecipe.name
+        startActivityForResult(viewintent,1555)  //View로 넘어가는 Intent 다시 넘어올때 1555의 requestcode면 해당 recipe가 변경점이 있을 때 변경함
     } //만든 어댑터를 설정해주는 작업
 
     var intent2 : String? = null
@@ -78,21 +80,43 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val name = findViewById<TextView>(R.id.edit_cookname)
-        val resultintent = data?.getStringExtra("name")
 
-
-        if (data != null) {
-            val resultintent1: ArrayList<Recipe_item>? =
-                data.getParcelableArrayListExtra("recipeList")
-            intent2 = data.extras?.get("img") as String
-            val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
-
-            Toast.makeText(this, "${resultintent1!![0].comment}",Toast.LENGTH_SHORT).show()
-            hRecipeList?.add(hRecipe(resultintent, intent2, resultintent1))
-            println("이미지 소스 in Main Result Intent: ${intent2}")
-            hAdapter.notifyDataSetChanged()
+        if(requestCode == 1555) {
+            for(i in 0 until hRecipeList.size) {
+                if(hRecipeList[i].name == remindname){
+                    val deleteintent = data?.extras?.get("delete") as String?
+                    if(deleteintent == "delete"){
+                        hRecipeList.removeAt(i)
+                        break
+                    }
+                    if(data!= null) {
+                        val resultintent = data.getStringExtra("name")
+                        val resultintent1: ArrayList<Recipe_item>? =
+                            data.getParcelableArrayListExtra("recipeList")
+                        if(resultintent != null) {
+                            hRecipeList[i].name = resultintent
+                            hRecipeList[i].img = null  //수정필요!!
+                            hRecipeList[i].hrecipeList = resultintent1
+                            hAdapter.notifyDataSetChanged()
+                            break
+                        }
+                    }
+                }
+            }
         }
+        else {
+            if (data != null) {
+                val resultintent = data.getStringExtra("name")
+                val resultintent1: ArrayList<Recipe_item>? =
+                    data.getParcelableArrayListExtra("recipeList")
+                intent2 = data.extras?.get("img") as String?
+                val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
 
-
+                Toast.makeText(this, "${resultintent1!![0].comment}", Toast.LENGTH_SHORT).show()
+                hRecipeList.add(hRecipe(resultintent, intent2, resultintent1))
+                println("이미지 소스 in Main Result Intent: ${intent2}")
+                hAdapter.notifyDataSetChanged()
+            }
         }
     }
+}

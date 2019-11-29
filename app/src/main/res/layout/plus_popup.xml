@@ -51,6 +51,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grid_image" />
 
+    <TimePicker
+        android:id="@+id/timePicker_pop"
+        android:layout_width="154dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="7dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/edit_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_how"
+        app:layout_constraintTop_toBottomOf="@+id/grid_image"></TimePicker>
+
     <ImageButton
         android:id="@+id/bt_addIn"
         android:layout_width="40dp"
@@ -70,28 +84,27 @@
         android:id="@+id/edit_time"
         android:layout_width="116dp"
         android:layout_height="38dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="7dp"
         android:ems="10"
         android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/edit_how"
-        app:layout_constraintTop_toBottomOf="@+id/grid_image" />
+        app:layout_constraintBottom_toTopOf="@+id/edit_comment"
+        app:layout_constraintEnd_toStartOf="@+id/timePicker_pop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_how" />
 
     <EditText
         android:id="@+id/edit_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="설명"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_how" />
 
