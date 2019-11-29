@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         super.onCreate(savedInstanceState)
         val mStorageRef: StorageReference;
         setContentView(R.layout.activity_main)
+
         val text = findViewById<TextView>(R.id.empty_text)
         var name = findViewById<TextView>(R.id.edit_cookname)
 

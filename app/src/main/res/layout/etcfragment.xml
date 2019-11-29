@@ -32,7 +32,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   즉석조리식품" />
+                    android:text="   즉석조리식품"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_1"
@@ -40,7 +41,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -59,7 +61,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   햄/어묵" />
+                    android:text="   햄/어묵"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_2"
@@ -67,7 +70,8 @@
                     android:layout_height="match_parent"
                     android:background="#00000000"
                     android:layout_weight="1"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -96,7 +100,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -116,7 +121,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   빵" />
+                    android:text="   빵"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_4"
@@ -124,7 +130,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -142,7 +149,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   떡" />
+                    android:text="   떡"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_5"
@@ -150,7 +158,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -168,7 +177,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   커피/음료수/차" />
+                    android:text="   커피/음료수/차"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_6"
@@ -176,7 +186,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -194,7 +205,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   과자/아이스크림류" />
+                    android:text="   과자/아이스크림류"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_etc_7"
@@ -202,7 +214,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 

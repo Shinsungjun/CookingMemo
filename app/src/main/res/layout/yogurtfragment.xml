@@ -32,7 +32,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   면/만두/피자" />
+                    android:text="   면/만두/피자"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_1"
@@ -40,7 +41,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -59,7 +61,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   우유/요구르트" />
+                    android:text="   우유/요구르트"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_2"
@@ -67,7 +70,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -88,7 +92,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   치즈" />
+                    android:text="   치즈"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_3"
@@ -96,7 +101,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -116,7 +122,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   김치류" />
+                    android:text="   김치류"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_4"
@@ -124,7 +131,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -142,7 +150,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   밑반찬류" />
+                    android:text="   밑반찬류"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_5"
@@ -150,7 +159,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -168,7 +178,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   두부/묵류" />
+                    android:text="   두부/묵류"
+                    android:fontFamily="@font/dreamfont5" />
 
                 <Button
                     android:id="@+id/bt_total_yogurt_6"
@@ -176,7 +187,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 
@@ -194,7 +206,8 @@
                     android:layout_width="297dp"
                     android:layout_height="34dp"
                     android:textColor="#000000"
-                    android:text="   장아찌/절임류" />
+                    android:text="   장아찌/절임류"
+                    android:fontFamily="@font/dreamfont5"/>
 
                 <Button
                     android:id="@+id/bt_total_yogurt_7"
@@ -202,7 +215,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:text="더보기" />
+                    android:text="더보기"
+                    android:fontFamily="@font/dreamfont5"/>
 
             </LinearLayout>
 

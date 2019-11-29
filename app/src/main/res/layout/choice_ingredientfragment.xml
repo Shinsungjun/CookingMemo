@@ -21,19 +21,22 @@
             android:id="@+id/tab_famous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="인기" />
+            android:text="인기"
+            android:fontFamily="@font/dreamfont5"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_fruit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="채소/과일" />
+            android:text="채소/과일"
+            android:fontFamily="@font/dreamfont5"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_meat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="육류" />
+            android:text="육류"
+            android:fontFamily="@font/dreamfont5"/>
 
     </com.google.android.material.tabs.TabLayout>
 

@@ -19,8 +19,8 @@
 
     <ImageButton
         android:id="@+id/bt_search"
-        android:layout_width="68dp"
-        android:layout_height="61dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
         android:src="@drawable/search"
@@ -28,12 +28,12 @@
         app:layout_constraintLeft_toRightOf="@id/space_location_top"
         app:layout_constraintRight_toLeftOf="@id/bt_edit"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintVertical_bias="0.099" />
 
     <ImageButton
         android:id="@+id/bt_edit"
-        android:layout_width="57dp"
-        android:layout_height="51dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:adjustViewBounds="false"
         android:backgroundTint="#00FFFFFF"
         android:cropToPadding="false"
@@ -55,6 +55,7 @@
         android:background="#FFFFFF"
         android:scrollbarStyle="insideInset"
         android:text="나의 레시피"
+        android:fontFamily="@font/dreamfont5"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColorHighlight="#F5F5F5"
         android:textSize="18sp"
@@ -62,7 +63,7 @@
         app:layout_constraintRight_toLeftOf="@id/space_location_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.056" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
@@ -123,39 +124,35 @@
         android:text="작성된 레시피가 없어요!ㅜㅡㅜ"
         android:textSize="17dp"
         android:visibility="invisible"
+        android:fontFamily="@font/dreamfont5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/text_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="112dp"
         android:text="검색"
+        android:fontFamily="@font/dreamfont5"
         app:layout_constraintBottom_toTopOf="@+id/grid_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.689"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintLeft_toRightOf="@id/space_location_top"
+        app:layout_constraintRight_toLeftOf="@id/bt_edit"
         app:layout_constraintTop_toBottomOf="@+id/bt_search"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.008" />
 
     <TextView
         android:id="@+id/text_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginEnd="16dp"
         android:text="메모"
+        android:fontFamily="@font/dreamfont5"
         app:layout_constraintBottom_toTopOf="@+id/grid_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_search"
+        app:layout_constraintLeft_toRightOf="@id/bt_search"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_edit"
         app:layout_constraintVertical_bias="0.0" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

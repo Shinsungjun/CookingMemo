@@ -4,15 +4,18 @@
     <item
         android:id="@+id/navigation_recipe"
         android:icon="@drawable/recipe"
-        android:title="나의레시피" />
+        android:title="나의레시피"
+        android:fontFamily="@font/dreamfont5"/>
 
     <item
         android:id="@+id/navigation_recipes"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="모두의레시피" />
+        android:title="모두의레시피"
+        android:fontFamily="@font/dreamfont5"/>
 
     <item
         android:id="@+id/navigation_info"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="Info" />
+        android:title="Info"
+        android:fontFamily="@font/dreamfont5"/>
 </menu>

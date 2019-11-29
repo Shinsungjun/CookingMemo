@@ -61,6 +61,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="650dp"
         android:hint="요리 명"
+        android:fontFamily="@font/dreamfont5"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

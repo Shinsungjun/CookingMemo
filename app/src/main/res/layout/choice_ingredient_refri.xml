@@ -10,5 +10,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="refri"
+        android:fontFamily="@font/dreamfont5"
         android:textSize="60dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
