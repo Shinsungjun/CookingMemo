@@ -3,8 +3,6 @@ package kau.holyjoon.cookingmemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_new_folder.*
 
 class NewFolderActivity : AppCompatActivity() {
@@ -23,7 +21,7 @@ class NewFolderActivity : AppCompatActivity() {
             val name:String = new_folder_name.text.toString()
 
 
-            val intent = Intent(this, FolderActivity2::class.java)
+            val intent = Intent(this, FolderActivity::class.java)
             intent.putExtra("newfolder",name)
             setResult(2,intent)
             finish()

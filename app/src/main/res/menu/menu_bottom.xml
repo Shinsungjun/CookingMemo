@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_recipe"
         android:icon="@drawable/recipe"
-        android:title="나의레시피"
-        android:fontFamily="@font/dreamfont5"/>
+        android:backgroundTint="#00FFFFFF"
+        android:fontFamily="@font/dreamfont5"
+        android:scaleType="fitCenter"
+        android:title="나의레시피" />
 
     <item
         android:id="@+id/navigation_recipes"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/book"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitCenter"
         android:title="모두의레시피"
         android:fontFamily="@font/dreamfont5"/>
 
     <item
         android:id="@+id/navigation_info"
-        android:icon="@android:drawable/ic_menu_help"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitCenter"
         android:title="Info"
+        android:icon="@android:drawable/ic_menu_help"
         android:fontFamily="@font/dreamfont5"/>
+
 </menu>

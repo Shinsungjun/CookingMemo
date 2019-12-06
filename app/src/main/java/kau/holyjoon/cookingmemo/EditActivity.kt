@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.net.toUri
@@ -19,8 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.edit_main.*
 import androidx.recyclerview.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.db_additem.*
-import kotlinx.android.synthetic.main.folder_item.*
 import java.io.ByteArrayOutputStream
 
 
@@ -234,7 +230,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun openFolderActivity() {
-        val folderintent = Intent(this, FolderActivity2::class.java)
+        val folderintent = Intent(this, FolderActivity::class.java)
         startActivityForResult(folderintent,4)
     }
 
