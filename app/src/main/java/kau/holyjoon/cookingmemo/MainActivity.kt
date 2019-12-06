@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리를 보여주는 홈화면
 
@@ -35,6 +40,8 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         super.onCreate(savedInstanceState)
         val mStorageRef: StorageReference;
         setContentView(R.layout.activity_main)
+        val loadintent = Intent(this, LoadingActivity::class.java)
+        startActivity(loadintent)
 
         val text = findViewById<TextView>(R.id.empty_text)
         var name = findViewById<TextView>(R.id.edit_cookname)

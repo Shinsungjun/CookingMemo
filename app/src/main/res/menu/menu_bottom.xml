@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_recipe"
-        android:icon="@drawable/recipe"
+        android:icon = "@drawable/recipe"
         android:backgroundTint="#00FFFFFF"
+        app:showAsAction="ifRoom"
         android:fontFamily="@font/dreamfont5"
+
         android:scaleType="fitCenter"
         android:title="나의레시피" />
 
