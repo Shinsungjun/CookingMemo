@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/folder_view"
+        android:id="@+id/folder_main"
         android:layout_width="241dp"
         android:layout_height="292dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:backgroundTint="#FEE57E"
         android:text="new folder"
         android:fontFamily="@font/dreamfont5"
-        app:layout_constraintBottom_toTopOf="@+id/folder_view"
+        app:layout_constraintBottom_toTopOf="@+id/folder_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.257"
         app:layout_constraintStart_toEndOf="@+id/folder_text"
@@ -56,7 +56,7 @@
         android:backgroundTint="#FEE57E"
         android:text="OK"
         android:fontFamily="@font/dreamfont5"
-        app:layout_constraintBottom_toTopOf="@+id/folder_view"
+        app:layout_constraintBottom_toTopOf="@+id/folder_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/bt_folder_add"

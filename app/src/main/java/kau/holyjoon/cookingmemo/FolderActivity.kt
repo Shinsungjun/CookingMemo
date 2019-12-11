@@ -1,24 +1,18 @@
 package kau.holyjoon.cookingmemo
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.View.VISIBLE
 import android.view.Window
-import android.widget.AdapterView
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.folder_item.*
 import kotlinx.android.synthetic.main.folder_popup.*
 import android.widget.Toast.makeText as makeText1
 
 class FolderActivity : AppCompatActivity() {
-    var folderList = ArrayList<Folder>()
+    var folderList = arrayListOf(Folder("기본폴더",false),Folder("찌개/국",false),Folder("구이",false),Folder("볶음",false))
     var foldername = "기본폴더"
     val folderAdapter = FolderAdapter(this, folderList)
 
@@ -28,16 +22,12 @@ class FolderActivity : AppCompatActivity() {
         setContentView(R.layout.folder_popup)
 
 //        var name = intent.getStringExtra("newfolder")
-        val folderview = findViewById<RecyclerView>(R.id.folder_view)
+        val folderview = findViewById<RecyclerView>(R.id.folder_main)
         folderview.adapter = folderAdapter
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
         folderview.layoutManager = lm
         folderview.setHasFixedSize(true)
 
-        folderList.add(0,Folder("기본폴더",false))
-        folderList.add(1,Folder("한식",true))
-        folderList.add(2,Folder("중식",false))
-        folderList.add(3,Folder("양식",false))
         folderAdapter.notifyDataSetChanged()
 
         aboutview()
@@ -47,12 +37,18 @@ class FolderActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
 
                 foldername = folderList[position].name
-                if (folderList[position].check == false)
-                    folderList[position].check = true
-                if (folderList[position].check == true)
-                    folderList[position].check = false
-                Toast.makeText(this@FolderActivity, "${folderList[position].name}", Toast.LENGTH_SHORT).show()
+                if (folderList[position].check){
+                    for(i in 0 until folderList.size)
+                        folderList[i].check=false
 
+                }
+                else {
+                    for(i in 0 until folderList.size)
+                        folderList[i].check=false
+                    folderList[position].check = true
+                }
+                Toast.makeText(this@FolderActivity, "${folderList[position].name}", Toast.LENGTH_SHORT).show()
+                folderAdapter.notifyDataSetChanged()
             }
         })
         bt_folder_ok.setOnClickListener {
