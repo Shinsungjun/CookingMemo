@@ -24,19 +24,27 @@ class ViewActivity : AppCompatActivity() {
     val mAdapter = ViewAdapter(this, recipeList) {recipe ->
     }
     var cookname : String? = null
+    var total_ingre : String? = null
+    var total_time = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermissions()
         }
+        val text_ingre = findViewById<TextView>(R.id.text_ingredients)
         val name = findViewById<TextView>(R.id.text_cook)
         val user = User_Permission(this)
         user.checkPer()
         if(recipeListintent!= null) {
             for(i in 0 until recipeListintent.size) {
                 recipeList.add(recipeListintent[i])
+                total_time += recipeListintent[i].cooktime!!
+                for(j in 0 until (recipeListintent[i].ingredient?.size ?: 0)) {
+                    total_ingre.plus(recipeListintent[i].ingredient?.get(j)?.name)
+                }
             }
+            text_ingre.text = total_ingre
             mAdapter.notifyDataSetChanged()
         }
         if(cooknameintent != null) {
@@ -59,16 +67,20 @@ class ViewActivity : AppCompatActivity() {
         recipe_view.adapter = mAdapter //Recipe_view는 recycleview의 id
         recipe_view.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
-
-        val ingredients = findViewById<TextView>(R.id.ingredients)
-
         var timer = findViewById<TextView>(R.id.text_timer)
-
+        timer.text = "${total_time/60} 분 ${total_time%60} 초"
 
         name.text = cookname
 
         bt_view_delete.setOnClickListener {  //삭제 버튼 .......... 다시 한번 더 물어봐야함 ..... ㅎㅎ
 
+        }
+
+        bt_start.setOnClickListener {
+            val viewintent = Intent(this, SimulActivity::class.java) //뷰 화면 데이터 넘김
+            viewintent.putExtra("name",cookname)
+            viewintent.putParcelableArrayListExtra("recipeList",recipeList)
+            startActivityForResult(viewintent,999)
         }
     }
 
@@ -93,13 +105,17 @@ class ViewActivity : AppCompatActivity() {
                 cookname = resultintent
                 if(resultintent1!= null) {
                     recipeList.clear()
+                    total_time = 0
                     for (i in 0 until resultintent1.size) {
+                        total_time += resultintent1[i].cooktime!!
                         recipeList.add(resultintent1[i])
                         mAdapter.notifyDataSetChanged()
                     }
                 }
+                text_timer.text = "${total_time/60} 분 ${total_time%60} 초"
             }
         }
+
     }
 
     override fun onBackPressed() {  //Edit했을 수도 있으므로 Intent로 넘김. 변경내용 그대로 Main에 다시 저장

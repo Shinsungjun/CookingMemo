@@ -1,19 +1,17 @@
 package kau.holyjoon.cookingmemo
 
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class pagerAdapter(fm: FragmentManager)
+class SimulPagerAdapter(fm: FragmentManager)
     : FragmentStatePagerAdapter(fm) {
-    val fragmentTitleList = arrayListOf<String>("인기","채소/과일","육류","수산물","곡물/견과류","양념/소스","가공/유제품","기타")  //tablayout에 띄울 tab
-    val list = arrayListOf(FamousFragment(),FruitFragment(), MeatFragment(),SeafoodFragment(),GrainFragment(),SourceFragment(),YogurtFragment(),EtcFragment())
+    val fragmentTitleList = arrayListOf<String>()  //tablayout에 띄울 tab
+    val list = arrayListOf<SimulFragment>()
     override fun getItem(position: Int): Fragment {
         return list[position]
-        }
+    }
 
     override fun getCount(): Int {
         return list.size
@@ -25,5 +23,10 @@ class pagerAdapter(fm: FragmentManager)
 
     override fun getPageTitle(position: Int): CharSequence? {
         return fragmentTitleList[position]
+    }
+
+    fun addFragment(title : String, recipe : Recipe_item) {
+        list.add(SimulFragment(title, recipe))
+        fragmentTitleList.add(title)
     }
 }

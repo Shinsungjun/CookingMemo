@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="510dp">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/simul_recycler"
+        android:layout_width="294dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_howcook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_howcook"
+        android:layout_width="296dp"
+        android:layout_height="64dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_comment"
+        android:layout_width="293dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="40dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/text_cooktime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_howcook" />
+
+    <TextView
+        android:id="@+id/text_cooktime"
+        android:layout_width="141dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="28dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_comment" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package kau.holyjoon.cookingmemo
 
+
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -35,7 +36,7 @@ class EditActivity() : AppCompatActivity() {
     var cookname:String = ""
     var photoUri : Uri? = null
     var photo : Bitmap? = null
-    lateinit var foldername: String
+    var foldername: String = "기본폴더"
     val intentname by lazy{intent?.extras?.get("name") as String?}
     val intentimg by lazy{intent?.extras?.get("img") as String?}
     val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")}

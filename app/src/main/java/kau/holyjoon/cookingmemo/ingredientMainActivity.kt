@@ -23,9 +23,9 @@ class ingredientMainActivity : FragmentActivity() {
                 .commit()
         }
 
-        Toast.makeText(this, "재료 선택 후 백버튼을 눌러주세요! 길게 터치시 선택 취소입니다.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "재료 선택 후 백버튼을 눌러주세요!", Toast.LENGTH_LONG).show()
 
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()  //Main 위에 Fragment로 띄움
             .replace(R.id.ingre_frame,pagerfragment)
             .commit()
 
@@ -34,7 +34,7 @@ class ingredientMainActivity : FragmentActivity() {
 
     override fun onBackPressed() {
         val resultIntent = Intent(this, PlusActivity::class.java)
-        if(resultList.size != 0) {
+        if(resultList.size != 0) {  //선택한 재료가 있다면 intent로 넘김
             resultIntent.putExtra("back", resultList)
         }
         setResult(1,resultIntent)

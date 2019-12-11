@@ -20,74 +20,44 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewlist"
-        android:layout_width="358dp"
-        android:layout_height="293dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="@font/dreamfont5"
-        app:layout_constraintBottom_toTopOf="@+id/bt_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
-
 
     <Space
         android:id="@+id/space"
-        android:layout_width="151dp"
-        android:layout_height="203dp"
+        android:layout_width="147dp"
+        android:layout_height="184dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="9dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewlist"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ingredients"
-        android:layout_width="135dp"
-        android:layout_height="85dp"
-        android:layout_marginEnd="3dp"
-        android:fontFamily="@font/dreamfont5"
-        android:text="ingredients"
-        app:layout_constraintBottom_toBottomOf="@+id/space"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
-        app:layout_constraintStart_toStartOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/text_ingredient"
-        app:layout_constraintVertical_bias="0.172" />
-
-    <TextView
         android:id="@+id/text_time"
         android:layout_width="35dp"
         android:layout_height="39dp"
-        android:text="시간:"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/dreamfont5"
+        android:text="시간:"
         app:layout_constraintBottom_toBottomOf="@+id/space"
         app:layout_constraintEnd_toEndOf="@+id/space"
         app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/ingredients"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintStart_toStartOf="@+id/space" />
 
     <TextView
         android:id="@+id/text_timer"
-        android:layout_width="51dp"
+        android:layout_width="93dp"
         android:layout_height="42dp"
-        android:text="분"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/dreamfont5"
+        android:text="분"
         app:layout_constraintBottom_toBottomOf="@+id/space"
         app:layout_constraintEnd_toEndOf="@+id/space"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toEndOf="@+id/text_time"
-        app:layout_constraintTop_toBottomOf="@+id/ingredients"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toEndOf="@+id/text_time" />
 
     <TextView
-        android:id="@+id/text_ingredient"
+        android:id="@+id/text_ingretitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="재료"
@@ -105,54 +75,70 @@
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="22dp"
+        android:fontFamily="@font/dreamfont5"
         android:text="요리이름"
         android:textSize="18dp"
-        android:fontFamily="@font/dreamfont5"
         app:layout_constraintBottom_toTopOf="@+id/view_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="358dp"
+        android:layout_height="301dp"
+        android:layout_marginTop="19dp"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/dreamfont5" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/view_image"
         android:layout_width="182dp"
         android:layout_height="168dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewlist"
+        android:src="@drawable/bob"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_cook"
-        app:layout_constraintVertical_bias="0.549"
-        android:src = "@drawable/bob" />
+        app:layout_constraintTop_toBottomOf="@+id/text_cook" />
 
     <ImageButton
         android:id="@+id/bt_view_edit"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="164dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="9dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
         android:src="@drawable/edit"
         app:layout_constraintBottom_toTopOf="@+id/space"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/text_cook"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.653" />
 
     <ImageButton
         android:id="@+id/bt_view_delete"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginStart="94dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="5dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
@@ -161,7 +147,31 @@
         app:layout_constraintEnd_toStartOf="@+id/bt_view_edit"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/text_cook"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <ScrollView
+        android:layout_width="126dp"
+        android:layout_height="93dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_timer"
+        app:layout_constraintEnd_toEndOf="@+id/space"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/space"
+        app:layout_constraintTop_toTopOf="@+id/space"
+        app:layout_constraintVertical_bias="0.765">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_ingredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="재료" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
