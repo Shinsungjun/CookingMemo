@@ -25,8 +25,8 @@ class SimulPagerAdapter(fm: FragmentManager)
         return fragmentTitleList[position]
     }
 
-    fun addFragment(title : String, recipe : Recipe_item) {
-        list.add(SimulFragment(title, recipe))
+    fun addFragment(title : String, size : String,recipe : Recipe_item) {
+        list.add(SimulFragment(title, size, recipe))
         fragmentTitleList.add(title)
     }
 }
