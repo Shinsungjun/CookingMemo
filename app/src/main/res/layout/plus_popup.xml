@@ -47,25 +47,12 @@
         android:layout_marginEnd="150dp"
         android:layout_marginRight="150dp"
         android:hint="방법"
+        android:textSize="12dp"
         android:fontFamily="@font/dreamfont5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grid_image" />
-
-    <TimePicker
-        android:id="@+id/timePicker_pop"
-        android:layout_width="154dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="7dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintBottom_toTopOf="@+id/edit_comment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edit_how"
-        app:layout_constraintTop_toBottomOf="@+id/grid_image"></TimePicker>
 
     <ImageButton
         android:id="@+id/bt_addIn"
@@ -83,32 +70,50 @@
         app:layout_constraintVertical_bias="0.625" />
 
     <EditText
-        android:id="@+id/edit_time"
-        android:layout_width="116dp"
+        android:id="@+id/edit_time_minute"
+        android:layout_width="36dp"
         android:layout_height="38dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="time"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/edit_how"
+        app:layout_constraintTop_toBottomOf="@+id/grid_image" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="분"
         android:fontFamily="@font/dreamfont5"
-        app:layout_constraintBottom_toTopOf="@+id/edit_comment"
-        app:layout_constraintEnd_toStartOf="@+id/timePicker_pop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_how" />
+        app:layout_constraintEnd_toStartOf="@+id/edit_time_second"
+        app:layout_constraintStart_toEndOf="@+id/edit_time_minute"
+        app:layout_constraintTop_toBottomOf="@+id/grid_image" />
+
+    <EditText
+        android:id="@+id/edit_time_second"
+        android:layout_width="36dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/grid_image" />
 
     <EditText
         android:id="@+id/edit_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_width="247dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="설명"
         android:fontFamily="@font/dreamfont5"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_how" />
 
@@ -151,6 +156,8 @@
         android:layout_marginStart="300dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="2dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/trash"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/grid_image"
         app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -159,5 +166,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.736"
         app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="134dp"
+        android:text="초"
+        android:fontFamily="@font/dreamfont5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_time_second"
+        app:layout_constraintTop_toBottomOf="@+id/grid_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

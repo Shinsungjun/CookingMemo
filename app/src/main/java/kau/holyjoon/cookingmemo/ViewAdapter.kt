@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.*
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,10 +33,9 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
         //itemView.setOnCreateContextMenuListener(this);
 
         fun bind(recipe: Recipe_item,context:Context) { //recycleview item에 데이터를 붙여주는 작업
-
             Howmake?.text = recipe.howmake
-            Cooktimerun.text = recipe.cooktime.toString()
-            Cooktimestop.text = "stop"
+            Cooktimerun.text = "${recipe?.cooktime?.div(60)} : ${recipe?.cooktime?.rem(60)}"
+            //Cooktimestop.text = "stop"
             Comment?.text = recipe.comment
             Cooktimestop.setOnClickListener { itemClick(recipe)
                 Cooktimestop.visibility = View.INVISIBLE

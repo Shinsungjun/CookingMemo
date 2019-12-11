@@ -29,7 +29,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>
 
             Ingredient?.text = recipe?.ingredient?.joinToString {"${it.name}"}
             Howmake?.text = recipe?.howmake
-            Cooktime?.text = recipe?.cooktime.toString()
+            Cooktime?.text = "${recipe?.cooktime?.div(60)}분 ${recipe?.cooktime?.rem(60)}초"
             Comment?.text = recipe?.comment
 
             itemView.setOnLongClickListener { itemClick(recipe)

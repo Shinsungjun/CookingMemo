@@ -31,24 +31,16 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.plus_popup)
-        val mTimePicker = findViewById<TimePicker>(R.id.timePicker_pop)
-        mTimePicker.minute = 0
-        mTimePicker. hour = 0
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mminute = mTimePicker.hour
-            msecond = mTimePicker.minute
-        }
-
-        mTimePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener{  //타임 피커 커스텀 필요함 .... 0분도 있어야 하고 ... 하 개빡쳐
-            TimePicker, hour, minute ->
-            mminute = hour
-            msecond = minute
-        })
         val gridView = findViewById<GridView>(R.id.grid_image)
-        val time = findViewById<EditText>(R.id.edit_time)
+        val textminute = findViewById<EditText>(R.id.edit_time_minute)
+        val textsecond = findViewById<EditText>(R.id.edit_time_second)
         val comment = findViewById<EditText>(R.id.edit_comment)
         val howmake = findViewById<EditText>(R.id.edit_how)
-        time.setText(reitem?.cooktime?.toString())
+
+        if(reitem?.cooktime != null) {  //Edit에서 Longclick으로 수정을 할 때 넘어오는 데이터 받기
+            textminute.setText("${reitem?.cooktime?.div(60)}")
+            textsecond.setText("${reitem?.cooktime?.rem(60)}")
+        }
         comment.setText(reitem?.comment)
         howmake.setText(reitem?.howmake)
         if(reitem?.ingredient != null) {
@@ -60,7 +52,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             bt_delete_pop.visibility = View.VISIBLE
             popupAdapter.notifyDataSetChanged()
         }
-        bt_delete_pop.setOnClickListener {
+        bt_delete_pop.setOnClickListener {  //과정 delete intent 넘김
             val plusintent = Intent(this,EditActivity::class.java)
             val delete = "delete"
             plusintent.putExtra("delete",delete)
@@ -99,7 +91,8 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         bt_done_pop.setOnClickListener {
 
             val plusintent = Intent(this,EditActivity::class.java)
-
+            mminute = edit_time_minute.text.toString().toInt()
+            msecond = edit_time_second.text.toString().toInt()
             val how = edit_how.text.toString()
             val time = mminute!! * 60 + msecond!!
             val comment = edit_comment.text.toString()

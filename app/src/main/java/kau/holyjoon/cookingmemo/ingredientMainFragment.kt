@@ -10,8 +10,6 @@ import com.google.android.material.tabs.TabLayout
 
 class ingredientMainFragment : Fragment() {
 
-    //val adapter by lazy {pagerAdapter(activity!!.supportFragmentManager)}
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,19 +35,8 @@ class ingredientMainFragment : Fragment() {
             override fun onPageSelected(position: Int) {
             }
         })
-        ingre_tablayout.setupWithViewPager(ingreViewPager)
+        ingre_tablayout.setupWithViewPager(ingreViewPager)   //tavlayout과 ViewPager을 붙임
 
         return view
     }
-//
-//    override fun onBackPressed() {
-//        val resultIntent = Intent(this, PlusActivity::class.java)
-//        if(resultList.size != 0) {
-//            resultIntent.putExtra("back", resultList)
-//        }
-//        setResult(1,resultIntent)
-//        finish()
-//        resultList.clear()
-//        super.onBackPressed()
-//    }
 }

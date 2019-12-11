@@ -1,6 +1,9 @@
 package kau.holyjoon.cookingmemo
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -8,13 +11,17 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.View
+
 
 
 //메모한 레시피를 보여주는 홈화면
@@ -53,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         var name = findViewById<TextView>(R.id.edit_cookname)
         slidingPage01 = findViewById(R.id.slidingPage01)
 
-
         val numberOfColumns = 2
 
         val gridview = findViewById<RecyclerView>(R.id.grid_view)
@@ -77,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         folderAdapter.notifyDataSetChanged()
 
         if(hRecipeList.size!=0) //데이터가 없으면 화면에 메세지 보이기
-            text.setVisibility(INVISIBLE)
+            empty_text.visibility = INVISIBLE
         else if(hRecipeList.size==0)
             text.setVisibility(VISIBLE)
 
@@ -90,7 +96,9 @@ class MainActivity : AppCompatActivity() {
         translateLeftAnim!!.setAnimationListener(animationListener)
         translateRightAnim!!.setAnimationListener(animationListener)
 
+            empty_text.visibility = VISIBLE
         aboutView()
+
 
     }
 
@@ -123,7 +131,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openActivity() {
+    private fun openActivity() {  //Edit 창으로 넘어가는 코드
         val intent = Intent(this, EditActivity::class.java)
         startActivityForResult(intent, 1) //Edit화면으로 이동
     }
@@ -158,7 +166,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val name = findViewById<TextView>(R.id.edit_cookname)
 
-        if(requestCode == 1555) {
+        if(requestCode == 1555) {  //View -> Main 으로 왔을 때 Main에 있는 data 업데이트
             for(i in 0 until hRecipeList.size) {
                 if(hRecipeList[i].name == remindname){
                     val deleteintent = data?.extras?.get("delete") as String?
@@ -198,5 +206,9 @@ class MainActivity : AppCompatActivity() {
                 hAdapter.notifyDataSetChanged()
             }
         }
+        if(hRecipeList.size!=0) //데이터가 없으면 화면에 메세지 보이기
+            empty_text.visibility = INVISIBLE
+        else if(hRecipeList.size==0)
+            empty_text.visibility = VISIBLE
     }
 }
