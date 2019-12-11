@@ -47,11 +47,12 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="200dp"
         android:clickable="true"
+        app:backgroundTint="#FF9999"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:srcCompat="@drawable/add" />
+        app:srcCompat="@drawable/plus" />
 
     <EditText
         android:id="@+id/edit_cookname"

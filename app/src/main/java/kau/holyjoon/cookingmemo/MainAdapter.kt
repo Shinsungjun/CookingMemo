@@ -3,7 +3,6 @@ package kau.holyjoon.cookingmemo
 
 import android.content.Context
 import android.view.*
-import android.view.View.inflate
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -11,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //RecyclerView_Grid 어댑터
-class GridAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?,val itemClick : (hRecipe) -> Unit)
-    :RecyclerView.Adapter<GridAdapter.hRecipeViewHolder>(){
+class MainAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?, val itemClick : (hRecipe) -> Unit)
+    :RecyclerView.Adapter<MainAdapter.hRecipeViewHolder>(){
 
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소

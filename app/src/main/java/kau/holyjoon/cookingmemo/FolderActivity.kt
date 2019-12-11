@@ -19,25 +19,13 @@ import android.widget.Toast.makeText as makeText1
 
 class FolderActivity : AppCompatActivity() {
     var folderList = ArrayList<Folder>()
-    var foldername:String = ""
+    var foldername = "기본폴더"
     val folderAdapter = FolderAdapter(this, folderList)
-//    { Folder ->
-//        if (Folder.name != null) {
-//            foldername = Folder.name!!
-//            if (Folder.check == false)
-//                Folder.check = true
-//            if (Folder.check == true)
-//                Folder.check = false
-//            Toast.makeText(this, "${Folder.check}", Toast.LENGTH_SHORT).show()
-//
-//        }
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.folder_popup)
-
 
 //        var name = intent.getStringExtra("newfolder")
         val folderview = findViewById<RecyclerView>(R.id.folder_view)
@@ -46,23 +34,15 @@ class FolderActivity : AppCompatActivity() {
         folderview.layoutManager = lm
         folderview.setHasFixedSize(true)
 
-        folderList.add(0,Folder("한식",true))
-        folderList.add(1,Folder("중식",false))
-        folderList.add(2,Folder("양식",false))
+        folderList.add(0,Folder("기본폴더",false))
+        folderList.add(1,Folder("한식",true))
+        folderList.add(2,Folder("중식",false))
+        folderList.add(3,Folder("양식",false))
         folderAdapter.notifyDataSetChanged()
-
 
         aboutview()
     }
     private fun aboutview() {
-        bt_folder_ok.setOnClickListener {
-            var folderintent = Intent(this, EditActivity::class.java)
-            folderintent.putExtra("folder", foldername)
-            Toast.makeText(this, "${foldername}", Toast.LENGTH_SHORT).show()
-            setResult(4)
-            finish()
-        }
-
         folderAdapter.setItemClickListener( object : FolderAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
 
@@ -71,19 +51,20 @@ class FolderActivity : AppCompatActivity() {
                     folderList[position].check = true
                 if (folderList[position].check == true)
                     folderList[position].check = false
-                Toast.makeText(this@FolderActivity, "${folderList[position].check}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@FolderActivity, "${folderList[position].name}", Toast.LENGTH_SHORT).show()
 
             }
         })
-
-
-
-
+        bt_folder_ok.setOnClickListener {
+            var folderintent = Intent(this, EditActivity::class.java)
+            folderintent.putExtra("folder", foldername)
+            setResult(4,folderintent)
+            finish()
+        }
         bt_folder_add.setOnClickListener() {
             val intent = Intent(this, NewFolderActivity::class.java)
             startActivityForResult(intent, 2)
         }
-
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

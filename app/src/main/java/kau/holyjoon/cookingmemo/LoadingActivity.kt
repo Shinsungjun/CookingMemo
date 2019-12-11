@@ -20,6 +20,6 @@ class LoadingActivity : Activity() {
     fun startLoading()
     {
         val handler = Handler()
-        handler.postDelayed(Runnable { finish() }, 2000)
+        handler.postDelayed(Runnable { finish() }, 3000)
     }
 }

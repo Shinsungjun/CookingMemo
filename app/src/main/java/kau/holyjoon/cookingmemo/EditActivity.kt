@@ -1,6 +1,5 @@
 package kau.holyjoon.cookingmemo
 
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -19,12 +18,12 @@ import kotlinx.android.synthetic.main.edit_main.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import java.io.ByteArrayOutputStream
 
-
-class EditActivity : AppCompatActivity() {
+class EditActivity() : AppCompatActivity() {
     var remindhowmake : String? = null
     var remindcooktime : Int? = null
+
     var recipeList = ArrayList<Recipe_item?>() //recyclerview에 들어갈 데이터리스트
-    val mAdapter = RecipeAdapter(this, recipeList){recipeItem ->
+    val mAdapter = RecipeAdapter(this, recipeList){recipeItem -> //Edit에서 각 단계 클릭했을때
         remindhowmake = recipeItem?.howmake
         remindcooktime = recipeItem?.cooktime
         val editintent = Intent(this, PlusActivity::class.java)
@@ -36,7 +35,7 @@ class EditActivity : AppCompatActivity() {
     var cookname:String = ""
     var photoUri : Uri? = null
     var photo : Bitmap? = null
-
+    lateinit var foldername: String
     val intentname by lazy{intent?.extras?.get("name") as String?}
     val intentimg by lazy{intent?.extras?.get("img") as String?}
     val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")}
@@ -140,10 +139,10 @@ class EditActivity : AppCompatActivity() {
             val save_intent = Intent(this, MainActivity::class.java)
             save_intent.putParcelableArrayListExtra("recipeList", recipeList)
             save_intent.putExtra("name",name)
+            save_intent.putExtra("foldername",foldername)
             if(photoUri != null) {
                 save_intent.putExtra("img", photoUri.toString())
             }
-
             setResult(1, save_intent)
             finish()
 
@@ -220,12 +219,13 @@ class EditActivity : AppCompatActivity() {
             }
         }
         if (requestCode == 4){
-            if (data != null)
-                Toast.makeText(
-                    this,
-                    data.extras?.get("folder").toString(),
-                    Toast.LENGTH_LONG
-                ).show()
+            if (data != null) {
+                foldername = data.extras?.get("folder").toString()
+            }
+            else {
+                foldername = "기본폴더"
+            }
+
         }
     }
 

@@ -1,8 +1,6 @@
 package kau.holyjoon.cookingmemo
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.INVISIBLE
@@ -13,19 +11,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
+//메모한 레시피를 보여주는 홈화면
+class MainActivity : AppCompatActivity() {
 
-
-class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리를 보여주는 홈화면
-
-    //var hRecipeList: ArrayList<hRecipe>? = arrayListOf(hRecipe("요리", ""), hRecipe("메모", ""))
-    var hRecipeList = ArrayList<hRecipe>()
+    var hRecipeList = ArrayList<hRecipe>() //홈화면에 표시될 데이터 리스트
     var remindname : String? = null
-    val hAdapter = GridAdapter(this, hRecipeList) { hRecipe ->
-        val viewintent = Intent(this, ViewActivity::class.java)
+    //홈화면에 recyclerview찍어낼 어댑터
+    val hAdapter = MainAdapter(this, hRecipeList) { hRecipe -> //홈화면의 메모 클릭시
+        val viewintent = Intent(this, ViewActivity::class.java) //뷰 화면 데이터 넘김
 
         viewintent.putExtra("name",hRecipe.name)
         viewintent.putExtra("img",hRecipe.img)
@@ -46,38 +40,33 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
         val text = findViewById<TextView>(R.id.empty_text)
         var name = findViewById<TextView>(R.id.edit_cookname)
 
-
-//        if(hRecipeList.size!==0)
-//            text.setVisibility(INVISIBLE)
-//        else if(hRecipeList.size==0)
-//            text.setVisibility(VISIBLE)
-
-
         val numberOfColumns = 2
 
         val gridview = findViewById<RecyclerView>(R.id.grid_view)
-        gridview.adapter = hAdapter
+        gridview.adapter = hAdapter //어댑터 적용
 
         val Gm = GridLayoutManager(this, numberOfColumns) //레이아웃매니저 설정
         gridview.layoutManager = Gm as RecyclerView.LayoutManager?
         gridview.setHasFixedSize(true)
 
+        if(hRecipeList.size!=0) //데이터가 없으면 화면에 메세지 보이기
+            text.setVisibility(INVISIBLE)
+        else if(hRecipeList.size==0)
+            text.setVisibility(VISIBLE)
 
         aboutView()
-
 
     }
 
     private fun aboutView() {
-        bt_edit.setOnClickListener {
-            //메모버튼 눌렀을때
+        bt_edit.setOnClickListener {    //메모버튼 누르면
             openActivity()
         }
     }
 
     private fun openActivity() {
         val intent = Intent(this, EditActivity::class.java)
-        startActivityForResult(intent, 1)
+        startActivityForResult(intent, 1) //Edit화면으로 이동
     }
 
     private fun viewOpenActivity() {
@@ -117,11 +106,12 @@ class MainActivity : AppCompatActivity() {  //내가 지금까지 만든 요리�
                 val resultintent = data.getStringExtra("name")
                 val resultintent1: ArrayList<Recipe_item>? =
                     data.getParcelableArrayListExtra("recipeList")
+                val folder = data.getStringExtra("foldername")
                 intent2 = data.extras?.get("img") as String?
-                val item: hRecipe = hRecipe(name.text.toString(), "", resultintent1)
+                val item: hRecipe = hRecipe(name.text.toString(), "", folder, resultintent1)
 
-                Toast.makeText(this, "${resultintent1!![0].comment}", Toast.LENGTH_SHORT).show()
-                hRecipeList.add(hRecipe(resultintent, intent2, resultintent1))
+                hRecipeList.add(hRecipe(resultintent, intent2,folder, resultintent1))
+                Toast.makeText(this, "${item.folder}", Toast.LENGTH_LONG).show()
                 println("이미지 소스 in Main Result Intent: ${intent2}")
                 hAdapter.notifyDataSetChanged()
             }

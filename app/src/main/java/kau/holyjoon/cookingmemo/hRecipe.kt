@@ -4,14 +4,16 @@ import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 
-//그리드뷰에 보여줄 데이터
+//홈화면에 보여줄 데이터
 class hRecipe(
     var name:String?,
      //home화면의 Recipe객체라는 뜻
     var img:String?,
+    var folder:String?,
    var hrecipeList:ArrayList<Recipe_item>?):Parcelable//home화면의 Recipe객체라는 뜻
 {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.createTypedArrayList(Recipe_item.CREATOR)
@@ -21,6 +23,7 @@ class hRecipe(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(img)
+        parcel.writeString(folder)
         parcel.writeTypedList(hrecipeList)
     }
 
