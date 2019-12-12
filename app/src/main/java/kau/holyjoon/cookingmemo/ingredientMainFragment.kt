@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 
-class ingredientMainFragment : Fragment() {
+class ingredientMainFragment : Fragment() {  //ViewPager 기능이 있는 Fragment. Fragment 위에 ViewPager이 존재하고 해당 ViewPager에서 Fragment를 보여주는 방식
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,7 +17,7 @@ class ingredientMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.choice_ingredientfragment, container, false)
-        val adapter = pagerAdapter(activity!!.supportFragmentManager)
+        val adapter = pagerAdapter(activity!!.supportFragmentManager)  //pagerAdapter선언
         val ingreViewPager = view.findViewById<ViewPager>(R.id.ingreViewPager)
         val ingre_tablayout = view.findViewById<TabLayout>(R.id.ingre_tablayout)
         ingreViewPager.adapter = adapter

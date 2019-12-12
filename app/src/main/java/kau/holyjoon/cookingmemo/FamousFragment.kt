@@ -22,7 +22,9 @@ class FamousFragment : Fragment() {
     var meatList = arrayListOf<Ingredient>()
     var seafoodList = arrayListOf<Ingredient>()
     var yogurtList = arrayListOf<Ingredient>()
-    var dataload = 0
+    var dataload = 0  //Viewpager의 특성상 자신과 좌우의 Fragment만 살리고 나머지는 죽였다가 다시 살리는 식이기 때문에,
+    //다시 화면을 불러올 때마다 불렀던 재료들을 다시 로드하는 경우가 생김.
+    //이를 dataload를 통해서 방지.
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,13 +92,9 @@ class FamousFragment : Fragment() {
 
         bt_total_1.setOnClickListener {
             if (mAdapter1.btSet == 0) {
-                //mAdapter = IngreAdapter(context!!, ingredientList,resultList){ingredient -> Toast.makeText(context,"${ingredient.name}",Toast.LENGTH_LONG).show() }
-                //famousRecyclerView1.adapter = mAdapter
                 mAdapter1.btSet = 1
                 bt_total_1.text = "닫기"
             } else {
-                // mAdapter = IngreAdapter(context!!, ingredientList2,resultList){ingredient -> Toast.makeText(context,"${ingredient.name}",Toast.LENGTH_LONG).show() }
-                // famousRecyclerView1.adapter = mAdapter
                 mAdapter1.btSet = 0
                 bt_total_1.text = "더보기"
             }
@@ -212,6 +210,7 @@ class FamousFragment : Fragment() {
             }
 
         }
+        //Firebase에서 데이터를 가져오는 명령
         val sort1 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("famous").child("fresh")
             .addListenerForSingleValueEvent(postListener1)
         val sort2 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("famous").child("meat")
@@ -220,6 +219,7 @@ class FamousFragment : Fragment() {
             .addListenerForSingleValueEvent(postListener3)
         val sort4 = FirebaseDatabase.getInstance().getReference().child("ingredient").child("famous").child("yogurt")
             .addListenerForSingleValueEvent(postListener4)
+
         return view
     }
 }

@@ -19,15 +19,15 @@ import kotlinx.android.synthetic.main.edit_main.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import java.io.ByteArrayOutputStream
 
-class EditActivity() : AppCompatActivity() {
-    var remindhowmake : String? = null
+class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제가 가능한 Activity
+    var remindhowmake : String? = null  //remind -> 수정을 할 때 어떤 것을 수정하는지 기억하기 위한 변수.
     var remindcooktime : Int? = null
 
     var recipeList = ArrayList<Recipe_item?>() //recyclerview에 들어갈 데이터리스트
-    val mAdapter = RecipeAdapter(this, recipeList){recipeItem -> //Edit에서 각 단계 클릭했을때
+    val mAdapter = RecipeAdapter(this, recipeList){recipeItem -> //Edit의 데이터를 찍는 어뎁터. Edit에서 각 단계 롱클릭했을때 수정하는 기능
         remindhowmake = recipeItem?.howmake
         remindcooktime = recipeItem?.cooktime
-        val editintent = Intent(this, PlusActivity::class.java)
+        val editintent = Intent(this, PlusActivity::class.java)  //popup창에 해당 단계의 정보를 전달.
         val intentrecipe = Recipe_item(recipeItem?.ingredient,recipeItem?.howmake,recipeItem?.cooktime,recipeItem?.comment)
         editintent.putExtra("recipe", intentrecipe)
         startActivityForResult(editintent,1000)
@@ -39,7 +39,7 @@ class EditActivity() : AppCompatActivity() {
     var foldername: String? = "기본폴더"
     val intentname by lazy{intent?.extras?.get("name") as String?}
     val intentimg by lazy{intent?.extras?.get("img") as String?}
-    val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")}
+    val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")} //Popup창에서 방법, 시간, 코멘트 + 재료 를 묶은 Recipe_item을 리스트로 저장
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_main)
@@ -52,7 +52,7 @@ class EditActivity() : AppCompatActivity() {
         Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
         Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
-        if(intentname != null) {
+        if(intentname != null) {                //수정을 위해 Edit Activity로 넘어왔다면 해당 값들을 intent로 받아서 데이터를 저장함.
             edit_cookname.setText(intentname)
         }
         if(intentimg != null) {
@@ -65,13 +65,13 @@ class EditActivity() : AppCompatActivity() {
             println("${recipeList[0]?.comment}")
             mAdapter.notifyDataSetChanged()
         }
-        val edit_imageView = findViewById<ImageView>(R.id.edit_imageView)
+        val edit_imageView = findViewById<ImageView>(R.id.edit_imageView)   //imageView를 클릭시 contextmenu가 등장하도록 실정
         edit_imageView.setOnClickListener { v: View? ->
             registerForContextMenu(v)
             openContextMenu(v)
         }
         aboutView()
-        val gestureListener = MyGesture()
+        val gestureListener = MyGesture()   //gesture를 감지하여 Floating Button을 보였다가, 사라졌다가 하게 함.
         val gesturedetector = GestureDetector(this,gestureListener)
 
         view.setOnTouchListener{v, event ->
@@ -82,11 +82,9 @@ class EditActivity() : AppCompatActivity() {
     inner class MyGesture : GestureDetector.OnGestureListener {
 
         override fun onShowPress(e: MotionEvent?) {
-            println("showpress!!!!!!!!!!!!")
         }
 
         override fun onSingleTapUp(e: MotionEvent?): Boolean {
-            println("싱글탭!")
             return false
         }
 
@@ -96,7 +94,6 @@ class EditActivity() : AppCompatActivity() {
             velocityX: Float,
             velocityY: Float
         ): Boolean {
-            println("플링!!")
             return false
         }
 
@@ -108,13 +105,11 @@ class EditActivity() : AppCompatActivity() {
             distanceY: Float
         ): Boolean {
             if(e1?.action == MotionEvent.ACTION_DOWN) {
-                println("액선 1아래로 스크롤!!!")
-                println("e1:${e1.action}, e2:${e2?.action}, distanceX :${distanceX},distanceY :${distanceY}")
-                if (recipeList.size > 2) {
-                    if (distanceY > 0) {
+                if (recipeList.size > 2) {  //레시피 단계가 2개가 넘을 떄부터 Floating button이 단계를 가림.
+                    if (distanceY > 0) {  //위로 스크롤
                         bt_floating.visibility = View.INVISIBLE
                     }
-                }
+                }  //아래로 스크롤
                 if(distanceY <0) bt_floating.visibility = View.VISIBLE
             }
             return true
@@ -125,7 +120,6 @@ class EditActivity() : AppCompatActivity() {
         }
 
         override fun onDown(e: MotionEvent?): Boolean {
-            println("터치!!")
             return false
         }
     }
@@ -134,7 +128,7 @@ class EditActivity() : AppCompatActivity() {
             //메모버튼 눌렀을때
             openPlusActivity()
         }
-        bt_save.setOnClickListener {
+        bt_save.setOnClickListener {  //필요한 데이터가 있다면 홈화면으로 데이터를 전달
 
             val name:String = edit_cookname.text.toString()
             val save_intent = Intent(this, MainActivity::class.java)
@@ -154,14 +148,14 @@ class EditActivity() : AppCompatActivity() {
         }
     }
 
-    private fun openPlusActivity() {
+    private fun openPlusActivity() {  //추가 버튼을 눌렀을 경우 (floating button)
         val intent = Intent(this, PlusActivity::class.java)
         startActivityForResult(intent, 1)   //popup을 띄우는 requestcode = 1
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1000) { //재료 고침
+        if(requestCode == 1000) { //레시피 단계를 클릭하여 수정을 하고 돌아왔을 때 원래의 데이터를 업데이트시켜줌
             for(i in 0 until recipeList.size) {
                 if(recipeList[i]?.howmake == remindhowmake && recipeList[i]?.cooktime == remindcooktime){
                     val deleteintent = data?.extras?.get("delete") as String?

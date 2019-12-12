@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 
 class SimulPagerAdapter(fm: FragmentManager)
     : FragmentStatePagerAdapter(fm) {
-    val fragmentTitleList = arrayListOf<String>()  //tablayout에 띄울 tab
+    val fragmentTitleList = arrayListOf<String>()
     val list = arrayListOf<SimulFragment>()
     override fun getItem(position: Int): Fragment {
         return list[position]
@@ -25,7 +25,7 @@ class SimulPagerAdapter(fm: FragmentManager)
         return fragmentTitleList[position]
     }
 
-    fun addFragment(title : String, size : String,recipe : Recipe_item) {
+    fun addFragment(title : String, size : String,recipe : Recipe_item) {  //Fragment를 동적으로 추가하기 위한 함수
         list.add(SimulFragment(title, size, recipe))
         fragmentTitleList.add(title)
     }

@@ -37,7 +37,7 @@ class ViewActivity : AppCompatActivity() {
         val user = User_Permission(this)
         user.checkPer()
         if(recipeListintent!= null) {
-            for(i in 0 until recipeListintent.size) {
+            for(i in 0 until recipeListintent.size) {  //모든 재료를 받아오려고 했지만 .. 아직 구현되지 않음. 총시간은 받아올 수 있음
                 recipeList.add(recipeListintent[i])
                 total_time += recipeListintent[i].cooktime!!
                 for(j in 0 until (recipeListintent[i].ingredient?.size ?: 0)) {
@@ -72,11 +72,11 @@ class ViewActivity : AppCompatActivity() {
 
         name.text = cookname
 
-        bt_view_delete.setOnClickListener {  //삭제 버튼 .......... 다시 한번 더 물어봐야함 ..... ㅎㅎ
+        bt_view_delete.setOnClickListener {  //삭제 버튼
 
         }
 
-        bt_start.setOnClickListener {
+        bt_start.setOnClickListener {  //Simul Activity 로 넘어가는 기능
             val viewintent = Intent(this, SimulActivity::class.java) //뷰 화면 데이터 넘김
             viewintent.putExtra("name",cookname)
             viewintent.putParcelableArrayListExtra("recipeList",recipeList)

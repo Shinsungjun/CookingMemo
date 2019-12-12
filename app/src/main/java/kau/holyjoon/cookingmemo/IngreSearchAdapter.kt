@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class IngreSearchAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>, val itemClick : (Ingredient)->Unit):
-    RecyclerView.Adapter<IngreSearchAdapter.Holder>(), Filterable {
+    RecyclerView.Adapter<IngreSearchAdapter.Holder>(), Filterable {  //Recycler의 Search를 도와주는 Adapter이지만 .. 구현 못함
 
     var searchList : ArrayList<Ingredient>? = null
     override fun getFilter(): Filter {

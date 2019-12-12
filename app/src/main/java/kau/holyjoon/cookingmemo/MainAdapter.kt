@@ -15,17 +15,15 @@ class MainAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?, val
 
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
-    inner class hRecipeViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview!!){
+    inner class hRecipeViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview){
         //뷰의 이름이 정해지고, layout과 연결됨
-        val recipe_name = itemView?.findViewById<TextView>(R.id.recipe_name)
-        val recipe_image = itemView?.findViewById<ImageView>(R.id.recipe_image)
+        val recipe_name = itemView.findViewById<TextView>(R.id.recipe_name)
+        val recipe_image = itemView.findViewById<ImageView>(R.id.recipe_image)
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
             if (recipe.img!= null) {
-                println("이미지 소스 in GridAdapter : ${recipe.img}")
                 recipe_image?.setImageURI(recipe.img!!.toUri())
             } else {
-                println("이미지 소스는 null입니다")
                 recipe_image?.setImageResource(R.drawable.bob)
             }
             recipe_name?.text = recipe.name
@@ -50,7 +48,6 @@ class MainAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?, val
     override fun onBindViewHolder(holder: hRecipeViewHolder, position: Int) {
         if(hRecipeList != null)
         holder.bind(hRecipeList!![position], context)
-
     }
 
 }

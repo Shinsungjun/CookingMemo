@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>, val resultList : ArrayList<Ingredient>,val itemClick : (Ingredient)->Unit):
-    RecyclerView.Adapter<IngreAdapter.Holder>() {
+    RecyclerView.Adapter<IngreAdapter.Holder>() {  //Fragment에서 Recylcer View에 재료를 찍어주는 Adapter
     var btSet = 0
     inner class Holder(itemView : View, itemClick : (Ingredient)->Unit) : RecyclerView.ViewHolder(itemView) {
         val ingredientPhoto = itemView.findViewById<ImageView>(R.id.gridImg)
@@ -21,13 +21,13 @@ class IngreAdapter(val context : Context, val ingreList : ArrayList<Ingredient>,
 
             ingredientName.text = ingredient.name
             ingredientPhoto.setOnClickListener {itemClick(ingredient)
-                if(ingredient.source != null) {
+                if(ingredient.source != null) {   //선택 했을 시, resultList에 데이터를 추가하고 src를 null로 바꾸어 그림을 사라지게 함
                     resultList.add(Ingredient(ingredient.name, ingredient.source))
                     ingredient.source = null
                 }
                 else {
                     for(i in 0 until resultList.size) {
-                        if(resultList[i].name == ingredient.name) {
+                        if(resultList[i].name == ingredient.name) {  //이미 선택되어있는 재료일 시 source를 돌려주고 result에서 삭제. 선택 취소 기능
                             ingredient.source = resultList[i].source
                             resultList.remove(resultList[i])
                             break

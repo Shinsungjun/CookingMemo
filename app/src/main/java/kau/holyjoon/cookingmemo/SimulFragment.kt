@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.simulfragment.*
 import kotlinx.android.synthetic.main.simulfragment.view.*
 import kotlin.concurrent.timer
 
-class SimulFragment(val position : String, val totalsize : String, val recipe : Recipe_item) : Fragment() {
+class SimulFragment(val position : String, val totalsize : String, val recipe : Recipe_item) : Fragment() {  //Simul ViewPager에 찍힐 Fragment
     val mrecipe = recipe
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -5,10 +5,8 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import kotlinx.android.synthetic.main.activity_simul.*
-import kotlinx.android.synthetic.main.choice_ingredientfragment.*
 
-class SimulActivity : AppCompatActivity() {
+class SimulActivity : AppCompatActivity() {  //simul 기능을 하는 Activity. 미완성
     companion object {
         var timerun = 1
     }
@@ -22,7 +20,7 @@ class SimulActivity : AppCompatActivity() {
         text_cooktitle.text = cooknameintent
         val ingreViewPager = findViewById<ViewPager>(R.id.simul_pager)
         ingreViewPager.adapter = adapter
-        for(i in 0 until recipeListintent.size) {
+        for(i in 0 until recipeListintent.size) {   //ViewPager을 동적으로 만들어야하기 때문에 이런식으로 구현
             adapter.addFragment((i+1).toString(),recipeListintent.size.toString(),recipeListintent[i])
             adapter.notifyDataSetChanged()
         }
@@ -35,11 +33,11 @@ class SimulActivity : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                Log.d("ITPANGPANG", "onPageScrolled : $position")
+                Log.d("Check","onPageScrolled : $position")
             }
 
             override fun onPageSelected(position: Int) {
-                Log.d("ITPANGPANG", "onPageSeleted : $position")
+                Log.d("Check", "onPageSeleted : $position")
             }
         })
     }

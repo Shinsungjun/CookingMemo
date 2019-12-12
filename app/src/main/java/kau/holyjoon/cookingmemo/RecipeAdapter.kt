@@ -11,15 +11,11 @@ import kau.holyjoon.cookingmemo.RecipeAdapter.RecipeViewHolder
 
 
 //RecyclerView 어댑터
-class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>, val itemClick : (Recipe_item?)->Boolean )
+class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>, val itemClick : (Recipe_item?)->Boolean )  //EditActivity에서 사용
     :RecyclerView.Adapter<RecipeViewHolder>(){
-
-    var itemposition = -1
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
     //View.OnCreateContextMenuListener을 implements
-    inner class RecipeViewHolder(itemview: View,itemClick : (Recipe_item)->Boolean) : RecyclerView.ViewHolder(itemview) {
-
-
+    inner class RecipeViewHolder(itemview: View,LongitemClick : (Recipe_item)->Boolean) : RecyclerView.ViewHolder(itemview) {
         //뷰의 이름이 정해지고, layout과 연결됨
         val Ingredient = itemview.findViewById<TextView>(R.id.ingredient_text)
         val Howmake = itemview.findViewById<TextView>(R.id.howmake_text)
@@ -32,7 +28,7 @@ class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>
             Cooktime?.text = "${recipe?.cooktime?.div(60)}분 ${recipe?.cooktime?.rem(60)}초"
             Comment?.text = recipe?.comment
 
-            itemView.setOnLongClickListener { itemClick(recipe)
+            itemView.setOnLongClickListener { itemClick(recipe)  //각 뷰를 longclick시 수행할 기능은 람다함수로 선언
                 true
             }
         }

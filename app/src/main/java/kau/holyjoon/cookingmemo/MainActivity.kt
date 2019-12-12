@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mStorageRef: StorageReference;
         setContentView(R.layout.activity_main)
         val loadintent = Intent(this, LoadingActivity::class.java)
         startActivity(loadintent)
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         val folderview = findViewById<RecyclerView>(R.id.folder_main)
 
         val Gm = GridLayoutManager(this, numberOfColumns) //레이아웃매니저 설정
-        gridview.layoutManager = Gm as RecyclerView.LayoutManager?
+        gridview.layoutManager = Gm
         gridview.setHasFixedSize(true)
 
         folderview.adapter = folderAdapter
@@ -136,12 +135,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, 1) //Edit화면으로 이동
     }
 
-    private fun viewOpenActivity() {
-        val viewintent = Intent(this, ViewActivity::class.java)
-        startActivity(viewintent)
-    }
-
-    private inner class SlidingPageAnimationListenen():Animation.AnimationListener //애니메이션 리스너
+    private inner class SlidingPageAnimationListenen:Animation.AnimationListener //애니메이션 리스너
     {
 
         override fun onAnimationEnd(p0: Animation?) {
@@ -189,7 +183,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        else {
+        else { //Edit -> Main 으로 왔을 때 requestcode = 1
             if (data != null) {
                 val resultintent = data.getStringExtra("name")
                 val resultintent1: ArrayList<Recipe_item>? =
@@ -200,9 +194,7 @@ class MainActivity : AppCompatActivity() {
                 intent2 = data.extras?.get("img") as String?
                 val item: hRecipe = hRecipe(name.text.toString(), "", folder, resultintent1)
 
-                hRecipeList.add(hRecipe(resultintent, intent2,folder, resultintent1))
-                Toast.makeText(this, "${item.folder}", Toast.LENGTH_LONG).show()
-                println("이미지 소스 in Main Result Intent: ${intent2}")
+                hRecipeList.add(hRecipe(resultintent, intent2,folder, resultintent1))  //받아온 데이터로 hRecipeList에 추가
                 hAdapter.notifyDataSetChanged()
             }
         }

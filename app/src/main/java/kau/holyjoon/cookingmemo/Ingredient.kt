@@ -7,7 +7,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 import java.io.Serializable
 
 @IgnoreExtraProperties
-class Ingredient(var name: String?, var source: String?) : Parcelable {
+class Ingredient(var name: String?, var source: String?) : Parcelable {  //가장 기본이 되는 Class, 재료의 이름과 src의 정보를 가지고 있다. src의 정보는 Firebase에 저장
     constructor() : this("","")
     fun toMap() : HashMap<String, String> {
         val result = HashMap<String,String>()

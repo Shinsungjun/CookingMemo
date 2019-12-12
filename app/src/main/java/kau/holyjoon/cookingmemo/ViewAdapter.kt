@@ -16,11 +16,10 @@ import kotlin.concurrent.timer
 
 //RecyclerView 어댑터
 class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, val itemClick : (Recipe_item)->Unit)
-    :RecyclerView.Adapter<ViewAdapter.Vholder>(){
+    :RecyclerView.Adapter<ViewAdapter.Vholder>(){   //ViewActivity에서 찍히는 Recipe_item들을 찍어주는 Adapter. 타이머 기능이 존재함
 
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
-    //View.OnCreateContextMenuListener을 implements
     inner class Vholder(itemview: View) : RecyclerView.ViewHolder(itemview){
 
         //뷰의 이름이 정해지고, layout과 연결됨
@@ -29,8 +28,6 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
         val Cooktimerun = itemView.findViewById<Button>(R.id.bt_cooktime_run)
         val Cooktimestop = itemView.findViewById<Button>(R.id.bt_cooktime_stop)
         val Comment = itemView.findViewById<TextView>(R.id.comment_text)
-
-        //itemView.setOnCreateContextMenuListener(this);
 
         fun bind(recipe: Recipe_item,context:Context) { //recycleview item에 데이터를 붙여주는 작업
             Howmake?.text = recipe.howmake
@@ -53,7 +50,7 @@ class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, v
                 }
                 else recipe.isRunning = 0
                 val mHandler = Handler(Looper.getMainLooper())
-                timer(period = 1000) {
+                timer(period = 1000) {  //타이머 기능
                     //다른 Thread에서 작동
                     if(recipe.isRunning == 0 || recipe.cooktime == 0) cancel()
                     if(recipe.isRunning == 1) {

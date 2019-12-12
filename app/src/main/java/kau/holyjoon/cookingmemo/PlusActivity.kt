@@ -17,13 +17,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.plus_popup.*
 
 
-class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 popup형식 Activity 여기서 만들어진 Recipe객체를 Intent를 통해 EditActivity로 넘겨준다. 그러면 EditActivity에서도 똑같이 객체화!
-    //done 버튼을 누르면 지금까지 입력한 재료, 방법, 시간에 대한 정보를 가지고 조건에 맞는다면 Recipe객체를 만들어 Intent로 전달.
+class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 popup형식 Activity 여기서 만들어진 Recipe_item객체를 Intent를 통해 EditActivity로 넘겨준다. 그러면 EditActivity에서도 똑같이 객체화!
+    //done 버튼을 누르면 지금까지 입력한 재료, 방법, 시간에 대한 정보를 가지고 조건에 맞는다면 Recipe_item객체를 만들어 Intent로 전달.
     //조건에 맞지 않는다면 무엇이 부족한지 알려줌.
     var ingredients = arrayListOf<Ingredient>()
     var msecond : Int? = null
     var mminute :Int? = null
-    val popupAdapter = Popup_Adapter(this, ingredients)
+    val popupAdapter = Popup_Adapter(this, ingredients) //Grid View Adapter
     val reitem by lazy{intent?.extras?.get("recipe") as Recipe_item?}
     @SuppressLint("Range")
     @RequiresApi(Build.VERSION_CODES.M)
@@ -60,10 +60,6 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
             finish()
         }
         gridView.adapter = popupAdapter
-        gridView.setOnItemClickListener() {
-                parent, itemView, position, id ->
-            popupAdapter.notifyDataSetChanged()
-        }
         aboutView()
     }
 
@@ -84,12 +80,11 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
         }
     }
     fun aboutView() {
-        bt_cancel_pop.setOnClickListener { view ->
+        bt_cancel_pop.setOnClickListener { view ->  // 레시피 추가 없이 취소
             finish()
         }
 
-        bt_done_pop.setOnClickListener {
-
+        bt_done_pop.setOnClickListener {  //필요한 정보를 모두 다 적었고, Edit으로 레시피의 한 단계를 저장.
             val plusintent = Intent(this,EditActivity::class.java)
             mminute = edit_time_minute.text.toString().toInt()
             msecond = edit_time_second.text.toString().toInt()
@@ -109,7 +104,7 @@ class PlusActivity :AppCompatActivity() {   //+ 버튼 클릭 시 나타나는 p
 
 
         }
-        bt_addIn.setOnClickListener{
+        bt_addIn.setOnClickListener{  //재료를 선택하기 위한 IngredientMainActivity로 넘어감.
             val intent = Intent(this, ingredientMainActivity::class.java)
             intent.putParcelableArrayListExtra("back",ingredients)
             startActivityForResult(intent, 1)

@@ -17,7 +17,7 @@ import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.db_additem.*
 
 
-class Db_AddActivity : AppCompatActivity() {
+class Db_AddActivity : AppCompatActivity() {  //storage에 사진을 올리고 realtime database에 이름과 사진의 src를 저장할 수 있는 activity. 사용은 안함
     val storage : FirebaseStorage = FirebaseStorage.getInstance("gs://kau-mobile-cookingapp.appspot.com")
     val storageRef = storage.reference
 

@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class pagerAdapter(fm: FragmentManager)
+class pagerAdapter(fm: FragmentManager)  //ViewPagerAdapter 간단하게 만듬
     : FragmentStatePagerAdapter(fm) {
-    val fragmentTitleList = arrayListOf<String>("인기","채소/과일","육류","수산물","곡물/견과류","양념/소스","가공/유제품","기타")  //tablayout에 띄울 tab
+    val fragmentTitleList = arrayListOf("인기","채소/과일","육류","수산물","곡물/견과류","양념/소스","가공/유제품","기타")  //tablayout에 띄울 tab
     val list = arrayListOf(FamousFragment(),FruitFragment(), MeatFragment(),SeafoodFragment(),GrainFragment(),SourceFragment(),YogurtFragment(),EtcFragment())
     override fun getItem(position: Int): Fragment {
         return list[position]
