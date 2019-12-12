@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editmain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
-    android:id ="@+id/editmain"
     tools:context=".EditActivity">
 
 
@@ -61,8 +62,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="650dp"
-        android:hint="요리 명"
         android:fontFamily="@font/dreamfont5"
+        android:hint="요리 명"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

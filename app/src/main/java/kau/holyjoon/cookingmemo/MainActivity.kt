@@ -29,14 +29,15 @@ class MainActivity : AppCompatActivity() {
     var hRecipeList = ArrayList<hRecipe>() //홈화면에 표시될 데이터 리스트
     var remindname : String? = null
     var gridview:RecyclerView? = null //홈화면에 표시될 view
-    var hAdapter = MainAdapter(this, hRecipeList){hRecipe->  //홈화면에 recyclerview찍어낼 어댑터, 클릭이벤트
-        viewintent!!.putExtra("name",hRecipe!!.name)
-        viewintent!!.putExtra("img",hRecipe.img)
-        println("이미지 소스 in Going Intent: ${hRecipe.img}")
-        viewintent!!.putParcelableArrayListExtra("recipeList",hRecipe.hrecipeList)
-        remindname = hRecipe.name
-        startActivityForResult(viewintent,1555)  //View로 넘어가는 Intent 다시 넘어올때 1555의 requestcode면 해당 recipe가 변경점이 있을 때 변경함
+    var hAdapter = MainAdapter(this, hRecipeList){ hRecipe ->
+        var viewintent = Intent(this, ViewActivity::class.java)
+        viewintent.putExtra("name",hRecipe?.name)
+        viewintent.putExtra("img",hRecipe?.img)
+        println("이미지 소스 in Going Intent: ${hRecipe?.img}")
+        viewintent.putParcelableArrayListExtra("recipeList",hRecipe?.hrecipeList)
+        startActivityForResult(viewintent,1)
     } //만든 어댑터를 설정해주는 작업
+
     var viewintent:Intent? = null //Viewer로 넘어갈 데이터 intent
 
     var intent2 : String? = null
@@ -45,7 +46,9 @@ class MainActivity : AppCompatActivity() {
     var translateRightAnim: Animation? = null //오른쪽으로 슬라이드 Anim
     var slidingPage01: ConstraintLayout? = null //메뉴바 레이아웃
     var folderList = arrayListOf(Folder("기본폴더",false),Folder("찌개/국",false),Folder("구이",false),Folder("볶음",false))
-    val folderAdapter = FolderAdapter(this, folderList)//메뉴바에 폴더 리스트 찍는 Adapter
+    val folderAdapter = FolderAdapter(this, folderList){
+
+    }//메뉴바에 폴더 리스트 찍는 Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,16 +124,6 @@ class MainActivity : AppCompatActivity() {
                 slidingPage01!!.startAnimation(translateRightAnim)
             }
         }
-        //폴더 아이템 클릭시
-        folderAdapter.setItemClickListener( object : FolderAdapter.ItemClickListener{
-            override fun onClick(view: View, position: Int) {
-                if(slidingPage01!!.isVisible) {
-                    if (isPageOpen) {
-                        slidingPage01!!.startAnimation(translateLeftAnim)
-                    }
-                    edit_cookname.text = folderList[position].name.toString() //title을 폴더이름으로 바꾸기
-                }}
-        })
     }
 
     private fun openActivity() {  //Edit 창으로 넘어가는 코드

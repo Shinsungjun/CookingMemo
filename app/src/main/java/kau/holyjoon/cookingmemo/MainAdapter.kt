@@ -21,7 +21,7 @@ class MainAdapter(val context: MainActivity, var hRecipeList:ArrayList<hRecipe>?
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
 
-            itemView.setOnLongClickListener { itemClick(recipe) //클릭이벤트
+            itemView.setOnClickListener { itemClick(recipe) //클릭이벤트
                 true
             }
             if (recipe.img!= null) {
