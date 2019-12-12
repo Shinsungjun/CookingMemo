@@ -11,7 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.folder_item.*
 
-class FolderAdapter(val context: Context, val folderList: ArrayList<Folder>,val itemClick : (Folder?)->Unit)
+class FolderAdapter(val context: Context, val folderList: ArrayList<Folder>,val itemClick :(Folder?)->Unit)
     : RecyclerView.Adapter<FolderAdapter.FolderViewHolder>(){
     inner class FolderViewHolder(itemview: View?): RecyclerView.ViewHolder(itemview!!){ //뷰홀더
 
@@ -20,9 +20,9 @@ class FolderAdapter(val context: Context, val folderList: ArrayList<Folder>,val 
 
             Folder_name?.text = folder.name
             itemView.setOnClickListener { itemClick(folder) }
-            if(folder.check==true) //true면 분홍색으로
+            if(folder.check) //true면 분홍색으로
                 Folder_name.setTextColor(Color.parseColor("#FF9999"))
-            if(folder.check==false) //false면 회색으로
+            else //false면 회색으로
                 Folder_name.setTextColor(Color.parseColor("#FF5E5E5E"))
 
         }

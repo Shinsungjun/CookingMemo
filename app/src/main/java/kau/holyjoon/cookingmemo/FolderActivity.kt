@@ -15,11 +15,12 @@ import android.widget.Toast.makeText as makeText1
 class FolderActivity : AppCompatActivity() {
     var folderList = arrayListOf(Folder("기본폴더",false),Folder("찌개/국",false),Folder("구이류",false),Folder("볶음류",false)) //기본 폴더구성
     var foldername = "기본폴더"//폴더이름 default
+    var folderview:RecyclerView? = null
     val folderAdapter = FolderAdapter(this, folderList){Folder->
         foldername = Folder!!.name
         if (Folder.check)
             Toast.makeText(this@FolderActivity, "${Folder.name}", Toast.LENGTH_SHORT).show()
-        //이미 선택되어있는 폴더누르면 변화없음
+            //이미 선택되어있는 폴더누르면 변화없음
         else {
             for(i in 0 until folderList.size)
                 folderList[i].check=false
@@ -34,11 +35,11 @@ class FolderActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.folder_popup)
 
-        val folderview = findViewById<RecyclerView>(R.id.folder_main)
-        folderview.adapter = folderAdapter //어댑터 적용
+        folderview = findViewById<RecyclerView>(R.id.folder_main)
+        folderview!!.adapter = folderAdapter //어댑터 적용
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
-        folderview.layoutManager = lm
-        folderview.setHasFixedSize(true)
+        folderview!!.layoutManager = lm
+        folderview!!.setHasFixedSize(true)
 
         folderAdapter.notifyDataSetChanged()
 
@@ -55,6 +56,9 @@ class FolderActivity : AppCompatActivity() {
             val intent = Intent(this, NewFolderActivity::class.java)
             startActivityForResult(intent, 2)
         }
+        folderview!!.setOnClickListener(){
+            folderAdapter.notifyDataSetChanged()
+        }
     }
     //NewFolderActivity에서 데이터 받아옴
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,6 +69,5 @@ class FolderActivity : AppCompatActivity() {
         }
 
     }
-
 }
 
