@@ -11,8 +11,8 @@
 
     <ImageButton
         android:id="@+id/bt_folder"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:scaleType="fitCenter"
@@ -26,8 +26,8 @@
 
     <ImageButton
         android:id="@+id/bt_save"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:scaleType="fitCenter"
@@ -87,11 +87,11 @@
         android:id="@+id/scrollView2"
         android:layout_width="339dp"
         android:layout_height="469dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_cookname">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"

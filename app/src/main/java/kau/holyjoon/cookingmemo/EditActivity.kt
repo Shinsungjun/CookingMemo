@@ -19,12 +19,13 @@ import kotlinx.android.synthetic.main.edit_main.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import java.io.ByteArrayOutputStream
 
+
 class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제가 가능한 Activity
     var remindhowmake : String? = null  //remind -> 수정을 할 때 어떤 것을 수정하는지 기억하기 위한 변수.
     var remindcooktime : Int? = null
 
     var recipeList = ArrayList<Recipe_item?>() //recyclerview에 들어갈 데이터리스트
-    val mAdapter = RecipeAdapter(this, recipeList){recipeItem -> //Edit의 데이터를 찍는 어뎁터. Edit에서 각 단계 롱클릭했을때 수정하는 기능
+    val mAdapter = EditAdapter(this, recipeList){ recipeItem -> //Edit에서 각 단계 클릭이벤트
         remindhowmake = recipeItem?.howmake
         remindcooktime = recipeItem?.cooktime
         val editintent = Intent(this, PlusActivity::class.java)  //popup창에 해당 단계의 정보를 전달.
@@ -36,7 +37,7 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
     var cookname:String = ""
     var photoUri : Uri? = null
     var photo : Bitmap? = null
-    var foldername: String? = "기본폴더"
+    var foldername: String? = "기본폴더"  //초기폴더는 기본
     val intentname by lazy{intent?.extras?.get("name") as String?}
     val intentimg by lazy{intent?.extras?.get("img") as String?}
     val intentrecipeList by lazy{intent.getParcelableArrayListExtra<Recipe_item?>("recipeList")} //Popup창에서 방법, 시간, 코멘트 + 재료 를 묶은 Recipe_item을 리스트로 저장
@@ -49,7 +50,7 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
         val lm = LinearLayoutManager(this) //레이아웃매니저 설정
         Recipeview.layoutManager = lm
         Recipeview.setHasFixedSize(true)
-        Recipeview.adapter = mAdapter //Recipe_view는 recycleview의 id
+        Recipeview.adapter = mAdapter//어댑터 적용
         Recipeview.addItemDecoration(DividerItemDecoration(applicationContext, 1))//list에 구분선추가
 
         if(intentname != null) {                //수정을 위해 Edit Activity로 넘어왔다면 해당 값들을 intent로 받아서 데이터를 저장함.
@@ -143,7 +144,7 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
 
         }
 
-        bt_folder.setOnClickListener {
+        bt_folder.setOnClickListener { //폴더액티비티 실행
             openFolderActivity()
         }
     }
@@ -183,7 +184,7 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
                 val resultintent1 = data.extras?.get("recipe") as Recipe_item
 
                 recipeList.add(
-                    Recipe_item(
+                    Recipe_item( //팝업창에서 받은 정보
                         resultintent1.ingredient,
                         resultintent1.howmake,
                         resultintent1.cooktime,
@@ -213,9 +214,9 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
 
             }
         }
-        if (requestCode == 4){
+        if (requestCode == 4){  //폴더 requestcode
             if (data != null) {
-                foldername = data.extras?.get("folder").toString()
+                foldername = data.extras?.get("folder").toString() //foldername 전달
             }
             else {
                 foldername = "기본폴더"
@@ -224,7 +225,7 @@ class EditActivity() : AppCompatActivity() {  //레시피 추가, 수정, 삭제
         }
     }
 
-    private fun openFolderActivity() {
+    private fun openFolderActivity() {  //폴더 액티비티 실행
         val folderintent = Intent(this, FolderActivity::class.java)
         startActivityForResult(folderintent,4)
     }

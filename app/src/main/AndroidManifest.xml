@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity" />
         <activity
             android:name=".FolderActivity"
             android:theme="@style/MyDialog" />
@@ -33,7 +32,6 @@
         <activity
             android:name=".PlusActivity"
             android:theme="@style/MyDialog" />
-        <activity android:name=".Choice_ingredient_Main" />
         <activity android:name=".Db_AddActivity" />
         <activity android:name=".ingredientMainActivity" />
         <activity android:name=".SimulActivity"/>

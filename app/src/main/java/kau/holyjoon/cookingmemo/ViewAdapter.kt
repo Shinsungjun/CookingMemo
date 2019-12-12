@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.concurrent.timer
 
-
 //RecyclerView 어댑터
 class ViewAdapter(val context: Context, var recipeList:ArrayList<Recipe_item>, val itemClick : (Recipe_item)->Unit)
     :RecyclerView.Adapter<ViewAdapter.Vholder>(){   //ViewActivity에서 찍히는 Recipe_item들을 찍어주는 Adapter. 타이머 기능이 존재함

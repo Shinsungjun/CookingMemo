@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_view.*
 
-
+//홈화면에서 Recipe클릭시 메모를 볼 수 있는 View액티비티
 class ViewActivity : AppCompatActivity() {
     val cooknameintent by lazy{intent.extras?.get("name") as String?}
     val cookimgintent by lazy{intent.extras?.get("img") as String?}

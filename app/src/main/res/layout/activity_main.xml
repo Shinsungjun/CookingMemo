@@ -11,6 +11,7 @@
     android:orientation="horizontal">
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/MainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageButton
@@ -179,20 +180,36 @@
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/menu_home"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="550dp"
+            android:fontFamily="@font/dreamfont5"
+            android:text="홈화면"
+            android:textColor="#5E5E5E"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_text" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/folder_main"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="400dp"
+            android:layout_marginBottom="300dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/menu_home" />
 
         <TextView
             android:id="@+id/menu_text"
@@ -205,6 +222,8 @@
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:text="폴더선택"
+            android:fontFamily="@font/dreamfont5"
+            android:textSize="10dp"
             app:layout_constraintBottom_toTopOf="@+id/line"
             app:layout_constraintEnd_toStartOf="@+id/bt_menu_cancel"
             app:layout_constraintStart_toStartOf="parent"

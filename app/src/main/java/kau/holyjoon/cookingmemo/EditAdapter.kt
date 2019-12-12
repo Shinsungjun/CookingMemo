@@ -7,11 +7,11 @@ import android.view.*
 import android.widget.TextView
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
-import kau.holyjoon.cookingmemo.RecipeAdapter.RecipeViewHolder
+import kau.holyjoon.cookingmemo.EditAdapter.RecipeViewHolder
 
 
 //RecyclerView 어댑터
-class RecipeAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>, val itemClick : (Recipe_item?)->Boolean )  //EditActivity에서 사용
+class EditAdapter(val context: Context, var recipeList:ArrayList<Recipe_item?>, val itemClick : (Recipe_item?)->Boolean )
     :RecyclerView.Adapter<RecipeViewHolder>(){
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
     //View.OnCreateContextMenuListener을 implements

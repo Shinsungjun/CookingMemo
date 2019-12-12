@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 //RecyclerView_Grid 어댑터
-class MainAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?, val itemClick : (hRecipe) -> Unit)
+class MainAdapter(val context: MainActivity, var hRecipeList:ArrayList<hRecipe>?,val itemClick : (hRecipe?)->Unit)
     :RecyclerView.Adapter<MainAdapter.hRecipeViewHolder>(){
-
 
     //아이템 뷰를 저장하는 뷰홀더 클래스,Recyclerview.Adapter의 필수요소
     inner class hRecipeViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview){
@@ -21,13 +20,16 @@ class MainAdapter(val context: Context, var hRecipeList:ArrayList<hRecipe>?, val
         val recipe_image = itemView.findViewById<ImageView>(R.id.recipe_image)
 
         fun bind(recipe: hRecipe,context:Context) { //recycleview item에 데이터를 붙여주는 작업
+
+            itemView.setOnLongClickListener { itemClick(recipe) //클릭이벤트
+                true
+            }
             if (recipe.img!= null) {
                 recipe_image?.setImageURI(recipe.img!!.toUri())
             } else {
                 recipe_image?.setImageResource(R.drawable.bob)
             }
             recipe_name?.text = recipe.name
-            itemView.setOnClickListener { itemClick(recipe) }
         }
 
     }

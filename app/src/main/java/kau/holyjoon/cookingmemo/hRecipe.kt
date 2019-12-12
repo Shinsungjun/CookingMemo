@@ -7,10 +7,9 @@ import android.os.Parcelable
 //홈화면에 보여줄 데이터
 class hRecipe(
     var name:String?,
-     //home화면의 Recipe객체라는 뜻
     var img:String?,
     var folder:String?,
-   var hrecipeList:ArrayList<Recipe_item>?):Parcelable//home화면의 Recipe객체라는 뜻
+   var hrecipeList:ArrayList<Recipe_item>?):Parcelable//plus액티비티에서 받아온 각 요리단계들의 배열
 {
     constructor(parcel: Parcel) : this(
         parcel.readString(),

@@ -10,6 +10,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Handler
 
 
+//로딩화면
 class LoadingActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
